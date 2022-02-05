@@ -1,0 +1,23 @@
+#Files mentioned in this file will be ignored by git
+*.pyc
+*.eggs
+*.log
+*.mbtree
+dist
+build
+ffcuesplitter-gui.egg-info
+deb_dist
+ffcuesplitter-gui.spec
+FFcuesplitter-gui.spec
+*.tar.gz
+ENV
+env
+*.spec
+*.AppImage
+*.egg-info
+Pipfile
+Pipfile.lock
+*.DS_Store
+*.directory
+*.kate-swp
+*~
