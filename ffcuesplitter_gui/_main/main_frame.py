@@ -134,7 +134,8 @@ class MainFrame(wx.Frame):
                              wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
                 return
 
-            self.Destroy()
+            self.on_kill()
+            return
 
         if self.appdata['warnexiting'] is True:
             if wx.MessageBox(_('Are you sure you want to exit?'),
@@ -147,9 +148,8 @@ class MainFrame(wx.Frame):
 
     def on_kill(self):
         """
-        Try to kill application during a process thread
-        that does not want to terminate with the abort button
-
+        In some cases you need to exit the application
+        without any confirm dialog.
         """
         self.Destroy()
 
@@ -320,8 +320,8 @@ class MainFrame(wx.Frame):
     def wiki(self, event):
         """wiki page """
 
-        # page = 'https://github.com/jeanslack/Cuesplitter-GUI/wiki'
-        # webbrowser.open(page)
+        page = 'https://github.com/jeanslack/FFcuesplitter-GUI/wiki'
+        webbrowser.open(page)
     # ------------------------------------------------------------------#
 
     def issues(self, event):
@@ -367,11 +367,7 @@ class MainFrame(wx.Frame):
             msg = _('Congratulation! You are already '
                     'using the latest version.\n')
 
-        dlg = check_new_version.CheckNewVersion(self,
-                                                             msg,
-                                                             vers,
-                                                             this
-                                                             )
+        dlg = check_new_version.CheckNewVersion(self, msg, vers, this)
         dlg.ShowModal()
     # -------------------------------------------------------------------#
 

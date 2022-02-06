@@ -44,9 +44,9 @@ def move_files_to_outputdir(outputdir, tmpdir):
         fdir = os.path.join(outputdir, track)
         ftmp = os.path.join(tmpdir, track)
         if os.path.exists(fdir) and ask is True:
-            dlg = wx.MessageDialog(None, _("File already exists: '{}'\n\n"
-                                           "Do you want to overwrite all "
-                                           "files?").format(fdir),
+            dlg = wx.MessageDialog(None, _('File already exists:\n"{}"\n\n'
+                                           'Do you want to overwrite all '
+                                           'files?').format(fdir),
                                    _("Warning"),
                                    wx.ICON_WARNING
                                    | wx.YES_NO

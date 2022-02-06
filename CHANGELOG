@@ -7,6 +7,16 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Feb 06, 2022 V.1.0.1
+
+- Fixed `FileNotFoundError` exception if the log directory does not yet exist.
+- fixed kill app during current processing.
+- Added few language supports.
+- Fixed ability to portable app.
+- Fixed relative path for Windows portable app.
+- removed '-embed-' as Python embed is not supported for this App.
+
++------------------------------------+
 Feb 02, 2022 V.1.0.0
 
 -Not released
