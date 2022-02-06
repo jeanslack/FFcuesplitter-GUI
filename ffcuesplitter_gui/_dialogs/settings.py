@@ -47,14 +47,13 @@ class Setup(wx.Dialog):
                      ]
     # -----------------------------------------------------------------
 
-    def __init__(self, parent):
+    def __init__(self, parent, appdata):
         """
-        self.appdata: (dict) settings already loaded on the App
+        self.appdata: (dict) settings already loaded on the wx.App .
         self.confmanager: instance to ConfigManager class
         self.settings: (dict) current user settings from file conf.
         """
-        get = wx.GetApp()
-        self.appdata = get.appset
+        self.appdata = appdata
         self.confmanager = ConfigManager(self.appdata['fileconfpath'])
         self.settings = self.confmanager.read_options()
 
@@ -73,87 +72,87 @@ class Setup(wx.Dialog):
         sizer_base.Add(notebook, 1, wx.ALL | wx.EXPAND, 5)
 
         # -----tab 1
-        tabOne = wx.Panel(notebook, wx.ID_ANY)
-        sizerGen = wx.BoxSizer(wx.VERTICAL)
-        sizerGen.Add((0, 15))
-        self.checkbox_logclr = wx.CheckBox(tabOne, wx.ID_ANY, (
+        tab_one = wx.Panel(notebook, wx.ID_ANY)
+        sizer_gen = wx.BoxSizer(wx.VERTICAL)
+        sizer_gen.Add((0, 15))
+        self.checkbox_logclr = wx.CheckBox(tab_one, wx.ID_ANY, (
                         _("Delete the contents of the log files\n"
                           "when exiting the application")))
-        sizerGen.Add(self.checkbox_logclr, 0, wx.ALL, 5)
-        sizerGen.Add((0, 15))
-        self.checkbox_exit = wx.CheckBox(tabOne, wx.ID_ANY, (
+        sizer_gen.Add(self.checkbox_logclr, 0, wx.ALL, 5)
+        sizer_gen.Add((0, 15))
+        self.checkbox_exit = wx.CheckBox(tab_one, wx.ID_ANY, (
                                          _("Warn on exit")))
-        sizerGen.Add(self.checkbox_exit, 0, wx.ALL, 5)
+        sizer_gen.Add(self.checkbox_exit, 0, wx.ALL, 5)
 
-        tabOne.SetSizer(sizerGen)
-        notebook.AddPage(tabOne, _("Miscellanea"))
+        tab_one.SetSizer(sizer_gen)
+        notebook.AddPage(tab_one, _("Miscellanea"))
 
         # -----tab 2
-        tabTwo = wx.Panel(notebook, wx.ID_ANY)
-        sizerFiles = wx.BoxSizer(wx.VERTICAL)
-        sizerFiles.Add((0, 15))
+        tab_two = wx.Panel(notebook, wx.ID_ANY)
+        sizer_files = wx.BoxSizer(wx.VERTICAL)
+        sizer_files.Add((0, 15))
         msg = _("Where do you prefer to save your files?")
-        labfile = wx.StaticText(tabTwo, wx.ID_ANY, msg)
-        sizerFiles.Add(labfile, 0, wx.ALL | wx.EXPAND, 5)
-        sizeFFdirdest = wx.BoxSizer(wx.HORIZONTAL)
-        sizerFiles.Add(sizeFFdirdest, 0, wx.EXPAND)
-        self.txt_outdir = wx.TextCtrl(tabTwo, wx.ID_ANY, "",
-                                          style=wx.TE_READONLY
-                                          )
-        sizeFFdirdest.Add(self.txt_outdir, 1, wx.ALL, 5)
+        labfile = wx.StaticText(tab_two, wx.ID_ANY, msg)
+        sizer_files.Add(labfile, 0, wx.ALL | wx.EXPAND, 5)
+        sizeffdirdest = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_files.Add(sizeffdirdest, 0, wx.EXPAND)
+        self.txt_outdir = wx.TextCtrl(tab_two, wx.ID_ANY, "",
+                                      style=wx.TE_READONLY
+                                      )
+        sizeffdirdest.Add(self.txt_outdir, 1, wx.ALL, 5)
         self.txt_outdir.AppendText(self.appdata['outputfile'])
 
-        self.btn_outdir = wx.Button(tabTwo, wx.ID_ANY, _("Browse.."))
-        sizeFFdirdest.Add(self.btn_outdir, 0, wx.RIGHT |
+        self.btn_outdir = wx.Button(tab_two, wx.ID_ANY, _("Browse.."))
+        sizeffdirdest.Add(self.btn_outdir, 0, wx.RIGHT |
                           wx.ALIGN_CENTER_VERTICAL |
                           wx.ALIGN_CENTER_HORIZONTAL, 5
                           )
-        # sizerFiles.Add((0, 15))
-        tabTwo.SetSizer(sizerFiles)
-        notebook.AddPage(tabTwo, _("File"))
+        # sizer_files.Add((0, 15))
+        tab_two.SetSizer(sizer_files)
+        notebook.AddPage(tab_two, _("File"))
 
         # -----tab 3
-        tabThree = wx.Panel(notebook, wx.ID_ANY)
-        sizerFFmpeg = wx.BoxSizer(wx.VERTICAL)
-        sizerFFmpeg.Add((0, 15))
-        labFFexec = wx.StaticText(tabThree, wx.ID_ANY,
-                                  _('Path to the executables'))
-        sizerFFmpeg.Add(labFFexec, 0, wx.ALL | wx.EXPAND, 5)
+        tab_three = wx.Panel(notebook, wx.ID_ANY)
+        sizer_ffmpeg = wx.BoxSizer(wx.VERTICAL)
+        sizer_ffmpeg.Add((0, 15))
+        lab_ffexec = wx.StaticText(tab_three, wx.ID_ANY,
+                                   _('Path to the executables'))
+        sizer_ffmpeg.Add(lab_ffexec, 0, wx.ALL | wx.EXPAND, 5)
         # ----
-        self.checkbox_exeFFmpeg = wx.CheckBox(tabThree, wx.ID_ANY, (
+        self.ckbx_exe_ffmpeg = wx.CheckBox(tab_three, wx.ID_ANY, (
                                 _("Enable another location to run FFmpeg")))
-        self.btn_pathFFmpeg = wx.Button(tabThree, wx.ID_ANY, _("Browse.."))
-        self.txtctrl_ffmpeg = wx.TextCtrl(tabThree, wx.ID_ANY, "",
+        self.btn_loc_ffmpeg = wx.Button(tab_three, wx.ID_ANY, _("Browse.."))
+        self.txtctrl_ffmpeg = wx.TextCtrl(tab_three, wx.ID_ANY, "",
                                           style=wx.TE_READONLY
                                           )
-        sizerFFmpeg.Add(self.checkbox_exeFFmpeg, 0, wx.ALL, 5)
-        gridFFmpeg = wx.BoxSizer(wx.HORIZONTAL)
-        sizerFFmpeg.Add(gridFFmpeg, 0, wx.EXPAND)
-        gridFFmpeg.Add(self.txtctrl_ffmpeg, 1, wx.ALL, 5)
-        gridFFmpeg.Add(self.btn_pathFFmpeg, 0, wx.RIGHT | wx.CENTER, 5)
+        sizer_ffmpeg.Add(self.ckbx_exe_ffmpeg, 0, wx.ALL, 5)
+        grid_ffmpeg = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_ffmpeg.Add(grid_ffmpeg, 0, wx.EXPAND)
+        grid_ffmpeg.Add(self.txtctrl_ffmpeg, 1, wx.ALL, 5)
+        grid_ffmpeg.Add(self.btn_loc_ffmpeg, 0, wx.RIGHT | wx.CENTER, 5)
         # ----
-        self.checkbox_exeFFprobe = wx.CheckBox(tabThree, wx.ID_ANY, (
+        self.ckbx_exe_ffprobe = wx.CheckBox(tab_three, wx.ID_ANY, (
                                 _("Enable another location to run FFprobe")))
-        self.btn_pathFFprobe = wx.Button(tabThree, wx.ID_ANY, _("Browse.."))
-        self.txtctrl_ffprobe = wx.TextCtrl(tabThree, wx.ID_ANY, "",
+        self.btn_loc_ffprobe = wx.Button(tab_three, wx.ID_ANY, _("Browse.."))
+        self.txtctrl_ffprobe = wx.TextCtrl(tab_three, wx.ID_ANY, "",
                                            style=wx.TE_READONLY
                                            )
-        sizerFFmpeg.Add(self.checkbox_exeFFprobe, 0, wx.ALL, 5)
-        gridFFprobe = wx.BoxSizer(wx.HORIZONTAL)
-        sizerFFmpeg.Add(gridFFprobe, 0, wx.EXPAND)
-        gridFFprobe.Add(self.txtctrl_ffprobe, 1, wx.ALL, 5)
-        gridFFprobe.Add(self.btn_pathFFprobe, 0, wx.RIGHT | wx.CENTER, 5)
+        sizer_ffmpeg.Add(self.ckbx_exe_ffprobe, 0, wx.ALL, 5)
+        grid_ffprobe = wx.BoxSizer(wx.HORIZONTAL)
+        sizer_ffmpeg.Add(grid_ffprobe, 0, wx.EXPAND)
+        grid_ffprobe.Add(self.txtctrl_ffprobe, 1, wx.ALL, 5)
+        grid_ffprobe.Add(self.btn_loc_ffprobe, 0, wx.RIGHT | wx.CENTER, 5)
         # ----
-        tabThree.SetSizer(sizerFFmpeg)
-        notebook.AddPage(tabThree, _("FFmpeg"))
+        tab_three.SetSizer(sizer_ffmpeg)
+        notebook.AddPage(tab_three, _("FFmpeg"))
 
         # -----tab 5
-        tabFive = wx.Panel(notebook, wx.ID_ANY)
-        sizerAppearance = wx.BoxSizer(wx.VERTICAL)
-        sizerAppearance.Add((0, 15))
-        labTheme = wx.StaticText(tabFive, wx.ID_ANY, _('Icon themes'))
-        sizerAppearance.Add(labTheme, 0, wx.ALL | wx.EXPAND, 5)
-        self.cmbx_icons = wx.ComboBox(tabFive, wx.ID_ANY,
+        tab_five = wx.Panel(notebook, wx.ID_ANY)
+        sizer_appearance = wx.BoxSizer(wx.VERTICAL)
+        sizer_appearance.Add((0, 15))
+        lab_theme = wx.StaticText(tab_five, wx.ID_ANY, _('Icon themes'))
+        sizer_appearance.Add(lab_theme, 0, wx.ALL | wx.EXPAND, 5)
+        self.cmbx_icons = wx.ComboBox(tab_five, wx.ID_ANY,
                                       choices=[
                                           ("Light"),
                                           ("Dark"),
@@ -162,104 +161,108 @@ class Setup(wx.Dialog):
                                       size=(200, -1),
                                       style=wx.CB_DROPDOWN | wx.CB_READONLY
                                       )
-        sizerAppearance.Add(self.cmbx_icons, 0,
-                            wx.ALL |
-                            wx.ALIGN_CENTER_HORIZONTAL, 5
-                            )
-        sizerAppearance.Add((0, 15))
-        labTB = wx.StaticText(tabFive, wx.ID_ANY, _("Toolbar customization"))
-        sizerAppearance.Add(labTB, 0, wx.ALL | wx.EXPAND, 5)
+        sizer_appearance.Add(self.cmbx_icons, 0,
+                             wx.ALL |
+                             wx.ALIGN_CENTER_HORIZONTAL, 5
+                             )
+        sizer_appearance.Add((0, 15))
+        lab_tbar = wx.StaticText(tab_five, wx.ID_ANY,
+                                 _("Toolbar customization")
+                                 )
+        sizer_appearance.Add(lab_tbar, 0, wx.ALL | wx.EXPAND, 5)
         tbchoice = [_('At the top of window (default)'),
                     _('At the bottom of window'),
                     _('At the right of window'),
                     _('At the left of window')]
-        self.rdbTBpref = wx.RadioBox(tabFive, wx.ID_ANY,
-                                     (_("Place the toolbar")),
-                                     choices=tbchoice,
-                                     majorDimension=1,
-                                     style=wx.RA_SPECIFY_COLS
-                                     )
-        sizerAppearance.Add(self.rdbTBpref, 0, wx.ALL | wx.EXPAND, 5)
+        self.rdbx_tb_pos = wx.RadioBox(tab_five, wx.ID_ANY,
+                                       (_("Place the toolbar")),
+                                       choices=tbchoice,
+                                       majorDimension=1,
+                                       style=wx.RA_SPECIFY_COLS
+                                       )
+        sizer_appearance.Add(self.rdbx_tb_pos, 0, wx.ALL | wx.EXPAND, 5)
 
-        gridTBsize = wx.FlexGridSizer(0, 2, 0, 5)
-        sizerAppearance.Add(gridTBsize, 0, wx.ALL, 5)
-        lab1_appearance = wx.StaticText(tabFive, wx.ID_ANY,
+        grid_tb_size = wx.FlexGridSizer(0, 2, 0, 5)
+        sizer_appearance.Add(grid_tb_size, 0, wx.ALL, 5)
+        lab1_appearance = wx.StaticText(tab_five, wx.ID_ANY,
                                         _('Icon size:'))
-        gridTBsize.Add(lab1_appearance, 0, wx.ALIGN_CENTER_VERTICAL, 0)
+        grid_tb_size.Add(lab1_appearance, 0, wx.ALIGN_CENTER_VERTICAL, 0)
 
-        self.cmbx_iconsSize = wx.ComboBox(tabFive, wx.ID_ANY,
+        self.cmbx_icon_size = wx.ComboBox(tab_five, wx.ID_ANY,
                                           choices=[("16"), ("24"), ("32"),
                                                    ("64")], size=(120, -1),
                                           style=wx.CB_DROPDOWN | wx.CB_READONLY
                                           )
-        gridTBsize.Add(self.cmbx_iconsSize, 0, wx.ALIGN_CENTER_VERTICAL, 0)
+        grid_tb_size.Add(self.cmbx_icon_size, 0, wx.ALIGN_CENTER_VERTICAL, 0)
 
         if 'wx.svg' not in sys.modules:  # only in wx version 4.1 to up
-            self.cmbx_iconsSize.Disable()
+            self.cmbx_icon_size.Disable()
             lab1_appearance.Disable()
 
-        self.checkbox_tbtext = wx.CheckBox(tabFive, wx.ID_ANY, (
+        self.checkbox_tbtext = wx.CheckBox(tab_five, wx.ID_ANY, (
                                 _("Shows the text in the toolbar buttons")))
-        sizerAppearance.Add(self.checkbox_tbtext, 0, wx.ALL, 5)
+        sizer_appearance.Add(self.checkbox_tbtext, 0, wx.ALL, 5)
 
-        tabFive.SetSizer(sizerAppearance)  # aggiungo il sizer su tab 4
-        notebook.AddPage(tabFive, _("Appearance"))
+        tab_five.SetSizer(sizer_appearance)  # aggiungo il sizer su tab 4
+        notebook.AddPage(tab_five, _("Appearance"))
 
         # -----tab 6
-        tabSix = wx.Panel(notebook, wx.ID_ANY)
-        sizerLog = wx.BoxSizer(wx.VERTICAL)
-        sizerLog.Add((0, 15))
+        tab_six = wx.Panel(notebook, wx.ID_ANY)
+        sizer_log = wx.BoxSizer(wx.VERTICAL)
+        sizer_log.Add((0, 15))
 
         msglog = _("The following settings affect output messages and\n"
                    "the log messages during transcoding processes.\n"
                    "Change only if you know what you are doing.\n")
-        labLog = wx.StaticText(tabSix, wx.ID_ANY, (msglog))
-        sizerLog.Add(labLog, 0, wx.ALL | wx.CENTRE, 5)
-        self.rdbFFmpeg = wx.RadioBox(
-                                tabSix, wx.ID_ANY,
+        lab_log = wx.StaticText(tab_six, wx.ID_ANY, (msglog))
+        sizer_log.Add(lab_log, 0, wx.ALL | wx.CENTRE, 5)
+        self.rdbx_log_ffmpeg = wx.RadioBox(
+                                tab_six, wx.ID_ANY,
                                 ("Set logging level flags used by FFmpeg"),
                                 choices=Setup.FFMPEG_LOGLEV, majorDimension=1,
                                 style=wx.RA_SPECIFY_COLS
                                      )
-        sizerLog.Add(self.rdbFFmpeg, 0, wx.ALL | wx.EXPAND, 5)
-        tabSix.SetSizer(sizerLog)
-        notebook.AddPage(tabSix, _("Logging levels"))
+        sizer_log.Add(self.rdbx_log_ffmpeg, 0, wx.ALL | wx.EXPAND, 5)
+        tab_six.SetSizer(sizer_log)
+        notebook.AddPage(tab_six, _("Logging levels"))
         # ------ btns bottom
-        grdBtn = wx.GridSizer(1, 2, 0, 0)
+        grd_btns = wx.GridSizer(1, 2, 0, 0)
         grdhelp = wx.GridSizer(1, 1, 0, 0)
         btn_help = wx.Button(self, wx.ID_HELP, "")
         grdhelp.Add(btn_help, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
-        grdBtn.Add(grdhelp)
+        grd_btns.Add(grdhelp)
         grdexit = wx.BoxSizer(wx.HORIZONTAL)
         btn_close = wx.Button(self, wx.ID_CANCEL, "")
         grdexit.Add(btn_close, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
         btn_ok = wx.Button(self, wx.ID_OK, "")
         grdexit.Add(btn_ok, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
-        grdBtn.Add(grdexit, flag=wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, border=0)
-        sizer_base.Add(grdBtn, 0, wx.EXPAND)
+        grd_btns.Add(grdexit, flag=wx.ALL
+                     | wx.ALIGN_RIGHT
+                     | wx.RIGHT,
+                     border=0
+                     )
+        sizer_base.Add(grd_btns, 0, wx.EXPAND)
         # ------ set sizer
-        #self.SetMinSize((550, -1))
-        # print(self.GetSize())
         self.SetSizer(sizer_base)
         sizer_base.Fit(self)
         self.Layout()
 
         # ----------------------Properties----------------------#
-        self.SetTitle(_("FFcuesplitter-GUI Setup"))
+        self.SetTitle(_("Settings"))
         # set font
         if self.appdata['ostype'] == 'Darwin':
             labfile.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
             labcache.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labFFexec.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labTheme.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labTB.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labLog.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
+            lab_ffexec.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            lab_theme.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            lab_tbar.SetFont(wx.Font(12, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            lab_log.SetFont(wx.Font(11, wx.SWISS, wx.NORMAL, wx.NORMAL))
         else:
             labfile.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labFFexec.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labTheme.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labTB.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
-            labLog.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
+            lab_ffexec.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            lab_theme.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            lab_tbar.SetFont(wx.Font(9, wx.DEFAULT, wx.NORMAL, wx.BOLD))
+            lab_log.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
 
         # ----------------------Binding (EVT)----------------------#
         self.Bind(wx.EVT_CHECKBOX, self.exit_warn, self.checkbox_exit)
@@ -267,17 +270,17 @@ class Setup(wx.Dialog):
 
         self.Bind(wx.EVT_BUTTON, self.on_output_path, self.btn_outdir)
 
-        self.Bind(wx.EVT_CHECKBOX, self.exeFFmpeg, self.checkbox_exeFFmpeg)
-        self.Bind(wx.EVT_BUTTON, self.open_path_ffmpeg, self.btn_pathFFmpeg)
-        self.Bind(wx.EVT_CHECKBOX, self.exeFFprobe, self.checkbox_exeFFprobe)
-        self.Bind(wx.EVT_BUTTON, self.open_path_ffprobe, self.btn_pathFFprobe)
+        self.Bind(wx.EVT_CHECKBOX, self.exec_ffmpeg, self.ckbx_exe_ffmpeg)
+        self.Bind(wx.EVT_BUTTON, self.open_path_ffmpeg, self.btn_loc_ffmpeg)
+        self.Bind(wx.EVT_CHECKBOX, self.exec_ffprobe, self.ckbx_exe_ffprobe)
+        self.Bind(wx.EVT_BUTTON, self.open_path_ffprobe, self.btn_loc_ffprobe)
 
-        self.Bind(wx.EVT_COMBOBOX, self.on_Iconthemes, self.cmbx_icons)
-        self.Bind(wx.EVT_RADIOBOX, self.on_toolbarPos, self.rdbTBpref)
-        self.Bind(wx.EVT_COMBOBOX, self.on_toolbarSize, self.cmbx_iconsSize)
-        self.Bind(wx.EVT_CHECKBOX, self.on_toolbarText, self.checkbox_tbtext)
+        self.Bind(wx.EVT_COMBOBOX, self.on_iconthemes, self.cmbx_icons)
+        self.Bind(wx.EVT_RADIOBOX, self.on_toolbar_pos, self.rdbx_tb_pos)
+        self.Bind(wx.EVT_COMBOBOX, self.on_toolbar_size, self.cmbx_icon_size)
+        self.Bind(wx.EVT_CHECKBOX, self.on_toolbar_txt, self.checkbox_tbtext)
 
-        self.Bind(wx.EVT_RADIOBOX, self.logging_ffmpeg, self.rdbFFmpeg)
+        self.Bind(wx.EVT_RADIOBOX, self.logging_ffmpeg, self.rdbx_log_ffmpeg)
 
         self.Bind(wx.EVT_BUTTON, self.on_help, btn_help)
         self.Bind(wx.EVT_BUTTON, self.on_close, btn_close)
@@ -291,31 +294,31 @@ class Setup(wx.Dialog):
 
         """
         self.cmbx_icons.SetValue(str(self.appdata['icontheme']))
-        self.cmbx_iconsSize.SetValue(str(self.appdata['toolbarsize']))
-        self.rdbTBpref.SetSelection(int(self.appdata['toolbarpos']))
+        self.cmbx_icon_size.SetValue(str(self.appdata['toolbarsize']))
+        self.rdbx_tb_pos.SetSelection(int(self.appdata['toolbarpos']))
 
-        for strs in range(self.rdbFFmpeg.GetCount()):
+        for strs in range(self.rdbx_log_ffmpeg.GetCount()):
             if (self.appdata['ffmpegloglev'] in
-               self.rdbFFmpeg.GetString(strs).split()[0]):
-                self.rdbFFmpeg.SetSelection(strs)
+               self.rdbx_log_ffmpeg.GetString(strs).split()[0]):
+                self.rdbx_log_ffmpeg.SetSelection(strs)
 
         if self.appdata['ffmpeg_islocal'] is False:
-            self.btn_pathFFmpeg.Disable()
+            self.btn_loc_ffmpeg.Disable()
             self.txtctrl_ffmpeg.Disable()
             self.txtctrl_ffmpeg.AppendText(self.appdata['ffmpeg_cmd'])
-            self.checkbox_exeFFmpeg.SetValue(False)
+            self.ckbx_exe_ffmpeg.SetValue(False)
         else:
             self.txtctrl_ffmpeg.AppendText(self.appdata['ffmpeg_cmd'])
-            self.checkbox_exeFFmpeg.SetValue(True)
+            self.ckbx_exe_ffmpeg.SetValue(True)
 
         if self.appdata['ffprobe_islocal'] is False:
-            self.btn_pathFFprobe.Disable()
+            self.btn_loc_ffprobe.Disable()
             self.txtctrl_ffprobe.Disable()
             self.txtctrl_ffprobe.AppendText(self.appdata['ffprobe_cmd'])
-            self.checkbox_exeFFprobe.SetValue(False)
+            self.ckbx_exe_ffprobe.SetValue(False)
         else:
             self.txtctrl_ffprobe.AppendText(self.appdata['ffprobe_cmd'])
-            self.checkbox_exeFFprobe.SetValue(True)
+            self.ckbx_exe_ffprobe.SetValue(True)
 
         if self.appdata['toolbartext'] == 'show':
             self.checkbox_tbtext.SetValue(True)
@@ -349,18 +352,18 @@ class Setup(wx.Dialog):
 
     def logging_ffmpeg(self, event):
         """specifies loglevel type for ffmpeg"""
-        logg = self.rdbFFmpeg.GetStringSelection().split()[0]
+        logg = self.rdbx_log_ffmpeg.GetStringSelection().split()[0]
         self.settings['ffmpegloglev'] = logg
     # --------------------------------------------------------------------#
 
-    def exeFFmpeg(self, event):
+    def exec_ffmpeg(self, event):
         """Enable or disable ffmpeg local binary"""
-        if self.checkbox_exeFFmpeg.IsChecked():
-            self.btn_pathFFmpeg.Enable()
+        if self.ckbx_exe_ffmpeg.IsChecked():
+            self.btn_loc_ffmpeg.Enable()
             self.txtctrl_ffmpeg.Enable()
             self.settings['ffmpeg_islocal'] = True
         else:
-            self.btn_pathFFmpeg.Disable()
+            self.btn_loc_ffmpeg.Disable()
             self.txtctrl_ffmpeg.Disable()
             self.settings['ffmpeg_islocal'] = False
 
@@ -396,15 +399,15 @@ class Setup(wx.Dialog):
                     self.settings['ffmpeg_cmd'] = getpath
     # --------------------------------------------------------------------#
 
-    def exeFFprobe(self, event):
+    def exec_ffprobe(self, event):
         """Enable or disable ffprobe local binary"""
-        if self.checkbox_exeFFprobe.IsChecked():
-            self.btn_pathFFprobe.Enable()
+        if self.ckbx_exe_ffprobe.IsChecked():
+            self.btn_loc_ffprobe.Enable()
             self.txtctrl_ffprobe.Enable()
             self.settings['ffprobe_islocal'] = True
 
         else:
-            self.btn_pathFFprobe.Disable()
+            self.btn_loc_ffprobe.Disable()
             self.txtctrl_ffprobe.Disable()
             self.settings['ffprobe_islocal'] = False
 
@@ -441,29 +444,29 @@ class Setup(wx.Dialog):
                     self.settings['ffprobe_cmd'] = getpath
     # --------------------------------------------------------------------#
 
-    def on_Iconthemes(self, event):
+    def on_iconthemes(self, event):
         """
         Set themes of icons
         """
         self.settings['icontheme'] = self.cmbx_icons.GetStringSelection()
     # --------------------------------------------------------------------#
 
-    def on_toolbarSize(self, event):
+    def on_toolbar_size(self, event):
         """
         Set the size of the toolbar buttons and the size of its icons
         """
-        size = self.cmbx_iconsSize.GetStringSelection()
+        size = self.cmbx_icon_size.GetStringSelection()
         self.settings['toolbarsize'] = size
     # --------------------------------------------------------------------#
 
-    def on_toolbarPos(self, event):
+    def on_toolbar_pos(self, event):
         """
         Set toolbar position on main frame
         """
-        self.settings['toolbarpos'] = self.rdbTBpref.GetSelection()
+        self.settings['toolbarpos'] = self.rdbx_tb_pos.GetSelection()
     # --------------------------------------------------------------------#
 
-    def on_toolbarText(self, event):
+    def on_toolbar_txt(self, event):
         """
         Show or hide text along toolbar buttons
         """
@@ -513,18 +516,14 @@ class Setup(wx.Dialog):
 
     def getvalue(self):
         """
-        Get user preferences on exiting the app
+        Retrives data from here before destroyng this dialog.
+        See main_frame --> on_setup method
         """
+        wx.MessageBox(_("Some changes will take effect once the program is "
+                        "restarted. "), _('FFcuesplitter-GUI Setup'),
+                      wx.ICON_INFORMATION, self)
 
-        if wx.MessageBox(_("Changes will take effect once the program "
-                           "has been restarted.\n\n"
-                           "Do you want to exit the application now?"),
-                         _('Exit'),
-                         wx.ICON_QUESTION
-                         | wx.YES_NO, self) == wx.YES:
-            return True
-
-        return None
+        return self.settings
     # --------------------------------------------------------------------#
 
     def on_close(self, event):
@@ -536,8 +535,9 @@ class Setup(wx.Dialog):
 
     def on_ok(self, event):
         """
-        Applies all changes writing the new entries
+        Applies all changes writing the new entries on
+        `settings.json` file aka file configuration.
         """
         self.confmanager.write_options(**self.settings)
-        # self.Destroy() # WARNING on mac not close corretly, on linux ok
+
         event.Skip()

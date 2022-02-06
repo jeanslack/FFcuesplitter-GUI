@@ -15,6 +15,9 @@ Feb 06, 2022 V.1.0.1
 - Fixed ability to portable app.
 - Fixed relative path for Windows portable app.
 - removed '-embed-' as Python embed is not supported for this App.
+- Improved data handling in the settings dialog to save preferences
+  more consistently.
+- Code refactoring done in the settings dialog.
 
 +------------------------------------+
 Feb 02, 2022 V.1.0.0
