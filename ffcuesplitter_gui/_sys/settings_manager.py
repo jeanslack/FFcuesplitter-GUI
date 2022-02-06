@@ -197,15 +197,14 @@ def portable_paths(portdir):
     return file_conf, dir_conf, log_dir
 
 
-def get_outdir(outdir, relpath, apptype):
+def get_outdir(outdir, relpath):
     """
-    Set default or user-custom output folders
+    On the application portable case, if relpath is True,
+    you need to make a folder named `My_Files` inside the
+    portable appdata.
     """
-    if not outdir:
-        outputdir = outdir
-    elif relpath is True:
-        appdir = (os.path.dirname(sys.prefix) if
-                  apptype == 'embed' else os.getcwd())
+    if relpath is True:
+        appdir = os.getcwd()
         outputdir = os.path.relpath(os.path.join(appdir, 'My_Files'))
 
         if not os.path.exists(outputdir):
@@ -216,7 +215,7 @@ def get_outdir(outdir, relpath, apptype):
             except TypeError as err:
                 return None, err
     else:
-        outputdir = os.path.expanduser('~')
+        outputdir = outdir
 
     return outputdir, None
 
@@ -254,7 +253,7 @@ class DataSource():
     elif os.path.isdir(os.path.join(DATA_LOCAT, 'portable_data')):
         # Remember to add portable_data/ folder within ffcuesplitter-gui/
         FILE_CONF, DIR_CONF, LOG_DIR = portable_paths(DATA_LOCAT)
-        RELPATH = '-embed-' in os.path.basename(sys.prefix)
+        RELPATH = False  # to debug relative paths, set to True
 
     else:
         FILE_CONF, DIR_CONF, LOG_DIR = conventional_paths()
@@ -305,8 +304,6 @@ class DataSource():
                 exe = binarypath if binarypath else sys.executable
                 msg(f'Win32 executable={exe}')
                 self.prg_icon = self.icodir + "\\ffcuesplittergui.png"
-                if '-embed-' in os.path.basename(sys.prefix):
-                    self.apptype = 'embed'
 
             elif binarypath == '/usr/local/bin/ffcuesplittergui':
                 msg(f'executable={binarypath}')
@@ -347,10 +344,8 @@ class DataSource():
         userconf = userconf['R']
 
         # set output directories
-        outfile = get_outdir(userconf['outputfile'],
-                             DataSource.RELPATH,
-                             self.apptype
-                             )
+        outfile = get_outdir(userconf['outputfile'], DataSource.RELPATH)
+        userconf['outputfile'] = outfile[0]
 
         if outfile[1]:
             return {'ERROR': f'{outfile[1]}'}
@@ -379,7 +374,6 @@ class DataSource():
                  'app': self.apptype,
                  'relpath': DataSource.RELPATH,
                  'getpath': _relativize,
-                 'outputfile': outfile[0],
                  'ffmpeg_cmd': _relativize(userconf['ffmpeg_cmd']),
                  'ffprobe_cmd': _relativize(userconf['ffprobe_cmd']),
                  **userconf

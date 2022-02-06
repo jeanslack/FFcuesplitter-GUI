@@ -94,6 +94,13 @@ class CuesplitterGUI(wx.App):
         self.update_language()
         self.appset['GETLANG'] = self.locale.GetName()
 
+        if not os.path.exists(self.appset['logdir']):
+            try:  # make log folder
+                os.makedirs(self.appset['logdir'], mode=0o777)
+            except OSError as err:
+                wx.MessageBox(f'{err}', 'FFcuesplitter-GUI', wx.ICON_STOP)
+                return False
+
         if self.check_ffmpeg() is True:
             self.wizard(self.iconset['ffcuesplittergui'])
             return True
