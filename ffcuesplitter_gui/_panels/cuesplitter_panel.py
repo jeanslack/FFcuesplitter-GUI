@@ -360,6 +360,8 @@ class CueGui(wx.Panel):
         """
         Set required arguments on ffcuesplitter API
         """
+        self.data.kwargs['ffmpeg_cmd'] = self.appdata['ffmpeg_cmd']
+        self.data.kwargs['ffmpeg_loglevel'] = self.appdata['ffmpegloglev']
         self.data.kwargs['outputdir'] = self.appdata['outputfile']
         self.data.kwargs['tempdir'] = tmpdir
 

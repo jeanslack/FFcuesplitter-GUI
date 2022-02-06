@@ -61,10 +61,10 @@ class MainFrame(wx.Frame):
         wx.Frame.__init__(self, None, -1, style=wx.DEFAULT_FRAME_STYLE)
 
         # ---------- others panel instances:
-        self.cuesplittergui = cuesplitter_panel.CueGui(self)
+        self.gui_panel = cuesplitter_panel.CueGui(self)
         self.main_sizer = wx.BoxSizer(wx.VERTICAL)  # sizer base global
         # Layout externals panels:
-        self.main_sizer.Add(self.cuesplittergui, 1, wx.EXPAND)
+        self.main_sizer.Add(self.gui_panel, 1, wx.EXPAND)
 
         # ----------------------Set Properties----------------------#
         self.SetTitle("FFcuesplitter-GUI")
@@ -83,9 +83,9 @@ class MainFrame(wx.Frame):
         self.Fit()
 
         # menu bar
-        self.cuesplittergui_menu_bar()
+        self.gui_panel_menu_bar()
         # tool bar main
-        self.cuesplittergui_tool_bar()
+        self.gui_panel_tool_bar()
         # status bar
         self.sbar = self.CreateStatusBar(1)
         self.statusbar_msg(_('Ready'))
@@ -126,7 +126,7 @@ class MainFrame(wx.Frame):
         `thread_type` is the current thread, None otherwise.
 
         """
-        if self.cuesplittergui.thread_type is not None:
+        if self.gui_panel.thread_type is not None:
             if wx.MessageBox(_('There are still processes running.. if you '
                                'want to stop them, use the "Abort" button.\n\n'
                                'Do you want to kill application?'),
@@ -252,7 +252,7 @@ class MainFrame(wx.Frame):
         """
         Open CUE sheet
         """
-        self.cuesplittergui.on_import_cuefile(self)
+        self.gui_panel.on_import_cuefile(self)
     # -------------------------------------------------------------------#
 
     def quiet(self, event):
@@ -446,7 +446,6 @@ class MainFrame(wx.Frame):
                                      ""))
         # self.toolbar.AddSeparator()
         # self.toolbar.AddStretchableSpace()
-
         tip = _("View or Edit selected track tag")
         self.btn_trackinfo = self.toolbar.AddTool(14, _('Track Tag'),
                                                   bmptrkinfo,
@@ -472,7 +471,7 @@ class MainFrame(wx.Frame):
                                                    )
         self.toolbar.AddSeparator()
         tip = _("Program setup")
-        btn_setup = self.toolbar.AddTool(5, _('Setup'),
+        btn_setup = self.toolbar.AddTool(5, _('Settings'),
                                          bmpsetup,
                                          tip, wx.ITEM_NORMAL
                                          )
@@ -505,7 +504,7 @@ class MainFrame(wx.Frame):
         """
         The user change idea and was stop process
         """
-        self.cuesplittergui.on_stop(self)
+        self.gui_panel.on_stop(self)
     # ------------------------------------------------------------------#
 
     def click_start(self, event):
@@ -514,8 +513,8 @@ class MainFrame(wx.Frame):
         calls the `on_start method` of the corresponding panel shown,
         which calls the 'switch_to_processing' method above.
         """
-        if self.cuesplittergui.IsShown():
-            self.cuesplittergui.on_start()
+        if self.gui_panel.IsShown():
+            self.gui_panel.on_start()
 
     # ------------------------------------------------------------------#
 
@@ -524,9 +523,9 @@ class MainFrame(wx.Frame):
         Call CdInfo class dialog
         """
         cdinfo = CdInfo(self,
-                        self.cuesplittergui.data.cue.meta.data,
-                        self.cuesplittergui.data.probedata,
-                        self.cuesplittergui.data.cue_encoding,
+                        self.gui_panel.data.cue.meta.data,
+                        self.gui_panel.data.probedata,
+                        self.gui_panel.data.cue_encoding,
                         )
         cdinfo.Show()
     # ------------------------------------------------------------------#
@@ -535,31 +534,31 @@ class MainFrame(wx.Frame):
         """
         Call track info dialog
         """
-        index = self.cuesplittergui.tlist.GetFocusedItem()
+        index = self.gui_panel.tlist.GetFocusedItem()
         with TrackInfo(self,
-                       self.cuesplittergui.data.audiotracks,
+                       self.gui_panel.data.audiotracks,
                        index
                        ) as trackinfo:
 
             if trackinfo.ShowModal() == wx.ID_OK:
                 data = trackinfo.getvalue()
                 if data:
-                    self.cuesplittergui.data.audiotracks = data
-                    self.cuesplittergui.set_data_list_ctrl()
+                    self.gui_panel.data.audiotracks = data
+                    self.gui_panel.set_data_list_ctrl()
     # -------------------------------------------------------------------#
 
     def on_setup(self, event):
         """
-        Call the module setup for setting user preferences.
-        Note, this dialog window is managed like filters dialogs
-        on Videomass, being need to get the return code here.
+        Calls user settings dialog. Note, this dialog is
+        handle like filters dialogs on Videomass, being need
+        to get the return code from getvalue interface.
         """
-        with settings.Setup(self) as setup:
+        with settings.Setup(self, self.appdata) as setup:
             if setup.ShowModal() == wx.ID_OK:
-                if setup.getvalue() is True:
-                    self.on_kill()
-                # else:
-                    # handle other things here
+                newdata = setup.getvalue()
+                self.appdata = {**self.appdata, **newdata}
+                self.gui_panel.appdata = self.appdata
+                self.gui_panel.txt_out.SetValue(self.appdata['outputfile'])
     # -------------------------------------------------------------------#
 
     def on_log(self, event):

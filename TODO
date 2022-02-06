@@ -1,8 +1,15 @@
 
 
 
+- Make io.github.jeanslack.ffcuesplitter-gui.desktop.
+- Make ffcuesplitter-gui.icns.
+- make ffcuesplitter-gui.ico
 
-
-
-
-
+- Complete the Italian translation.
+- Make localization guidelines
+- Make tests cases.
+- Complete the README.md.
+- Make setup.py .
+- Check MANIFEST.in.
+- Make debian dir.
+- Write INSTALL basic for installations.
