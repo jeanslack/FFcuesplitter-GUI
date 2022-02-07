@@ -10,20 +10,20 @@ Rev: Feb.04.2022
 Code checker: flake8, pylint
 ########################################################
 
-This file is part of Cuesplitter-GUI.
+This file is part of FFcuesplitter-GUI.
 
-   Cuesplitter-GUI is free software: you can redistribute it and/or modify
+   FFcuesplitter-GUI is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-   Cuesplitter-GUI is distributed in the hope that it will be useful,
+   FFcuesplitter-GUI is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+   along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import shutil
@@ -205,7 +205,7 @@ class CueGui(wx.Panel):
                           )
         self.barprog = wx.Gauge(self, wx.ID_ANY, range=0)
         sizer_base.Add(self.barprog, 0, wx.EXPAND | wx.ALL, 5)
-
+        sizer_base.Add((0, 10))
         self.SetMinSize(tuple(self.appdata['panel_size']))
         self.SetSizer(sizer_base)
         self.Layout()
@@ -262,7 +262,7 @@ class CueGui(wx.Panel):
         try:
             self.data.open_cuefile()
         except Exception as err:
-            wx.MessageBox(f'{err}', "Cuesplitter-GUI", wx.ICON_ERROR, self)
+            wx.MessageBox(f'{err}', "FFcuesplitter-GUI", wx.ICON_ERROR, self)
             return
 
         self.set_data_list_ctrl()
@@ -439,10 +439,11 @@ class CueGui(wx.Panel):
 
         secs = round(int(output.split('=')[1]) / 1_000_000)
         percent = secs / round(duration) * 100
-        msg = _("Processing Track: {} | Status "
-                "Progress: {}%".format(track, round(percent)))
+        msg = _("Processing... Track number: {} | Status "
+                "Progress: {}%").format(track, round(percent))
         self.barprog.SetValue(percent)
-        self.parent.statusbar_msg(msg, fgrd='ORANGE RED')
+        # (msg, bgrd='DARK GREY', fgrd='ORANGE RED')
+        self.parent.statusbar_msg(msg, bgrd='BLACK', fgrd='GREEN')
     # ----------------------------------------------------------------------
 
     def update_count_items(self, msg, end):
@@ -455,7 +456,7 @@ class CueGui(wx.Panel):
         """
         if end == 'error':
             self.error = True
-            wx.MessageBox(f'{msg}', "Cuesplitter-GUI", wx.ICON_ERROR, self)
+            wx.MessageBox(f'{msg}', "FFcuesplitter-GUI", wx.ICON_ERROR, self)
         else:
             self.barprog.SetRange(100)  # set overall percentage range
             self.barprog.SetValue(0)  # reset bar progress to 0
@@ -469,9 +470,11 @@ class CueGui(wx.Panel):
             self.parent.statusbar_msg(_("...Interrupted"),
                                       'BLUE VIOLET', 'WHITE')
         elif self.error is True:
-            self.parent.statusbar_msg(_("ERROR: See Log for Details"),
+            self.parent.statusbar_msg(_("ERROR: Please open the Logs "
+                                        "window to get more details."),
                                       'RED', 'WHITE')
-            notification_area(_("ERROR!"), _("An error has occurred."),
+            notification_area(_("ERROR!"), _("An error has occurred.\n"
+                                             "See Logs for details."),
                               wx.ICON_ERROR)
         else:
             move_files_to_outputdir(self.data.kwargs['outputdir'],

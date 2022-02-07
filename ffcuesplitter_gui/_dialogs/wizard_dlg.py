@@ -9,20 +9,20 @@ license: GPL3
 Rev: Feb.04.2022
 ########################################################
 
-This file is part of Cuesplitter-GUI.
+This file is part of FFcuesplitter-GUI.
 
-   Cuesplitter-GUI is free software: you can redistribute it and/or modify
+   FFcuesplitter-GUI is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-   Cuesplitter-GUI is distributed in the hope that it will be useful,
+   FFcuesplitter-GUI is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+   along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import wx
@@ -69,7 +69,7 @@ class PageOne(wx.Panel):
         img = img.ConvertToBitmap()
         bitmap_vdms = wx.StaticBitmap(self, wx.ID_ANY, img)
         lab1 = wx.StaticText(self, wx.ID_ANY,
-                             _("Welcome to the Cuesplitter-GUI Wizard!"))
+                             _("Welcome to the FFcuesplitter-GUI Wizard!"))
         lab2 = wx.StaticText(self, wx.ID_ANY, PageOne.MSG2,
                              style=wx.ST_ELLIPSIZE_END |
                              wx.ALIGN_CENTRE_HORIZONTAL
@@ -111,7 +111,7 @@ class PageTwo(wx.Panel):
     GETPATH = get.appset['getpath']
     FFMPEG_LOCALDIR = get.appset['FFMPEG_pkg']
 
-    MSG0 = (_('Cuesplitter-GUI is an application based on FFmpeg\n'))
+    MSG0 = (_('FFcuesplitter-GUI is an application based on FFmpeg\n'))
 
     MSG1 = (_('If FFmpeg is not on your computer, this application '
               'will be unusable'))
@@ -229,7 +229,7 @@ class PageTwo(wx.Panel):
                 path.append(status[1])
 
         if exiting == 'provided':
-            if wx.MessageBox(_("Cuesplitter-GUI already seems to include "
+            if wx.MessageBox(_("FFcuesplitter-GUI already seems to include "
                                "FFmpeg.\n\nDo you want to use that?"),
                              _('Please Confirm'),
                              wx.ICON_QUESTION | wx.YES_NO,  None) == wx.NO:
@@ -418,7 +418,7 @@ class PageFinish(wx.Panel):
 class Wizard(wx.Dialog):
     """
     Provides a multi-panel dialog box (dynamic wizard)
-    for configuring Cuesplitter-GUI during the startup.
+    for configuring FFcuesplitter-GUI during the startup.
 
     """
     get = wx.GetApp()
@@ -465,7 +465,7 @@ class Wizard(wx.Dialog):
         grid_btns.Add(gridchoices, 0, wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, 0)
         main_sizer.Add(grid_btns, 0, wx.ALL | wx.EXPAND, 5)
         #  properties
-        self.SetTitle(_("Cuesplitter-GUI Wizard"))
+        self.SetTitle(_("FFcuesplitter-GUI Wizard"))
         self.SetMinSize((700, 500))
         icon = wx.Icon()
         icon.CopyFromBitmap(wx.Bitmap(prg_icon, wx.BITMAP_TYPE_ANY))
@@ -524,7 +524,7 @@ class Wizard(wx.Dialog):
                 self.btn_next.SetLabel(_('Finish'))
             else:
                 wx.MessageBox(_("Some text boxes are still incomplete"),
-                              ("Cuesplitter-GUI"), wx.ICON_INFORMATION, self)
+                              ("FFcuesplitter-GUI"), wx.ICON_INFORMATION, self)
 
         self.Layout()
     # -------------------------------------------------------------------#

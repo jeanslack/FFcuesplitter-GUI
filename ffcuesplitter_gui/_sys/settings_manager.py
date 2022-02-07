@@ -9,20 +9,20 @@ license: GPL3
 Rev: Feb.07.2022
 Code checker: flake8, pylint .
 
- This file is part of Cuesplitter-GUI.
+ This file is part of FFcuesplitter-GUI.
 
-    Cuesplitter-GUI is free software: you can redistribute it and/or modify
+    FFcuesplitter-GUI is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Cuesplitter-GUI is distributed in the hope that it will be useful,
+    FFcuesplitter-GUI is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+    along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
@@ -49,8 +49,8 @@ class ConfigManager:
         "warnexiting": True,
         "clearlogfiles": False,
         "icontheme": "Colored",
-        "toolbarsize": 24,
-        "toolbarpos": 0,
+        "toolbarsize": 32,
+        "toolbarpos": 2,
         "toolbartext": True,
         "showhidenmenu": False,
         "panel_size": [800, 550]

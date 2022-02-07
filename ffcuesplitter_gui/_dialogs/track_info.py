@@ -119,7 +119,7 @@ class TrackInfo(wx.Dialog):
         grdexit = wx.BoxSizer(wx.HORIZONTAL)
         btn_canc = wx.Button(self, wx.ID_CANCEL, "")
         grdexit.Add(btn_canc, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
-        self.btn_save = wx.Button(self, wx.ID_OK, "Apply")
+        self.btn_save = wx.Button(self, wx.ID_OK, _("Apply"))
         grdexit.Add(self.btn_save, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
         self.btn_save.Disable()
         grdbtn.Add(grdexit, 0, wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, 0)

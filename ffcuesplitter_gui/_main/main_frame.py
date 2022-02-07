@@ -10,20 +10,20 @@ Rev: Feb.04.2022
 Code checker: flake8, pylint
 ########################################################
 
-This file is part of Cuesplitter-GUI.
+This file is part of FFcuesplitter-GUI.
 
-   Cuesplitter-GUI is free software: you can redistribute it and/or modify
+   FFcuesplitter-GUI is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-   Cuesplitter-GUI is distributed in the hope that it will be useful,
+   FFcuesplitter-GUI is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+   along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
@@ -73,20 +73,15 @@ class MainFrame(wx.Frame):
         icon.CopyFromBitmap(wx.Bitmap(self.icons['ffcuesplittergui'],
                                       wx.BITMAP_TYPE_ANY))
         self.SetIcon(icon)
-        if self.appdata['ostype'] == 'Darwin':
-            self.SetMinSize((980, 570))
-        elif self.appdata['ostype'] == 'Windows':
-            self.SetMinSize((920, 640))
-        else:
-            self.SetMinSize((500, 400))
+        self.SetMinSize((500, 400))
         # self.CentreOnScreen()  # se lo usi, usa CentreOnScreen anziche Centre
         self.SetSizer(self.main_sizer)
         self.Fit()
 
         # menu bar
-        self.gui_panel_menu_bar()
+        self.frame_menu_bar()
         # tool bar main
-        self.gui_panel_tool_bar()
+        self.frame_tool_bar()
         # status bar
         self.sbar = self.CreateStatusBar(1)
         self.statusbar_msg(_('Ready'))
@@ -168,7 +163,7 @@ class MainFrame(wx.Frame):
 
     # -------------   BUILD THE MENU BAR  ----------------###
 
-    def gui_panel_menu_bar(self):
+    def frame_menu_bar(self):
         """
         Make a menu bar. Per usare la disabilitazione di un
         menu item devi
@@ -197,7 +192,7 @@ class MainFrame(wx.Frame):
 
         file_button.AppendSeparator()
         exititem = file_button.Append(wx.ID_EXIT, _("Exit\tCtrl+Q"),
-                                      _("Quiet Cuesplitter-GUI"))
+                                      _("Quit application"))
         self.menu_bar.Append(file_button, _("File"))
 
         self.Bind(wx.EVT_MENU, self.opencue, fold_cue)
@@ -209,10 +204,10 @@ class MainFrame(wx.Frame):
         if self.appdata['showhidenmenu'] is True:
             go_button = wx.Menu()
             dscrp = (_("Configuration Directory"),
-                     _("Opens the Cuesplitter-GUI configuration directory"))
+                     _("Opens the FFcuesplitter-GUI configuration directory"))
             openconfdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
             dscrp = (_("Logs Directory"),
-                     _("Opens the Cuesplitter-GUI log directory, if exists"))
+                     _("Opens the logs directory, if exists"))
             openlogdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
             self.menu_bar.Append(go_button, _("Goto"))
 
@@ -222,7 +217,7 @@ class MainFrame(wx.Frame):
         # ------------------ help menu
         help_button = wx.Menu()
         helpitem = help_button.Append(wx.ID_HELP, _("User Guide"), "")
-        wikiitem = help_button.Append(wx.ID_ANY, _("wiki"), "")
+        wikiitem = help_button.Append(wx.ID_ANY, _("Wiki"), "")
         help_button.AppendSeparator()
         issueitem = help_button.Append(wx.ID_ANY, _("Issue tracker"), "")
         help_button.AppendSeparator()
@@ -230,12 +225,12 @@ class MainFrame(wx.Frame):
                                        _("FFmpeg documentation"), "")
         help_button.AppendSeparator()
         dscrp = (_("Check for newer version"),
-                 _("Check for the latest Cuesplitter-GUI version at "
-                   "<https://pypi.org/project/cuesplittergui/>"))
+                 _("Checks for the latest FFcuesplitter-GUI version at "
+                   "<https://github.com/jeanslack/FFcuesplitter-GUI>"))
         checkitem = help_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
         help_button.AppendSeparator()
         infoitem = help_button.Append(wx.ID_ABOUT,
-                                      _("About Cuesplitter-GUI"), "")
+                                      _("About FFcuesplitter-GUI"), "")
         self.menu_bar.Append(help_button, _("Help"))
 
         self.Bind(wx.EVT_MENU, self.help_me, helpitem)
@@ -291,7 +286,7 @@ class MainFrame(wx.Frame):
             except Exception as err:
                 wx.MessageBox(_("Unexpected error while creating file:\n\n"
                                 "{0}").format(err),
-                              'Cuesplitter-GUI', wx.ICON_ERROR, self)
+                              'FFcuesplitter-GUI', wx.ICON_ERROR, self)
             else:
                 io_tools.openpath(fname)
     # ------------------------------------------------------------------#
@@ -304,7 +299,7 @@ class MainFrame(wx.Frame):
         """
         if not os.path.exists(self.appdata['logdir']):
             wx.MessageBox(_("There are no logs to show."),
-                          "Cuesplitter-GUI", wx.ICON_INFORMATION, self)
+                          "FFcuesplitter-GUI", wx.ICON_INFORMATION, self)
             return
         io_tools.openpath(self.appdata['logdir'])
     # ------------------------------------------------------------------#
@@ -349,7 +344,7 @@ class MainFrame(wx.Frame):
 
     def check_new_releases(self, event):
         """
-        Compare the Cuesplitter-GUI version with a given
+        Compare the FFcuesplitter-GUI version with a given
         new version found on github.
         """
         this = version.__version__  # this version
@@ -390,7 +385,7 @@ class MainFrame(wx.Frame):
 
     # -----------------  BUILD THE TOOL BAR  --------------------###
 
-    def gui_panel_tool_bar(self):
+    def frame_tool_bar(self):
         """
         Makes and attaches the toolsBtn bar.
         To enable or disable styles, use method `SetWindowStyleFlag`
@@ -486,8 +481,8 @@ class MainFrame(wx.Frame):
                                          bmpsetup,
                                          tip, wx.ITEM_NORMAL
                                          )
-        tip = _("View log")
-        log = self.toolbar.AddTool(4, _('Log'),
+        tip = _("View logs")
+        log = self.toolbar.AddTool(4, _('Logs'),
                                    bmplog,
                                    tip, wx.ITEM_NORMAL
                                    )
@@ -578,7 +573,7 @@ class MainFrame(wx.Frame):
         """
         if not os.path.exists(self.appdata['logdir']):
             wx.MessageBox(_("There are no logs to show."),
-                          "Cuesplitter-GUI", wx.ICON_INFORMATION, self)
+                          "FFcuesplitter-GUI", wx.ICON_INFORMATION, self)
         else:
             logdlg = ShowLogs(self, self.appdata['logdir'])
             logdlg.Show()

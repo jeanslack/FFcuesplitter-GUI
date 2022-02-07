@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 13:33+0100\n"
+"POT-Creation-Date: 2022-02-07 21:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,7 +83,7 @@ msgstr ""
 msgid "Browse.."
 msgstr ""
 
-#: ../_dialogs/preferences.py:117 ../_main/main_frame.py:201
+#: ../_dialogs/preferences.py:117 ../_main/main_frame.py:196
 msgid "File"
 msgstr ""
 
@@ -155,7 +155,7 @@ msgid "Logging levels"
 msgstr ""
 
 #: ../_dialogs/preferences.py:256 ../_dialogs/preferences.py:512
-#: ../_dialogs/preferences.py:522 ../_main/main_frame.py:485
+#: ../_dialogs/preferences.py:522 ../_main/main_frame.py:480
 msgid "Settings"
 msgstr ""
 
@@ -236,6 +236,10 @@ msgstr ""
 msgid "Disc ID"
 msgstr ""
 
+#: ../_dialogs/track_info.py:122
+msgid "Apply"
+msgstr ""
+
 #: ../_dialogs/track_info.py:163
 msgid "Track ({}) Audio Tag (EDITED)*"
 msgstr ""
@@ -246,7 +250,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../_dialogs/track_info.py:189 ../_main/main_frame.py:144
+#: ../_dialogs/track_info.py:189 ../_main/main_frame.py:139
 msgid "Please confirm"
 msgstr ""
 
@@ -259,11 +263,11 @@ msgid "Click the \"Next\" button to get started"
 msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:72
-msgid "Welcome to the Cuesplitter-GUI Wizard!"
+msgid "Welcome to the FFcuesplitter-GUI Wizard!"
 msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:114
-msgid "Cuesplitter-GUI is an application based on FFmpeg\n"
+msgid "FFcuesplitter-GUI is an application based on FFmpeg\n"
 msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:116
@@ -303,7 +307,7 @@ msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:232
 msgid ""
-"Cuesplitter-GUI already seems to include FFmpeg.\n"
+"FFcuesplitter-GUI already seems to include FFmpeg.\n"
 "\n"
 "Do you want to use that?"
 msgstr ""
@@ -349,7 +353,7 @@ msgid "Next >"
 msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:468
-msgid "Cuesplitter-GUI Wizard"
+msgid "FFcuesplitter-GUI Wizard"
 msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:497 ../_dialogs/wizard_dlg.py:517
@@ -369,11 +373,11 @@ msgstr ""
 msgid "Done!"
 msgstr ""
 
-#: ../_main/main_frame.py:92 ../_panels/cuesplitter_panel.py:310
+#: ../_main/main_frame.py:87 ../_panels/cuesplitter_panel.py:310
 msgid "Ready"
 msgstr ""
 
-#: ../_main/main_frame.py:141
+#: ../_main/main_frame.py:136
 msgid ""
 "There are still processes running.. if you want to stop them, use the \"Abort"
 "\" button.\n"
@@ -381,101 +385,101 @@ msgid ""
 "Do you want to kill application?"
 msgstr ""
 
-#: ../_main/main_frame.py:152
+#: ../_main/main_frame.py:147
 msgid "Are you sure you want to exit?"
 msgstr ""
 
-#: ../_main/main_frame.py:153
+#: ../_main/main_frame.py:148
 msgid "Exit"
 msgstr ""
 
-#: ../_main/main_frame.py:185
+#: ../_main/main_frame.py:180
 msgid "Open a CUE sheet...\tCtrl+C"
 msgstr ""
 
-#: ../_main/main_frame.py:186
+#: ../_main/main_frame.py:181
 msgid "Open a new CUE file"
 msgstr ""
 
-#: ../_main/main_frame.py:189
+#: ../_main/main_frame.py:184
 msgid "Open output directory\tCtrl+A"
 msgstr ""
 
-#: ../_main/main_frame.py:190
+#: ../_main/main_frame.py:185
 msgid "Open the current audio dirctory"
 msgstr ""
 
-#: ../_main/main_frame.py:194
+#: ../_main/main_frame.py:189
 msgid "Work Notes\tCtrl+N"
 msgstr ""
 
-#: ../_main/main_frame.py:195
+#: ../_main/main_frame.py:190
 msgid "Read and write useful notes and reminders."
 msgstr ""
 
-#: ../_main/main_frame.py:199
+#: ../_main/main_frame.py:194
 msgid "Exit\tCtrl+Q"
 msgstr ""
 
-#: ../_main/main_frame.py:200
-msgid "Quiet Cuesplitter-GUI"
+#: ../_main/main_frame.py:195
+msgid "Quit application"
 msgstr ""
 
-#: ../_main/main_frame.py:211
+#: ../_main/main_frame.py:206
 msgid "Configuration Directory"
 msgstr ""
 
-#: ../_main/main_frame.py:212
-msgid "Opens the Cuesplitter-GUI configuration directory"
+#: ../_main/main_frame.py:207
+msgid "Opens the FFcuesplitter-GUI configuration directory"
 msgstr ""
 
-#: ../_main/main_frame.py:214
+#: ../_main/main_frame.py:209
 msgid "Logs Directory"
 msgstr ""
 
-#: ../_main/main_frame.py:215
-msgid "Opens the Cuesplitter-GUI log directory, if exists"
+#: ../_main/main_frame.py:210
+msgid "Opens the logs directory, if exists"
 msgstr ""
 
-#: ../_main/main_frame.py:217
+#: ../_main/main_frame.py:212
 msgid "Goto"
 msgstr ""
 
-#: ../_main/main_frame.py:224
+#: ../_main/main_frame.py:219
 msgid "User Guide"
 msgstr ""
 
-#: ../_main/main_frame.py:225
-msgid "wiki"
+#: ../_main/main_frame.py:220
+msgid "Wiki"
 msgstr ""
 
-#: ../_main/main_frame.py:227
+#: ../_main/main_frame.py:222
 msgid "Issue tracker"
 msgstr ""
 
-#: ../_main/main_frame.py:230
+#: ../_main/main_frame.py:225
 msgid "FFmpeg documentation"
 msgstr ""
 
-#: ../_main/main_frame.py:232
+#: ../_main/main_frame.py:227
 msgid "Check for newer version"
 msgstr ""
 
-#: ../_main/main_frame.py:233
+#: ../_main/main_frame.py:228
 msgid ""
-"Check for the latest Cuesplitter-GUI version at <https://pypi.org/project/"
-"cuesplittergui/>"
+"Checks for the latest FFcuesplitter-GUI version at <https://github.com/"
+"jeanslack/FFcuesplitter-GUI>"
 msgstr ""
 
-#: ../_main/main_frame.py:238
-msgid "About Cuesplitter-GUI"
+#: ../_main/main_frame.py:233
+msgid "About FFcuesplitter-GUI"
 msgstr ""
 
-#: ../_main/main_frame.py:239
+#: ../_main/main_frame.py:234
 msgid "Help"
 msgstr ""
 
-#: ../_main/main_frame.py:292
+#: ../_main/main_frame.py:287
 #, python-brace-format
 msgid ""
 "Unexpected error while creating file:\n"
@@ -483,65 +487,65 @@ msgid ""
 "{0}"
 msgstr ""
 
-#: ../_main/main_frame.py:306 ../_main/main_frame.py:580
+#: ../_main/main_frame.py:301 ../_main/main_frame.py:575
 msgid "There are no logs to show."
 msgstr ""
 
-#: ../_main/main_frame.py:372
+#: ../_main/main_frame.py:367
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr ""
 
-#: ../_main/main_frame.py:375
+#: ../_main/main_frame.py:370
 msgid "You are using a development version that has not yet been released!\n"
 msgstr ""
 
-#: ../_main/main_frame.py:378
+#: ../_main/main_frame.py:373
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr ""
 
-#: ../_main/main_frame.py:460
+#: ../_main/main_frame.py:455
 msgid "View or Edit selected track tag"
 msgstr ""
 
-#: ../_main/main_frame.py:461
+#: ../_main/main_frame.py:456
 msgid "Track Tag"
 msgstr ""
 
-#: ../_main/main_frame.py:466
+#: ../_main/main_frame.py:461
 msgid "Audio CD informations and file properties"
 msgstr ""
 
-#: ../_main/main_frame.py:467
+#: ../_main/main_frame.py:462
 msgid "Properties"
 msgstr ""
 
-#: ../_main/main_frame.py:473
+#: ../_main/main_frame.py:468
 msgid "Start extracting audio tracks"
 msgstr ""
 
-#: ../_main/main_frame.py:474
+#: ../_main/main_frame.py:469
 msgid "Start"
 msgstr ""
 
-#: ../_main/main_frame.py:478
+#: ../_main/main_frame.py:473
 msgid "Stop all operations"
 msgstr ""
 
-#: ../_main/main_frame.py:479
+#: ../_main/main_frame.py:474
 msgid "Abort"
 msgstr ""
 
-#: ../_main/main_frame.py:484
+#: ../_main/main_frame.py:479
 msgid "Program setup"
 msgstr ""
 
-#: ../_main/main_frame.py:489
-msgid "View log"
+#: ../_main/main_frame.py:484
+msgid "View logs"
 msgstr ""
 
-#: ../_main/main_frame.py:490
-msgid "Log"
+#: ../_main/main_frame.py:485
+msgid "Logs"
 msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:114
@@ -585,34 +589,36 @@ msgid "wait... I'm aborting"
 msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:442
-msgid "Processing Track: {} | Status Progress: {}%"
+msgid "Processing... Track number: {} | Status Progress: {}%"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:469
+#: ../_panels/cuesplitter_panel.py:470
 msgid "...Interrupted"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:472
-msgid "ERROR: See Log for Details"
+#: ../_panels/cuesplitter_panel.py:473
+msgid "ERROR: Please open the Logs window to get more details."
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:474
+#: ../_panels/cuesplitter_panel.py:476
 msgid "ERROR!"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:474
-msgid "An error has occurred."
+#: ../_panels/cuesplitter_panel.py:476
+msgid ""
+"An error has occurred.\n"
+"See Logs for details."
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:479
+#: ../_panels/cuesplitter_panel.py:482
 msgid "...Finished!"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:481
+#: ../_panels/cuesplitter_panel.py:484
 msgid "Success!"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:481
+#: ../_panels/cuesplitter_panel.py:484
 msgid "Get your files at the destination specified"
 msgstr ""
 
