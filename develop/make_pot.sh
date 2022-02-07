@@ -30,7 +30,7 @@ $XGETTEXT -d ffcuesplitter-gui "../gui_app.py" \
 "../_dialogs/cd_info.py" \
 "../_dialogs/check_new_version.py" \
 "../_dialogs/infoprg.py" \
-"../_dialogs/settings.py" \
+"../_dialogs/preferences.py" \
 "../_dialogs/showlogs.py" \
 "../_dialogs/track_info.py" \
 "../_dialogs/wizard_dlg.py" \

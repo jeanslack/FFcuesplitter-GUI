@@ -30,7 +30,7 @@ import sys
 import webbrowser
 import wx
 from ffcuesplitter_gui._utils.get_bmpfromsvg import get_bmp
-from ffcuesplitter_gui._dialogs import settings
+from ffcuesplitter_gui._dialogs import preferences
 from ffcuesplitter_gui._dialogs import infoprg
 from ffcuesplitter_gui._dialogs.cd_info import CdInfo
 from ffcuesplitter_gui._dialogs.track_info import TrackInfo
@@ -39,6 +39,7 @@ from ffcuesplitter_gui._dialogs.showlogs import ShowLogs
 from ffcuesplitter_gui._panels import cuesplitter_panel
 from ffcuesplitter_gui._io import io_tools
 from ffcuesplitter_gui._sys import version
+from ffcuesplitter_gui._sys.settings_manager import ConfigManager
 
 
 class MainFrame(wx.Frame):
@@ -126,6 +127,16 @@ class MainFrame(wx.Frame):
         `thread_type` is the current thread, None otherwise.
 
         """
+        def _setsize():
+            """
+            Write last panel dimension for next start if changed
+            """
+            if tuple(self.appdata['panel_size']) != self.GetSize():
+                confmanager = ConfigManager(self.appdata['fileconfpath'])
+                sett = confmanager.read_options()
+                sett['panel_size'] = list(self.GetSize())
+                confmanager.write_options(**sett)
+
         if self.gui_panel.thread_type is not None:
             if wx.MessageBox(_('There are still processes running.. if you '
                                'want to stop them, use the "Abort" button.\n\n'
@@ -141,8 +152,10 @@ class MainFrame(wx.Frame):
             if wx.MessageBox(_('Are you sure you want to exit?'),
                              _('Exit'),  wx.ICON_QUESTION
                              | wx.YES_NO, self) == wx.YES:
+                _setsize()
                 self.Destroy()
         else:
+            _setsize()
             self.Destroy()
     # ------------------------------------------------------------------#
 
@@ -155,7 +168,7 @@ class MainFrame(wx.Frame):
 
     # -------------   BUILD THE MENU BAR  ----------------###
 
-    def cuesplittergui_menu_bar(self):
+    def gui_panel_menu_bar(self):
         """
         Make a menu bar. Per usare la disabilitazione di un
         menu item devi
@@ -187,15 +200,24 @@ class MainFrame(wx.Frame):
                                       _("Quiet Cuesplitter-GUI"))
         self.menu_bar.Append(file_button, _("File"))
 
+        self.Bind(wx.EVT_MENU, self.opencue, fold_cue)
+        self.Bind(wx.EVT_MENU, self.open_myfiles, fold_convers)
+        self.Bind(wx.EVT_MENU, self.reminder, notepad)
+        self.Bind(wx.EVT_MENU, self.quiet, exititem)
+
         # ------------------ Go menu
-        go_button = wx.Menu()
-        dscrp = (_("Configuration Directory"),
-                 _("Opens the Cuesplitter-GUI configuration directory"))
-        openconfdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
-        dscrp = (_("Logs Directory"),
-                 _("Opens the Cuesplitter-GUI log directory, if exists"))
-        openlogdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
-        self.menu_bar.Append(go_button, _("Goto"))
+        if self.appdata['showhidenmenu'] is True:
+            go_button = wx.Menu()
+            dscrp = (_("Configuration Directory"),
+                     _("Opens the Cuesplitter-GUI configuration directory"))
+            openconfdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+            dscrp = (_("Logs Directory"),
+                     _("Opens the Cuesplitter-GUI log directory, if exists"))
+            openlogdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+            self.menu_bar.Append(go_button, _("Goto"))
+
+            self.Bind(wx.EVT_MENU, self.open_log_dir, openlogdir)
+            self.Bind(wx.EVT_MENU, self.openconf, openconfdir)
 
         # ------------------ help menu
         help_button = wx.Menu()
@@ -216,26 +238,15 @@ class MainFrame(wx.Frame):
                                       _("About Cuesplitter-GUI"), "")
         self.menu_bar.Append(help_button, _("Help"))
 
-        self.SetMenuBar(self.menu_bar)
-
-        # -----------------------Binding menu bar-------------------------#
-        # ----FILE----
-        self.Bind(wx.EVT_MENU, self.opencue, fold_cue)
-        self.Bind(wx.EVT_MENU, self.open_myfiles, fold_convers)
-        self.Bind(wx.EVT_MENU, self.reminder, notepad)
-        self.Bind(wx.EVT_MENU, self.quiet, exititem)
-
-        # ---- GO -----
-        self.Bind(wx.EVT_MENU, self.open_log_dir, openlogdir)
-        self.Bind(wx.EVT_MENU, self.openconf, openconfdir)
-
-        # ----HELP----
         self.Bind(wx.EVT_MENU, self.help_me, helpitem)
         self.Bind(wx.EVT_MENU, self.wiki, wikiitem)
         self.Bind(wx.EVT_MENU, self.issues, issueitem)
         self.Bind(wx.EVT_MENU, self.doc_ffmpeg, docffmpeg)
         self.Bind(wx.EVT_MENU, self.check_new_releases, checkitem)
         self.Bind(wx.EVT_MENU, self.show_infoprog, infoitem)
+
+        # --------------------------- Set items
+        self.SetMenuBar(self.menu_bar)
 
     # --------Menu Bar Event handler (callback)
     # --------- Menu  Files
@@ -379,7 +390,7 @@ class MainFrame(wx.Frame):
 
     # -----------------  BUILD THE TOOL BAR  --------------------###
 
-    def cuesplittergui_tool_bar(self):
+    def gui_panel_tool_bar(self):
         """
         Makes and attaches the toolsBtn bar.
         To enable or disable styles, use method `SetWindowStyleFlag`
@@ -389,25 +400,25 @@ class MainFrame(wx.Frame):
 
         """
         if self.appdata['toolbarpos'] == 0:  # on top
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_HORIZONTAL)
             else:
                 style = (wx.TB_DEFAULT_STYLE)
 
         elif self.appdata['toolbarpos'] == 1:  # on bottom
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_BOTTOM)
             else:
                 style = (wx.TB_DEFAULT_STYLE | wx.TB_BOTTOM)
 
         elif self.appdata['toolbarpos'] == 2:  # on right
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_RIGHT)
             else:
                 style = (wx.TB_DEFAULT_STYLE | wx.TB_RIGHT)
 
         elif self.appdata['toolbarpos'] == 3:
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_LEFT)
             else:
                 style = (wx.TB_DEFAULT_STYLE | wx.TB_LEFT)
@@ -553,9 +564,9 @@ class MainFrame(wx.Frame):
         handle like filters dialogs on Videomass, being need
         to get the return code from getvalue interface.
         """
-        with settings.Setup(self, self.appdata) as setup:
-            if setup.ShowModal() == wx.ID_OK:
-                newdata = setup.getvalue()
+        with preferences.SetUp(self, self.appdata) as set_up:
+            if set_up.ShowModal() == wx.ID_OK:
+                newdata = set_up.getvalue()
                 self.appdata = {**self.appdata, **newdata}
                 self.gui_panel.appdata = self.appdata
                 self.gui_panel.txt_out.SetValue(self.appdata['outputfile'])

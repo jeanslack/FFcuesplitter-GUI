@@ -36,10 +36,10 @@ __packagename__ = "ffcuesplitter_gui"
 __license__ = "GPL3 (Gnu Public License)"
 __description__ = ("A cross platform front-end GUI of FFcuesplitter\n"
                    "written in wxPython Phoenix")
-__descriptionfull__ = """FFcuesplitter-GUI is a cross-platform GUI based on
-FFcuesplitter-GUI is a cross-platform GUI based on FFcuesplitter
-(https://github.com/jeanslack/FFcuesplitter) written in wxPython-Phoenix.
-Splits the audio CD images tracks supplied with CUE sheet via FFmpeg."""
+__descriptionfull__ = """FFcuesplitter-GUI is a cross-platform GUI based
+on FFcuesplitter (https://github.com/jeanslack/FFcuesplitter) written in
+wxPython-Phoenix. Splits the audio CD images tracks supplied with CUE sheet
+via FFmpeg."""
 __copyleft__ = '2022'
 __licensefull__ = f"""
 copyleft - {__copyleft__} {__author__}

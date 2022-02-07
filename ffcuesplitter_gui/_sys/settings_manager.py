@@ -6,7 +6,7 @@ Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Jan.30.2022
+Rev: Feb.07.2022
 Code checker: flake8, pylint .
 
  This file is part of Cuesplitter-GUI.
@@ -37,7 +37,7 @@ class ConfigManager:
     It represents the setting of the configuration file
     in its read and write aspects.
     """
-    VERSION = 4.0
+    VERSION = 4.1
     DEFAULT_OPTIONS = {
         "confversion": VERSION,
         "outputfile": f"{os.path.expanduser('~')}",
@@ -51,7 +51,9 @@ class ConfigManager:
         "icontheme": "Colored",
         "toolbarsize": 24,
         "toolbarpos": 0,
-        "toolbartext": "show"
+        "toolbartext": True,
+        "showhidenmenu": False,
+        "panel_size": [800, 550]
         }
 
     def __init__(self, file_path):
@@ -92,10 +94,12 @@ class ConfigManager:
 
 def get_options(dirconf, file_path):
     """
-    Check application options. Reads the `settings.json` file; if
-    it does not exist or is unreadable or its version is different,
-    try to restore it. If `dirconf` does not exist try to restore
-    both `dirconf` and `settings.json`
+    Check the application options. Reads the `settings.json`
+    file; if it does not exist or is unreadable try to restore
+    it. If `dirconf` does not exist try to restore both `dirconf`
+    and `settings.json`. If VERSION is not the same as the version
+    read, it adds new missing items while preserving the old ones
+    with the same values.
 
     Return dict key == 'R', else return a dict key == ERROR
     """
@@ -109,8 +113,9 @@ def get_options(dirconf, file_path):
                 conf.write_options()
                 data = {'R': conf.read_options()}
             if float(data['R']['confversion']) != version:  # conf version
-                new = conf.options  # model
-                data = {'R': {**data['R'], **new}}
+                data['R']['confversion'] = version
+                new = ConfigManager.DEFAULT_OPTIONS  # model
+                data = {'R': {**new, **data['R']}}
                 conf.write_options(**data['R'])
         else:
             conf.write_options()

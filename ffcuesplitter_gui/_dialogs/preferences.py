@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-Name: settings.py
+Name: preferences.py
 Porpose: FFcuesplitter-GUI setup dialog
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -27,29 +27,29 @@ This file is part of FFcuesplitter-GUI.
 """
 import os
 import sys
-import webbrowser
 import wx
 from ffcuesplitter_gui._utils.utils import detect_binaries
 from ffcuesplitter_gui._sys.settings_manager import ConfigManager
 
 
-class Setup(wx.Dialog):
+class SetUp(wx.Dialog):
     """
     Represents settings and configuration
     storing of the program.
 
     """
-    FFMPEG_LOGLEV = [("error (Show all errors)"),
-                     ("warning (Show all warnings and errors)"),
-                     ("info (Show informative messages during processing)"),
-                     ("verbose (Same as `info`, except more verbose.)"),
-                     ("debug (Show everything, including debugging info.)")
-                     ]
+    FFMPEG_LOGLEV = (
+        ("error (Show all errors)"),
+        ("warning (Show all warnings and errors)"),
+        ("info (Show informative messages during processing)"),
+        ("verbose (Same as `info`, except more verbose.)"),
+        ("debug (Show everything, including debugging info.)")
+        )
     # -----------------------------------------------------------------
 
     def __init__(self, parent, appdata):
         """
-        self.appdata: (dict) settings already loaded on the wx.App .
+        self.appdata: (dict) settings already loaded from main_frame .
         self.confmanager: instance to ConfigManager class
         self.settings: (dict) current user settings from file conf.
         """
@@ -75,14 +75,19 @@ class Setup(wx.Dialog):
         tab_one = wx.Panel(notebook, wx.ID_ANY)
         sizer_gen = wx.BoxSizer(wx.VERTICAL)
         sizer_gen.Add((0, 15))
-        self.checkbox_logclr = wx.CheckBox(tab_one, wx.ID_ANY, (
+        self.ckbx_logclear = wx.CheckBox(tab_one, wx.ID_ANY, (
                         _("Delete the contents of the log files\n"
                           "when exiting the application")))
-        sizer_gen.Add(self.checkbox_logclr, 0, wx.ALL, 5)
+        sizer_gen.Add(self.ckbx_logclear, 0, wx.ALL, 5)
         sizer_gen.Add((0, 15))
-        self.checkbox_exit = wx.CheckBox(tab_one, wx.ID_ANY, (
+        self.ckbx_exit = wx.CheckBox(tab_one, wx.ID_ANY, (
                                          _("Warn on exit")))
-        sizer_gen.Add(self.checkbox_exit, 0, wx.ALL, 5)
+        sizer_gen.Add(self.ckbx_exit, 0, wx.ALL, 5)
+
+        sizer_gen.Add((0, 15))
+        self.ckbx_mnhiden = wx.CheckBox(tab_one, wx.ID_ANY, (
+                                         _("Show hidden menu items")))
+        sizer_gen.Add(self.ckbx_mnhiden, 0, wx.ALL, 5)
 
         tab_one.SetSizer(sizer_gen)
         notebook.AddPage(tab_one, _("Miscellanea"))
@@ -146,13 +151,13 @@ class Setup(wx.Dialog):
         tab_three.SetSizer(sizer_ffmpeg)
         notebook.AddPage(tab_three, _("FFmpeg"))
 
-        # -----tab 5
-        tab_five = wx.Panel(notebook, wx.ID_ANY)
+        # -----tab 4
+        tab_four = wx.Panel(notebook, wx.ID_ANY)
         sizer_appearance = wx.BoxSizer(wx.VERTICAL)
         sizer_appearance.Add((0, 15))
-        lab_theme = wx.StaticText(tab_five, wx.ID_ANY, _('Icon themes'))
+        lab_theme = wx.StaticText(tab_four, wx.ID_ANY, _('Icon themes'))
         sizer_appearance.Add(lab_theme, 0, wx.ALL | wx.EXPAND, 5)
-        self.cmbx_icons = wx.ComboBox(tab_five, wx.ID_ANY,
+        self.cmbx_icons = wx.ComboBox(tab_four, wx.ID_ANY,
                                       choices=[
                                           ("Light"),
                                           ("Dark"),
@@ -166,7 +171,7 @@ class Setup(wx.Dialog):
                              wx.ALIGN_CENTER_HORIZONTAL, 5
                              )
         sizer_appearance.Add((0, 15))
-        lab_tbar = wx.StaticText(tab_five, wx.ID_ANY,
+        lab_tbar = wx.StaticText(tab_four, wx.ID_ANY,
                                  _("Toolbar customization")
                                  )
         sizer_appearance.Add(lab_tbar, 0, wx.ALL | wx.EXPAND, 5)
@@ -174,7 +179,7 @@ class Setup(wx.Dialog):
                     _('At the bottom of window'),
                     _('At the right of window'),
                     _('At the left of window')]
-        self.rdbx_tb_pos = wx.RadioBox(tab_five, wx.ID_ANY,
+        self.rdbx_tb_pos = wx.RadioBox(tab_four, wx.ID_ANY,
                                        (_("Place the toolbar")),
                                        choices=tbchoice,
                                        majorDimension=1,
@@ -184,11 +189,11 @@ class Setup(wx.Dialog):
 
         grid_tb_size = wx.FlexGridSizer(0, 2, 0, 5)
         sizer_appearance.Add(grid_tb_size, 0, wx.ALL, 5)
-        lab1_appearance = wx.StaticText(tab_five, wx.ID_ANY,
+        lab1_appearance = wx.StaticText(tab_four, wx.ID_ANY,
                                         _('Icon size:'))
         grid_tb_size.Add(lab1_appearance, 0, wx.ALIGN_CENTER_VERTICAL, 0)
 
-        self.cmbx_icon_size = wx.ComboBox(tab_five, wx.ID_ANY,
+        self.cmbx_icon_size = wx.ComboBox(tab_four, wx.ID_ANY,
                                           choices=[("16"), ("24"), ("32"),
                                                    ("64")], size=(120, -1),
                                           style=wx.CB_DROPDOWN | wx.CB_READONLY
@@ -199,32 +204,32 @@ class Setup(wx.Dialog):
             self.cmbx_icon_size.Disable()
             lab1_appearance.Disable()
 
-        self.checkbox_tbtext = wx.CheckBox(tab_five, wx.ID_ANY, (
-                                _("Shows the text in the toolbar buttons")))
-        sizer_appearance.Add(self.checkbox_tbtext, 0, wx.ALL, 5)
+        self.ckbx_tb_showtxt = wx.CheckBox(tab_four, wx.ID_ANY, (
+                                _("Show text on toolbar buttons")))
+        sizer_appearance.Add(self.ckbx_tb_showtxt, 0, wx.ALL, 5)
 
-        tab_five.SetSizer(sizer_appearance)  # aggiungo il sizer su tab 4
-        notebook.AddPage(tab_five, _("Appearance"))
+        tab_four.SetSizer(sizer_appearance)  # aggiungo il sizer su tab 4
+        notebook.AddPage(tab_four, _("Appearance"))
 
-        # -----tab 6
-        tab_six = wx.Panel(notebook, wx.ID_ANY)
+        # -----tab 5
+        tab_five = wx.Panel(notebook, wx.ID_ANY)
         sizer_log = wx.BoxSizer(wx.VERTICAL)
         sizer_log.Add((0, 15))
 
         msglog = _("The following settings affect output messages and\n"
                    "the log messages during transcoding processes.\n"
                    "Change only if you know what you are doing.\n")
-        lab_log = wx.StaticText(tab_six, wx.ID_ANY, (msglog))
+        lab_log = wx.StaticText(tab_five, wx.ID_ANY, (msglog))
         sizer_log.Add(lab_log, 0, wx.ALL | wx.CENTRE, 5)
         self.rdbx_log_ffmpeg = wx.RadioBox(
-                                tab_six, wx.ID_ANY,
+                                tab_five, wx.ID_ANY,
                                 ("Set logging level flags used by FFmpeg"),
-                                choices=Setup.FFMPEG_LOGLEV, majorDimension=1,
+                                choices=SetUp.FFMPEG_LOGLEV, majorDimension=1,
                                 style=wx.RA_SPECIFY_COLS
                                      )
         sizer_log.Add(self.rdbx_log_ffmpeg, 0, wx.ALL | wx.EXPAND, 5)
-        tab_six.SetSizer(sizer_log)
-        notebook.AddPage(tab_six, _("Logging levels"))
+        tab_five.SetSizer(sizer_log)
+        notebook.AddPage(tab_five, _("Logging levels"))
         # ------ btns bottom
         grd_btns = wx.GridSizer(1, 2, 0, 0)
         grdhelp = wx.GridSizer(1, 1, 0, 0)
@@ -265,8 +270,9 @@ class Setup(wx.Dialog):
             lab_log.SetFont(wx.Font(8, wx.SWISS, wx.NORMAL, wx.NORMAL))
 
         # ----------------------Binding (EVT)----------------------#
-        self.Bind(wx.EVT_CHECKBOX, self.exit_warn, self.checkbox_exit)
-        self.Bind(wx.EVT_CHECKBOX, self.clear_logs, self.checkbox_logclr)
+        self.Bind(wx.EVT_CHECKBOX, self.exit_warn, self.ckbx_exit)
+        self.Bind(wx.EVT_CHECKBOX, self.clear_logs, self.ckbx_logclear)
+        self.Bind(wx.EVT_CHECKBOX, self.show_hiden_menu, self.ckbx_mnhiden)
 
         self.Bind(wx.EVT_BUTTON, self.on_output_path, self.btn_outdir)
 
@@ -278,7 +284,7 @@ class Setup(wx.Dialog):
         self.Bind(wx.EVT_COMBOBOX, self.on_iconthemes, self.cmbx_icons)
         self.Bind(wx.EVT_RADIOBOX, self.on_toolbar_pos, self.rdbx_tb_pos)
         self.Bind(wx.EVT_COMBOBOX, self.on_toolbar_size, self.cmbx_icon_size)
-        self.Bind(wx.EVT_CHECKBOX, self.on_toolbar_txt, self.checkbox_tbtext)
+        self.Bind(wx.EVT_CHECKBOX, self.on_toolbar_txt, self.ckbx_tb_showtxt)
 
         self.Bind(wx.EVT_RADIOBOX, self.logging_ffmpeg, self.rdbx_log_ffmpeg)
 
@@ -320,20 +326,10 @@ class Setup(wx.Dialog):
             self.txtctrl_ffprobe.AppendText(self.appdata['ffprobe_cmd'])
             self.ckbx_exe_ffprobe.SetValue(True)
 
-        if self.appdata['toolbartext'] == 'show':
-            self.checkbox_tbtext.SetValue(True)
-        else:
-            self.checkbox_tbtext.SetValue(False)
-
-        if self.appdata['clearlogfiles'] is True:
-            self.checkbox_logclr.SetValue(True)
-        else:
-            self.checkbox_logclr.SetValue(False)
-
-        if self.appdata['warnexiting'] is True:
-            self.checkbox_exit.SetValue(True)
-        else:
-            self.checkbox_exit.SetValue(False)
+        self.ckbx_tb_showtxt.SetValue(self.appdata['toolbartext'])
+        self.ckbx_logclear.SetValue(self.appdata['clearlogfiles'])
+        self.ckbx_exit.SetValue(self.appdata['warnexiting'])
+        self.ckbx_mnhiden.SetValue(self.appdata['showhidenmenu'])
     # --------------------------------------------------------------------#
 
     def on_output_path(self, event):
@@ -470,10 +466,10 @@ class Setup(wx.Dialog):
         """
         Show or hide text along toolbar buttons
         """
-        if self.checkbox_tbtext.IsChecked():
-            self.settings['toolbartext'] = 'show'
+        if self.ckbx_tb_showtxt.IsChecked():
+            self.settings['toolbartext'] = True
         else:
-            self.settings['toolbartext'] = 'hide'
+            self.settings['toolbartext'] = False
     # --------------------------------------------------------------------#
 
     def exit_warn(self, event):
@@ -481,7 +477,7 @@ class Setup(wx.Dialog):
         Enable or disable the warning message before
         exiting the program
         """
-        if self.checkbox_exit.IsChecked():
+        if self.ckbx_exit.IsChecked():
             self.settings['warnexiting'] = True
         else:
             self.settings['warnexiting'] = False
@@ -491,10 +487,21 @@ class Setup(wx.Dialog):
         """
         if checked, set to clear all log files on exit
         """
-        if self.checkbox_logclr.IsChecked():
+        if self.ckbx_logclear.IsChecked():
             self.settings['clearlogfiles'] = True
         else:
             self.settings['clearlogfiles'] = False
+    # --------------------------------------------------------------------#
+
+    def show_hiden_menu(self, event):
+        """
+        if checked, show items menu to open log
+        directory and file configuration directory
+        """
+        if self.ckbx_mnhiden.IsChecked():
+            self.settings['showhidenmenu'] = True
+        else:
+            self.settings['showhidenmenu'] = False
     # --------------------------------------------------------------------#
 
     def on_help(self, event):
@@ -502,16 +509,8 @@ class Setup(wx.Dialog):
         Open default web browser via Python Web-browser controller.
         see <https://docs.python.org/3.8/library/webbrowser.html>
         """
-        pass
-        #if self.appdata['GETLANG'] in self.appdata['SUPP_LANGs']:
-            #lang = self.appdata['GETLANG'].split('_')[0]
-            #page = ('https://jeanslack.github.io/Videomass/Pages/User-guide-'
-                    #'languages/%s/2-Startup_and_Setup_%s.pdf' % (lang, lang))
-        #else:
-            #page = ('https://jeanslack.github.io/Videomass/Pages/User-guide-'
-                    #'languages/en/2-Startup_and_Setup_en.pdf')
-
-        #webbrowser.open(page)
+        wx.MessageBox(_("Not yet implemented"), _('Settings'),
+                      wx.ICON_INFORMATION, self)
     # --------------------------------------------------------------------#
 
     def getvalue(self):
@@ -520,7 +519,7 @@ class Setup(wx.Dialog):
         See main_frame --> on_setup method
         """
         wx.MessageBox(_("Some changes will take effect once the program is "
-                        "restarted. "), _('FFcuesplitter-GUI Setup'),
+                        "restarted."), _('Settings'),
                       wx.ICON_INFORMATION, self)
 
         return self.settings

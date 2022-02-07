@@ -71,23 +71,23 @@ if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
 
 class CueGui(wx.Panel):
     """
-    This Represents the main panel for ffcuesplitter-gui
+    Represents the main panel for ffcuesplitter-gui
     """
     def __init__(self, parent):
         """
-        The first item of the self.info is a complete list of all
-        informations getting by extract_info method from youtube_dl
-        module.
+        This constructor subscribes three listener of pubsub
+        package. All references to subscribed callables are
+        located on the Processing class thread.
         """
-        self.parent = parent
+        self.parent = parent  # main_frame
         get = wx.GetApp()
-        self.appdata = get.appset
+        self.appdata = get.appset  # current appdata
         self.thread_type = None  # the instantiated thread
         self.abort = False  # if True set to abort current process
         self.error = False  # if True set to error current process
         self.data = None  # it is the ffcuesplitter instance
         self.oldwx = None  # test result of hasattr EVT_LIST_ITEM_CHECKED
-        self.tmpdir = None
+        self.tmpdir = None  # path to tempdir folder
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
 
@@ -203,17 +203,10 @@ class CueGui(wx.Panel):
                           | wx.ALIGN_CENTER_HORIZONTAL
                           | wx.ALIGN_CENTER_VERTICAL, 2
                           )
-
         self.barprog = wx.Gauge(self, wx.ID_ANY, range=0)
         sizer_base.Add(self.barprog, 0, wx.EXPAND | wx.ALL, 5)
 
-        if self.appdata['ostype'] == 'Darwin':
-            self.SetMinSize((980, 570))
-        elif self.appdata['ostype'] == 'Windows':
-            self.SetMinSize((920, 640))
-        else:
-            self.SetMinSize((800, 550))
-
+        self.SetMinSize(tuple(self.appdata['panel_size']))
         self.SetSizer(sizer_base)
         self.Layout()
 
@@ -254,20 +247,10 @@ class CueGui(wx.Panel):
             dlg.Destroy()
     # -----------------------------------------------------------------#
 
-    def on_import_cuefile(self, event):
+    def load_cuefile(self, newincoming):
         """
-        file *.cue importing dialog
+        Load the imported CUE file via FFCueSplitter package
         """
-        wildcard = "Source (*.cue;*.CUE)|*.cue;*.CUE|All files (*.*)|*.*"
-
-        with wx.FileDialog(self, _("Open a CUE sheet"),
-                           "", "", wildcard, wx.FD_OPEN |
-                           wx.FD_FILE_MUST_EXIST) as filedlg:
-
-            if filedlg.ShowModal() == wx.ID_CANCEL:
-                return
-
-            newincoming = filedlg.GetPath()
         self.txt_path_cue.SetValue(newincoming)
 
         self.data = FFCueSplitter(newincoming,
@@ -283,6 +266,24 @@ class CueGui(wx.Panel):
             return
 
         self.set_data_list_ctrl()
+    # -----------------------------------------------------------------#
+
+    def on_import_cuefile(self, event, loadlast=None):
+        """
+        Displays dialog for importing CUE files.
+        """
+
+        wildcard = "Source (*.cue;*.CUE)|*.cue;*.CUE|All files (*.*)|*.*"
+
+        with wx.FileDialog(self, _("Open a CUE sheet"),
+                           "", "", wildcard, wx.FD_OPEN |
+                           wx.FD_FILE_MUST_EXIST) as filedlg:
+
+            if filedlg.ShowModal() == wx.ID_CANCEL:
+                return
+            newincoming = filedlg.GetPath()
+
+        self.load_cuefile(newincoming)
     # -----------------------------------------------------------------#
 
     def set_data_list_ctrl(self):
@@ -344,14 +345,16 @@ class CueGui(wx.Panel):
 
     def on_select(self, event):
         """
-        self.fcod selection event that enables btn_play
+        self.tlist selection event. Enables Track Tag
+        button on toolbar.
         """
         self.parent.toolbar.EnableTool(14, True)
     # ----------------------------------------------------------------------
 
     def on_deselect(self, event):
         """
-        self.fcod de-selection event that disables btn_play
+        self.tlist de-selection event. Disables Track Tag
+        button on toolbar.
         """
         self.parent.toolbar.EnableTool(14, False)
     # ----------------------------------------------------------------------
@@ -427,8 +430,8 @@ class CueGui(wx.Panel):
         """
         Update progress bar by receving ffmpeg stdout pipe on
         thread loop. If `status` is not 0 means an error is
-        occurred. This is usually a syntax error in the command
-        arguments passed to the FFmpeg command.
+        occurred. This is usually a syntax error in the arguments
+        passed to the FFmpeg command.
         """
         if not status == 0:
             self.error = True
@@ -448,14 +451,14 @@ class CueGui(wx.Panel):
         to max percentage starting to 0 (min) value. Note that
         when `msg` argument is equal to str('error') it means
         that an exception is raised by thread with one of the
-        exceptions of class OSError or FileNotFoundError.
+        exceptions of class OSError, FileNotFoundError.
         """
-        if end == 'error':  # This error is given by Exceptions
+        if end == 'error':
             self.error = True
             wx.MessageBox(f'{msg}', "Cuesplitter-GUI", wx.ICON_ERROR, self)
         else:
             self.barprog.SetRange(100)  # set overall percentage range
-            self.barprog.SetValue(0)  # reset bar progress start to 0
+            self.barprog.SetValue(0)  # reset bar progress to 0
     # ----------------------------------------------------------------------
 
     def end_processing(self):
