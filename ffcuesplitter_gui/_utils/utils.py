@@ -29,7 +29,6 @@ import os
 import wx
 
 
-
 def move_files_to_outputdir(outputdir, tmpdir):
     """
     All files are processed in a /temp folder. After the split
@@ -64,7 +63,7 @@ def move_files_to_outputdir(outputdir, tmpdir):
             try:
                 shutil.move(ftmp, fdir)
             except Exception as error:
-                wx.MessageBox(f'{error}', "Cuesplitter-GUI",
+                wx.MessageBox(f'{error}', "FFcuesplitter-GUI",
                               wx.ICON_ERROR, None)
 # ----------------------------------------------------------------#
 

@@ -31,8 +31,8 @@ import wx
 
 class ShowLogs(wx.Dialog):
     """
-    View log data from files within the log directory
-
+    Displays log text and includes refreshing
+    and clearing features.
     """
     # list of logs files to include
     LOGNAMES = ('ffmpeg.log',)

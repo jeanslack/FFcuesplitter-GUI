@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Jan.31.2022
+Rev: Feb.08.2022
 ########################################################
 
 This file is part of FFcuesplitter-GUI.
@@ -26,7 +26,14 @@ This file is part of FFcuesplitter-GUI.
 """
 import wx
 import wx.adv
-from ffcuesplitter_gui._sys import info, version
+from ffcuesplitter_gui._sys.info import (__copyleft__,
+                                         __appname__,
+                                         __author__,
+                                         __projecturl__,
+                                         __licensefull__,
+                                         __contact__
+                                         )
+from ffcuesplitter_gui._sys import version
 
 
 def info_gui(parent, prg_icon):
@@ -37,17 +44,18 @@ def info_gui(parent, prg_icon):
     """
     infoprg = wx.adv.AboutDialogInfo()
     infoprg.SetIcon(wx.Icon(prg_icon, type=wx.BITMAP_TYPE_PNG))
-    infoprg.SetName(info.__appname__)
-    infoprg.SetVersion(f'v{version.__version__}')
-    infoprg.SetDescription(_(info.__description__))
-    infoprg.SetCopyright(f'Copyleft {info.__copyleft__} {info.__author__}')
-    infoprg.SetWebSite(info.__projecturl__)
-    infoprg.SetLicence(info.__licensefull__)
-    infoprg.AddDeveloper(info.__author__)
-    infoprg.AddDocWriter(f"{info.__author__}")
-    infoprg.AddTranslator(f"{info.__author__} (it_IT)")
+    infoprg.SetName(__appname__)
+    infoprg.SetVersion(f'{version.__version__}')
+    infoprg.SetDescription(_("A cross-platform GUI for the FFcuesplitter\n"
+                             "library written in wxPython Phoenix"))
+    infoprg.SetCopyright(f'Copyleft {__copyleft__} {__author__}')
+    infoprg.SetWebSite(__projecturl__)
+    infoprg.SetLicence(__licensefull__)
+    infoprg.AddDeveloper(f"{__author__} <{__contact__}>")
+    infoprg.AddDocWriter(f"{__author__} <{__contact__}>")
+    infoprg.AddTranslator(f"{__author__} <{__contact__}> (it_IT)")
     # info.AddTranslator("Nestor Blanco <random@mail.es> (es_ES)")
     infoprg.SetArtists(
-        [f"{info.__author__}"])
+        [(f"{__author__} <{__contact__}>")])
     wx.adv.AboutBox(infoprg)
     # event.Skip()

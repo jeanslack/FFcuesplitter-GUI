@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Jan.31.2022
+Rev: Feb.08.2022
 Code checher: flake8, pylint
 ########################################################
 
@@ -31,7 +31,7 @@ import wx
 
 class TrackInfo(wx.Dialog):
     """
-    Show dialog to view or edit selected track metadata.
+    Show dialog to view or edit selected track tag.
         if wx.ID_OK:
             Returns: self.metadata list, none otherwise.
     """
@@ -49,6 +49,7 @@ class TrackInfo(wx.Dialog):
                            style=wx.DEFAULT_DIALOG_STYLE | wx.RESIZE_BORDER)
 
         size_base = wx.BoxSizer(wx.VERTICAL)
+        #  Artist
         size_line0 = wx.BoxSizer(wx.HORIZONTAL)
         size_base.Add(size_line0, 0, wx.ALL | wx.EXPAND, 0)
         box_artist = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
@@ -57,6 +58,7 @@ class TrackInfo(wx.Dialog):
         size_line0.Add(box_artist, 1, wx.ALL | wx.EXPAND, 5)
         self.txt_artist = wx.TextCtrl(self, wx.ID_ANY, "")
         box_artist.Add(self.txt_artist, 0, wx.ALL | wx.EXPAND, 5)
+        #  Album
         box_album = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
                                                    _("Album")),
                                       wx.VERTICAL
@@ -64,16 +66,7 @@ class TrackInfo(wx.Dialog):
         size_line0.Add(box_album, 1, wx.ALL | wx.EXPAND, 5)
         self.txt_album = wx.TextCtrl(self, wx.ID_ANY, "")
         box_album.Add(self.txt_album, 0, wx.ALL | wx.EXPAND, 5)
-
-        box_comment = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
-                                                     _("Comment")),
-                                        wx.VERTICAL
-                                        )
-        size_base.Add(box_comment, 1, wx.ALL | wx.EXPAND, 5)
-        self.txt_comment = wx.TextCtrl(self, wx.ID_ANY, "",
-                                       style=wx.TE_MULTILINE
-                                       )
-        box_comment.Add(self.txt_comment, 1, wx.ALL | wx.EXPAND, 5)
+        #  track title
         size_line1 = wx.BoxSizer(wx.HORIZONTAL)
         size_base.Add(size_line1, 0, wx.ALL | wx.EXPAND, 0)
         box_title = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
@@ -84,6 +77,7 @@ class TrackInfo(wx.Dialog):
 
         self.txt_title = wx.TextCtrl(self, wx.ID_ANY, "")
         box_title.Add(self.txt_title, 0, wx.ALL | wx.EXPAND, 5)
+        #  Genre
         box_genre = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
                                                    _("Genre")),
                                       wx.VERTICAL
@@ -93,7 +87,7 @@ class TrackInfo(wx.Dialog):
         box_genre.Add(self.txt_genre, 0, wx.ALL | wx.EXPAND, 5)
         size_line2 = wx.BoxSizer(wx.HORIZONTAL)
         size_base.Add(size_line2, 0, wx.ALL | wx.EXPAND, 0)
-
+        #  Date
         box_date = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
                                                   _("Date")),
                                      wx.VERTICAL
@@ -102,6 +96,7 @@ class TrackInfo(wx.Dialog):
 
         self.txt_date = wx.TextCtrl(self, wx.ID_ANY, "")
         box_date.Add(self.txt_date, 0, wx.ALL | wx.EXPAND, 5)
+        #  Disc ID
         box_discid = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
                                                     _("Disc ID")),
                                        wx.VERTICAL
@@ -109,6 +104,16 @@ class TrackInfo(wx.Dialog):
         size_line2.Add(box_discid, 1, wx.ALL | wx.EXPAND, 5)
         self.txt_discid = wx.TextCtrl(self, wx.ID_ANY, value="")
         box_discid.Add(self.txt_discid, 0, wx.ALL | wx.EXPAND, 5)
+        #  Comment
+        box_comment = wx.StaticBoxSizer(wx.StaticBox(self, wx.ID_ANY,
+                                                     _("Comment")),
+                                        wx.VERTICAL
+                                        )
+        size_base.Add(box_comment, 1, wx.ALL | wx.EXPAND, 5)
+        self.txt_comment = wx.TextCtrl(self, wx.ID_ANY, "",
+                                       style=wx.TE_MULTILINE
+                                       )
+        box_comment.Add(self.txt_comment, 1, wx.ALL | wx.EXPAND, 5)
 
         grdbtn = wx.GridSizer(1, 2, 0, 0)
         grdhelp = wx.GridSizer(1, 1, 0, 0)
@@ -117,9 +122,9 @@ class TrackInfo(wx.Dialog):
 
         grdbtn.Add(grdhelp)
         grdexit = wx.BoxSizer(wx.HORIZONTAL)
-        btn_canc = wx.Button(self, wx.ID_CANCEL, "")
-        grdexit.Add(btn_canc, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
-        self.btn_save = wx.Button(self, wx.ID_OK, "Apply")
+        btn_cancel = wx.Button(self, wx.ID_CANCEL, "")
+        grdexit.Add(btn_cancel, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
+        self.btn_save = wx.Button(self, wx.ID_OK, _("Apply"))
         grdexit.Add(self.btn_save, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
         self.btn_save.Disable()
         grdbtn.Add(grdexit, 0, wx.ALL | wx.ALIGN_RIGHT | wx.RIGHT, 0)
@@ -150,7 +155,7 @@ class TrackInfo(wx.Dialog):
         self.Bind(wx.EVT_TEXT, self.on_text_event, self.txt_date)
         self.Bind(wx.EVT_TEXT, self.on_text_event, self.txt_discid)
 
-        self.Bind(wx.EVT_BUTTON, self.on_close, btn_canc)
+        self.Bind(wx.EVT_BUTTON, self.on_cancel, btn_cancel)
         self.Bind(wx.EVT_BUTTON, self.on_help, btn_help)
         self.Bind(wx.EVT_BUTTON, self.on_ok, self.btn_save)
 
@@ -170,10 +175,11 @@ class TrackInfo(wx.Dialog):
         Open default web browser via Python Web-browser controller.
         see <https://docs.python.org/3.8/library/webbrowser.html>
         """
-        pass
+        wx.MessageBox(_("Not yet implemented"), _('Settings'),
+                      wx.ICON_INFORMATION, self)
     # ------------------------------------------------------------------#
 
-    def on_close(self, event):
+    def on_cancel(self, event):
         """
         Exit from dialog
         """
@@ -184,13 +190,6 @@ class TrackInfo(wx.Dialog):
         """
         Call getvalue interface
         """
-        if wx.MessageBox(_('Do you want to apply the new tag '
-                           'properties to the selected track?\n\n'),
-                         _('Please confirm'),
-                         wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
-            return
-
-        self.getvalue()
         # self.Destroy() # con ID_OK e ID_CANCEL non serve
         event.Skip()
     # ------------------------------------------------------------------#
@@ -199,13 +198,20 @@ class TrackInfo(wx.Dialog):
         """
         Return self.metadata value
         """
-        idx = self.metadata[self.trackindex]
-        idx['PERFORMER'] = self.txt_artist.GetValue()
-        idx['ALBUM'] = self.txt_album.GetValue()
-        idx['COMMENT'] = self.txt_comment.GetValue()
-        idx['TITLE'] = self.txt_title.GetValue()
-        idx['GENRE'] = self.txt_genre.GetValue()
-        idx['DATE'] = self.txt_date.GetValue()
-        idx['DISCID'] = self.txt_discid.GetValue()
+        if wx.MessageBox(_('Do you want to apply the new tag '
+                           'properties to the selected track?\n\n'),
+                         _('Please confirm'),
+                         wx.ICON_QUESTION | wx.YES_NO, self) == wx.YES:
 
-        return self.metadata
+            idx = self.metadata[self.trackindex]
+            idx['PERFORMER'] = self.txt_artist.GetValue()
+            idx['ALBUM'] = self.txt_album.GetValue()
+            idx['COMMENT'] = self.txt_comment.GetValue()
+            idx['TITLE'] = self.txt_title.GetValue()
+            idx['GENRE'] = self.txt_genre.GetValue()
+            idx['DATE'] = self.txt_date.GetValue()
+            idx['DISCID'] = self.txt_discid.GetValue()
+
+            return self.metadata
+
+        return None

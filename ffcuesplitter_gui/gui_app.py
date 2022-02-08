@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 Name: gui_app.py
-Porpose: bootstrap for Cuesplitter-GUI app.
+Porpose: bootstrap for FFcuesplitter-GUI app.
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -9,20 +9,20 @@ license: GPL3
 Rev: Feb.04.2022
 Code checker: flake8, pylint
 
-This file is part of Cuesplitter-GUI.
+This file is part of FFcuesplitter-GUI.
 
-    Cuesplitter-GUI is free software: you can redistribute it and/or modify
+    FFcuesplitter-GUI is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Cuesplitter-GUI is distributed in the hope that it will be useful,
+    FFcuesplitter-GUI is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+    along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
@@ -82,7 +82,7 @@ class CuesplitterGUI(wx.App):
 
         if self.appset.get('ERROR'):
             wx.MessageBox(f"FATAL: {self.appset['ERROR']}\n\nSorry, cannot "
-                          f"continue..", 'Cuesplitter-GUI - ERROR',
+                          f"continue..", 'FFcuesplitter-GUI - ERROR',
                           wx.ICON_STOP)
             return False
 
@@ -139,7 +139,7 @@ class CuesplitterGUI(wx.App):
                 else:
                     wx.MessageBox(_('Permission denied: {}\n\n'
                                     'Check execution permissions.').format
-                                  (link), 'Cuesplitter-GUI', wx.ICON_STOP)
+                                  (link), 'FFcuesplitter-GUI', wx.ICON_STOP)
                     permissions = False
                     break
 

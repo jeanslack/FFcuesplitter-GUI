@@ -10,27 +10,27 @@ Rev: Feb.04.2022
 Code checker: flake8, pylint
 ########################################################
 
-This file is part of Cuesplitter-GUI.
+This file is part of FFcuesplitter-GUI.
 
-   Cuesplitter-GUI is free software: you can redistribute it and/or modify
+   FFcuesplitter-GUI is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-   Cuesplitter-GUI is distributed in the hope that it will be useful,
+   FFcuesplitter-GUI is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+   along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
 import webbrowser
 import wx
 from ffcuesplitter_gui._utils.get_bmpfromsvg import get_bmp
-from ffcuesplitter_gui._dialogs import settings
+from ffcuesplitter_gui._dialogs import preferences
 from ffcuesplitter_gui._dialogs import infoprg
 from ffcuesplitter_gui._dialogs.cd_info import CdInfo
 from ffcuesplitter_gui._dialogs.track_info import TrackInfo
@@ -39,6 +39,7 @@ from ffcuesplitter_gui._dialogs.showlogs import ShowLogs
 from ffcuesplitter_gui._panels import cuesplitter_panel
 from ffcuesplitter_gui._io import io_tools
 from ffcuesplitter_gui._sys import version
+from ffcuesplitter_gui._sys.settings_manager import ConfigManager
 
 
 class MainFrame(wx.Frame):
@@ -72,26 +73,21 @@ class MainFrame(wx.Frame):
         icon.CopyFromBitmap(wx.Bitmap(self.icons['ffcuesplittergui'],
                                       wx.BITMAP_TYPE_ANY))
         self.SetIcon(icon)
-        if self.appdata['ostype'] == 'Darwin':
-            self.SetMinSize((980, 570))
-        elif self.appdata['ostype'] == 'Windows':
-            self.SetMinSize((920, 640))
-        else:
-            self.SetMinSize((500, 400))
+        self.SetMinSize((500, 400))
         # self.CentreOnScreen()  # se lo usi, usa CentreOnScreen anziche Centre
         self.SetSizer(self.main_sizer)
         self.Fit()
 
         # menu bar
-        self.gui_panel_menu_bar()
+        self.frame_menu_bar()
         # tool bar main
-        self.gui_panel_tool_bar()
+        self.frame_tool_bar()
         # status bar
         self.sbar = self.CreateStatusBar(1)
         self.statusbar_msg(_('Ready'))
         self.Layout()
         # ---------------------- Binding (EVT) ----------------------#
-        self.Bind(wx.EVT_CLOSE, self.on_close)  # controlla la chiusura (x)
+        self.Bind(wx.EVT_CLOSE, self.on_exit)  # controlla la chiusura (x)
 
     # -------------------Status bar settings--------------------#
 
@@ -120,16 +116,26 @@ class MainFrame(wx.Frame):
         self.sbar.Refresh()
     # ---------------------- Event handler (callback) ------------------#
 
-    def on_close(self, event):
+    def on_exit(self, event):
         """
         destroy the cuesplittergui app.;
         `thread_type` is the current thread, None otherwise.
 
         """
+        def _setsize():
+            """
+            Write last panel size for next start if changed
+            """
+            if tuple(self.appdata['panel_size']) != self.GetSize():
+                confmanager = ConfigManager(self.appdata['fileconfpath'])
+                sett = confmanager.read_options()
+                sett['panel_size'] = list(self.GetSize())
+                confmanager.write_options(**sett)
+
         if self.gui_panel.thread_type is not None:
             if wx.MessageBox(_('There are still processes running.. if you '
                                'want to stop them, use the "Abort" button.\n\n'
-                               'Do you want to kill application?'),
+                               'Do you still want to kill the application?'),
                              _('Please confirm'),
                              wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
                 return
@@ -138,11 +144,13 @@ class MainFrame(wx.Frame):
             return
 
         if self.appdata['warnexiting'] is True:
-            if wx.MessageBox(_('Are you sure you want to exit?'),
+            if wx.MessageBox(_('Confirm to exit the application.'),
                              _('Exit'),  wx.ICON_QUESTION
                              | wx.YES_NO, self) == wx.YES:
+                _setsize()
                 self.Destroy()
         else:
+            _setsize()
             self.Destroy()
     # ------------------------------------------------------------------#
 
@@ -155,7 +163,7 @@ class MainFrame(wx.Frame):
 
     # -------------   BUILD THE MENU BAR  ----------------###
 
-    def cuesplittergui_menu_bar(self):
+    def frame_menu_bar(self):
         """
         Make a menu bar. Per usare la disabilitazione di un
         menu item devi
@@ -179,28 +187,37 @@ class MainFrame(wx.Frame):
 
         file_button.AppendSeparator()
         dscrp = (_("Work Notes\tCtrl+N"),
-                 _("Read and write useful notes and reminders."))
+                 _("Read or write your reminders."))
         notepad = file_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
 
         file_button.AppendSeparator()
         exititem = file_button.Append(wx.ID_EXIT, _("Exit\tCtrl+Q"),
-                                      _("Quiet Cuesplitter-GUI"))
+                                      _("Quit application"))
         self.menu_bar.Append(file_button, _("File"))
 
+        self.Bind(wx.EVT_MENU, self.opencue, fold_cue)
+        self.Bind(wx.EVT_MENU, self.open_myfiles, fold_convers)
+        self.Bind(wx.EVT_MENU, self.reminder, notepad)
+        self.Bind(wx.EVT_MENU, self.on_exit, exititem)
+
         # ------------------ Go menu
-        go_button = wx.Menu()
-        dscrp = (_("Configuration Directory"),
-                 _("Opens the Cuesplitter-GUI configuration directory"))
-        openconfdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
-        dscrp = (_("Logs Directory"),
-                 _("Opens the Cuesplitter-GUI log directory, if exists"))
-        openlogdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
-        self.menu_bar.Append(go_button, _("Goto"))
+        if self.appdata['showhidenmenu'] is True:
+            go_button = wx.Menu()
+            dscrp = (_("Configuration Directory"),
+                     _("Opens the FFcuesplitter-GUI configuration directory"))
+            openconfdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+            dscrp = (_("Logs Directory"),
+                     _("Opens the logs directory, if exists"))
+            openlogdir = go_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
+            self.menu_bar.Append(go_button, _("Goto"))
+
+            self.Bind(wx.EVT_MENU, self.open_log_dir, openlogdir)
+            self.Bind(wx.EVT_MENU, self.openconf, openconfdir)
 
         # ------------------ help menu
         help_button = wx.Menu()
         helpitem = help_button.Append(wx.ID_HELP, _("User Guide"), "")
-        wikiitem = help_button.Append(wx.ID_ANY, _("wiki"), "")
+        wikiitem = help_button.Append(wx.ID_ANY, _("Wiki"), "")
         help_button.AppendSeparator()
         issueitem = help_button.Append(wx.ID_ANY, _("Issue tracker"), "")
         help_button.AppendSeparator()
@@ -208,34 +225,23 @@ class MainFrame(wx.Frame):
                                        _("FFmpeg documentation"), "")
         help_button.AppendSeparator()
         dscrp = (_("Check for newer version"),
-                 _("Check for the latest Cuesplitter-GUI version at "
-                   "<https://pypi.org/project/cuesplittergui/>"))
+                 _("Checks for the latest FFcuesplitter-GUI version at "
+                   "<https://github.com/jeanslack/FFcuesplitter-GUI>"))
         checkitem = help_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
         help_button.AppendSeparator()
         infoitem = help_button.Append(wx.ID_ABOUT,
-                                      _("About Cuesplitter-GUI"), "")
+                                      _("About FFcuesplitter-GUI"), "")
         self.menu_bar.Append(help_button, _("Help"))
 
-        self.SetMenuBar(self.menu_bar)
-
-        # -----------------------Binding menu bar-------------------------#
-        # ----FILE----
-        self.Bind(wx.EVT_MENU, self.opencue, fold_cue)
-        self.Bind(wx.EVT_MENU, self.open_myfiles, fold_convers)
-        self.Bind(wx.EVT_MENU, self.reminder, notepad)
-        self.Bind(wx.EVT_MENU, self.quiet, exititem)
-
-        # ---- GO -----
-        self.Bind(wx.EVT_MENU, self.open_log_dir, openlogdir)
-        self.Bind(wx.EVT_MENU, self.openconf, openconfdir)
-
-        # ----HELP----
         self.Bind(wx.EVT_MENU, self.help_me, helpitem)
         self.Bind(wx.EVT_MENU, self.wiki, wikiitem)
         self.Bind(wx.EVT_MENU, self.issues, issueitem)
         self.Bind(wx.EVT_MENU, self.doc_ffmpeg, docffmpeg)
         self.Bind(wx.EVT_MENU, self.check_new_releases, checkitem)
         self.Bind(wx.EVT_MENU, self.show_infoprog, infoitem)
+
+        # --------------------------- Set items
+        self.SetMenuBar(self.menu_bar)
 
     # --------Menu Bar Event handler (callback)
     # --------- Menu  Files
@@ -253,13 +259,6 @@ class MainFrame(wx.Frame):
         Open CUE sheet
         """
         self.gui_panel.on_import_cuefile(self)
-    # -------------------------------------------------------------------#
-
-    def quiet(self, event):
-        """
-        destroy the cuesplittergui.
-        """
-        self.on_close(self)
     # -------------------------------------------------------------------#
 
     def reminder(self, event):
@@ -280,7 +279,7 @@ class MainFrame(wx.Frame):
             except Exception as err:
                 wx.MessageBox(_("Unexpected error while creating file:\n\n"
                                 "{0}").format(err),
-                              'Cuesplitter-GUI', wx.ICON_ERROR, self)
+                              'FFcuesplitter-GUI', wx.ICON_ERROR, self)
             else:
                 io_tools.openpath(fname)
     # ------------------------------------------------------------------#
@@ -293,7 +292,7 @@ class MainFrame(wx.Frame):
         """
         if not os.path.exists(self.appdata['logdir']):
             wx.MessageBox(_("There are no logs to show."),
-                          "Cuesplitter-GUI", wx.ICON_INFORMATION, self)
+                          "FFcuesplitter-GUI", wx.ICON_INFORMATION, self)
             return
         io_tools.openpath(self.appdata['logdir'])
     # ------------------------------------------------------------------#
@@ -338,7 +337,7 @@ class MainFrame(wx.Frame):
 
     def check_new_releases(self, event):
         """
-        Compare the Cuesplitter-GUI version with a given
+        Compare the FFcuesplitter-GUI version with a given
         new version found on github.
         """
         this = version.__version__  # this version
@@ -379,7 +378,7 @@ class MainFrame(wx.Frame):
 
     # -----------------  BUILD THE TOOL BAR  --------------------###
 
-    def cuesplittergui_tool_bar(self):
+    def frame_tool_bar(self):
         """
         Makes and attaches the toolsBtn bar.
         To enable or disable styles, use method `SetWindowStyleFlag`
@@ -389,25 +388,25 @@ class MainFrame(wx.Frame):
 
         """
         if self.appdata['toolbarpos'] == 0:  # on top
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_HORIZONTAL)
             else:
                 style = (wx.TB_DEFAULT_STYLE)
 
         elif self.appdata['toolbarpos'] == 1:  # on bottom
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_BOTTOM)
             else:
                 style = (wx.TB_DEFAULT_STYLE | wx.TB_BOTTOM)
 
         elif self.appdata['toolbarpos'] == 2:  # on right
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_RIGHT)
             else:
                 style = (wx.TB_DEFAULT_STYLE | wx.TB_RIGHT)
 
         elif self.appdata['toolbarpos'] == 3:
-            if self.appdata['toolbartext'] == 'show':  # show text
+            if self.appdata['toolbartext'] is True:  # show text
                 style = (wx.TB_TEXT | wx.TB_LEFT)
             else:
                 style = (wx.TB_DEFAULT_STYLE | wx.TB_LEFT)
@@ -447,7 +446,7 @@ class MainFrame(wx.Frame):
         # self.toolbar.AddSeparator()
         # self.toolbar.AddStretchableSpace()
         tip = _("View or Edit selected track tag")
-        self.btn_trackinfo = self.toolbar.AddTool(14, _('Track Tag'),
+        self.btn_trackinfo = self.toolbar.AddTool(14, _('Tag'),
                                                   bmptrkinfo,
                                                   tip, wx.ITEM_NORMAL
                                                   )
@@ -475,8 +474,8 @@ class MainFrame(wx.Frame):
                                          bmpsetup,
                                          tip, wx.ITEM_NORMAL
                                          )
-        tip = _("View log")
-        log = self.toolbar.AddTool(4, _('Log'),
+        tip = _("View logs")
+        log = self.toolbar.AddTool(4, _('Logs'),
                                    bmplog,
                                    tip, wx.ITEM_NORMAL
                                    )
@@ -525,7 +524,8 @@ class MainFrame(wx.Frame):
         cdinfo = CdInfo(self,
                         self.gui_panel.data.cue.meta.data,
                         self.gui_panel.data.probedata,
-                        self.gui_panel.data.cue_encoding,
+                        self.gui_panel.txt_path_cue.GetValue(),
+                        self.gui_panel.data.cue_encoding
                         )
         cdinfo.Show()
     # ------------------------------------------------------------------#
@@ -553,9 +553,9 @@ class MainFrame(wx.Frame):
         handle like filters dialogs on Videomass, being need
         to get the return code from getvalue interface.
         """
-        with settings.Setup(self, self.appdata) as setup:
-            if setup.ShowModal() == wx.ID_OK:
-                newdata = setup.getvalue()
+        with preferences.SetUp(self, self.appdata) as set_up:
+            if set_up.ShowModal() == wx.ID_OK:
+                newdata = set_up.getvalue()
                 self.appdata = {**self.appdata, **newdata}
                 self.gui_panel.appdata = self.appdata
                 self.gui_panel.txt_out.SetValue(self.appdata['outputfile'])
@@ -567,7 +567,7 @@ class MainFrame(wx.Frame):
         """
         if not os.path.exists(self.appdata['logdir']):
             wx.MessageBox(_("There are no logs to show."),
-                          "Cuesplitter-GUI", wx.ICON_INFORMATION, self)
+                          "FFcuesplitter-GUI", wx.ICON_INFORMATION, self)
         else:
             logdlg = ShowLogs(self, self.appdata['logdir'])
             logdlg.Show()

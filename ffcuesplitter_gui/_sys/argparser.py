@@ -39,10 +39,7 @@ except ModuleNotFoundError as errwx:
 
 def args():
     """
-    Parser of the users inputs (positional/optional arguments)
-
-    USE:
-        ffcuesplitter-gui -h
+    User inputs parser for command line
     """
     parser = argparse.ArgumentParser(description=__descriptionfull__,)
     parser.add_argument('-v', '--version',

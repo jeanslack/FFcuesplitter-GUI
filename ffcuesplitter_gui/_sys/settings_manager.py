@@ -6,23 +6,23 @@ Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Jan.30.2022
+Rev: Feb.07.2022
 Code checker: flake8, pylint .
 
- This file is part of Cuesplitter-GUI.
+ This file is part of FFcuesplitter-GUI.
 
-    Cuesplitter-GUI is free software: you can redistribute it and/or modify
+    FFcuesplitter-GUI is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    Cuesplitter-GUI is distributed in the hope that it will be useful,
+    FFcuesplitter-GUI is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Cuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
+    along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
 import sys
@@ -37,7 +37,7 @@ class ConfigManager:
     It represents the setting of the configuration file
     in its read and write aspects.
     """
-    VERSION = 4.0
+    VERSION = 4.1
     DEFAULT_OPTIONS = {
         "confversion": VERSION,
         "outputfile": f"{os.path.expanduser('~')}",
@@ -49,9 +49,11 @@ class ConfigManager:
         "warnexiting": True,
         "clearlogfiles": False,
         "icontheme": "Colored",
-        "toolbarsize": 24,
-        "toolbarpos": 0,
-        "toolbartext": "show"
+        "toolbarsize": 32,
+        "toolbarpos": 2,
+        "toolbartext": True,
+        "showhidenmenu": False,
+        "panel_size": [890, 670]
         }
 
     def __init__(self, file_path):
@@ -92,10 +94,12 @@ class ConfigManager:
 
 def get_options(dirconf, file_path):
     """
-    Check application options. Reads the `settings.json` file; if
-    it does not exist or is unreadable or its version is different,
-    try to restore it. If `dirconf` does not exist try to restore
-    both `dirconf` and `settings.json`
+    Check the application options. Reads the `settings.json`
+    file; if it does not exist or is unreadable try to restore
+    it. If `dirconf` does not exist try to restore both `dirconf`
+    and `settings.json`. If VERSION is not the same as the version
+    read, it adds new missing items while preserving the old ones
+    with the same values.
 
     Return dict key == 'R', else return a dict key == ERROR
     """
@@ -109,8 +113,9 @@ def get_options(dirconf, file_path):
                 conf.write_options()
                 data = {'R': conf.read_options()}
             if float(data['R']['confversion']) != version:  # conf version
-                new = conf.options  # model
-                data = {'R': {**data['R'], **new}}
+                data['R']['confversion'] = version
+                new = ConfigManager.DEFAULT_OPTIONS  # model
+                data = {'R': {**new, **data['R']}}
                 conf.write_options(**data['R'])
         else:
             conf.write_options()
