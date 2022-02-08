@@ -31,11 +31,11 @@ __maintainer__ = "Gianluca Pernigotto (jeanslack)"
 __maintainer_contact__ = "jeanlucperni@gmail.com"
 __projecturl__ = "https://github.com/jeanslack/FFcuesplitter-GUI"
 __githuburl__ = "https://github.com/jeanslack/FFcuesplitter-GUI"
-__appname__ = "FFcuesplitter-gui"
+__appname__ = "FFcuesplitter-GUI"
 __packagename__ = "ffcuesplitter_gui"
 __license__ = "GPL3 (Gnu Public License)"
-__description__ = ("A cross platform front-end GUI of FFcuesplitter\n"
-                   "written in wxPython Phoenix")
+__description__ = ("A cross-platform GUI for the FFcuesplitter "
+                   "library written in wxPython Phoenix")
 __descriptionfull__ = """FFcuesplitter-GUI is a cross-platform GUI based
 on FFcuesplitter (https://github.com/jeanslack/FFcuesplitter) written in
 wxPython-Phoenix. Splits the audio CD images tracks supplied with CUE sheet

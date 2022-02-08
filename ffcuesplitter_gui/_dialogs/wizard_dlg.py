@@ -475,13 +475,13 @@ class Wizard(wx.Dialog):
         self.Layout()
 
         #  bindings
-        self.Bind(wx.EVT_BUTTON, self.on_close)
+        self.Bind(wx.EVT_BUTTON, self.on_cancel)
         self.Bind(wx.EVT_BUTTON, self.on_back, self.btn_back)
         self.Bind(wx.EVT_BUTTON, self.on_next, self.btn_next)
-        self.Bind(wx.EVT_CLOSE, self.on_close)  # controlla la chiusura (x)
+        self.Bind(wx.EVT_CLOSE, self.on_cancel)  # controlla la chiusura (x)
 
     # events:
-    def on_close(self, event):
+    def on_cancel(self, event):
         """
         Destroy app
         """

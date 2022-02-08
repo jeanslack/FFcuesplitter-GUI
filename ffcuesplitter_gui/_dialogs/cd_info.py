@@ -6,7 +6,7 @@ Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Jan.31.2022
+Rev: Feb.08.2022
 Code checher: flake8, pylint
 ########################################################
 
@@ -25,6 +25,8 @@ This file is part of FFcuesplitter-GUI.
    You should have received a copy of the GNU General Public License
    along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
+import datetime
 # import webbrowser
 import wx
 
@@ -33,7 +35,7 @@ class CdInfo(wx.Dialog):
     """
     Dialog to view CD audio informations and other data.
     """
-    def __init__(self, parent, cd_info, probedata, cue_enc):
+    def __init__(self, parent, cd_info, probedata, filecue, cue_enc):
         """
         constructor
         """
@@ -56,12 +58,16 @@ class CdInfo(wx.Dialog):
         self.button_close = wx.Button(self, wx.ID_CLOSE, "")
         gridbtn.Add(self.button_close, 1, wx.ALL, 5)
         # ------ set sizer
-        self.SetMinSize((500, 300))
+        self.SetMinSize((600, 400))
         self.SetSizer(size_base)
         self.Fit()
         self.Layout()
 
         # ----------------------Set Properties----------------------#
+        def to_time(arg):
+            """convert seconds to time format
+            """
+            return str(datetime.timedelta(seconds=float(arg)))
 
         text = (f'-------------------\n'
                 f"AUDIO CD PROPERTIES\n"
@@ -77,6 +83,8 @@ class CdInfo(wx.Dialog):
                 f'--------\n'
                 f"CUE FILE\n"
                 f'--------\n'
+                f"File name:  '{os.path.basename(filecue)}'\n"
+                f"Position:  '{os.path.dirname(filecue)}'\n"
                 f"Encoding:  {cue_enc['encoding']}\n"
                 f"Confidence:  {cue_enc['confidence']}\n"
                 f"Language:  {cue_enc['language']}\n\n"
@@ -96,7 +104,8 @@ class CdInfo(wx.Dialog):
                             f"Bit deph:  {stream['sample_fmt']}\n"
                             f"Sample rate:  {stream['sample_rate']}\n"
                             f"Channels:  {stream['channels']}\n"
-                            f"Duration seconds:  {stream['duration']}\n\n"
+                            f"Duration seconds:  {stream['duration']}\n"
+                            f"Time lenght:  {to_time(stream['duration'])}\n\n"
                             )
                     self.tinfo.AppendText(text)
 
@@ -111,16 +120,8 @@ class CdInfo(wx.Dialog):
 
     # ---------------------Callback (event handler)----------------------#
 
-    def on_help(self, event):
-        """
-        Open default web browser via Python Web-browser controller.
-        see <https://docs.python.org/3.8/library/webbrowser.html>
-        """
-        pass
-    # ------------------------------------------------------------------#
-
     def on_close(self, event):
-        '''
+        """
         destroy dialog by button and the X
-        '''
+        """
         self.Destroy()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 21:51+0100\n"
+"POT-Creation-Date: 2022-02-08 11:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,6 +54,12 @@ msgid ""
 "\n"
 "This is FFcuesplitter-GUI v.{0}\n"
 "\n"
+msgstr ""
+
+#: ../_dialogs/infoprg.py:49
+msgid ""
+"A cross-platform GUI for the FFcuesplitter\n"
+"library written in wxPython Phoenix"
 msgstr ""
 
 #: ../_dialogs/preferences.py:79
@@ -155,7 +161,8 @@ msgid "Logging levels"
 msgstr ""
 
 #: ../_dialogs/preferences.py:256 ../_dialogs/preferences.py:512
-#: ../_dialogs/preferences.py:522 ../_main/main_frame.py:480
+#: ../_dialogs/preferences.py:522 ../_dialogs/track_info.py:173
+#: ../_main/main_frame.py:473
 msgid "Settings"
 msgstr ""
 
@@ -168,7 +175,7 @@ msgstr ""
 msgid "Choose the {} executable"
 msgstr ""
 
-#: ../_dialogs/preferences.py:512
+#: ../_dialogs/preferences.py:512 ../_dialogs/track_info.py:173
 msgid "Not yet implemented"
 msgstr ""
 
@@ -244,13 +251,13 @@ msgstr ""
 msgid "Track ({}) Audio Tag (EDITED)*"
 msgstr ""
 
-#: ../_dialogs/track_info.py:187
+#: ../_dialogs/track_info.py:188
 msgid ""
 "Do you want to apply the new tag properties to the selected track?\n"
 "\n"
 msgstr ""
 
-#: ../_dialogs/track_info.py:189 ../_main/main_frame.py:139
+#: ../_dialogs/track_info.py:190 ../_main/main_frame.py:139
 msgid "Please confirm"
 msgstr ""
 
@@ -382,11 +389,11 @@ msgid ""
 "There are still processes running.. if you want to stop them, use the \"Abort"
 "\" button.\n"
 "\n"
-"Do you want to kill application?"
+"Do you still want to kill the application?"
 msgstr ""
 
 #: ../_main/main_frame.py:147
-msgid "Are you sure you want to exit?"
+msgid "Confirm to exit the application."
 msgstr ""
 
 #: ../_main/main_frame.py:148
@@ -414,7 +421,7 @@ msgid "Work Notes\tCtrl+N"
 msgstr ""
 
 #: ../_main/main_frame.py:190
-msgid "Read and write useful notes and reminders."
+msgid "Read or write your reminders."
 msgstr ""
 
 #: ../_main/main_frame.py:194
@@ -479,7 +486,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../_main/main_frame.py:287
+#: ../_main/main_frame.py:280
 #, python-brace-format
 msgid ""
 "Unexpected error while creating file:\n"
@@ -487,64 +494,64 @@ msgid ""
 "{0}"
 msgstr ""
 
-#: ../_main/main_frame.py:301 ../_main/main_frame.py:575
+#: ../_main/main_frame.py:294 ../_main/main_frame.py:569
 msgid "There are no logs to show."
 msgstr ""
 
-#: ../_main/main_frame.py:367
+#: ../_main/main_frame.py:360
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr ""
 
-#: ../_main/main_frame.py:370
+#: ../_main/main_frame.py:363
 msgid "You are using a development version that has not yet been released!\n"
 msgstr ""
 
-#: ../_main/main_frame.py:373
+#: ../_main/main_frame.py:366
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr ""
 
-#: ../_main/main_frame.py:455
+#: ../_main/main_frame.py:448
 msgid "View or Edit selected track tag"
 msgstr ""
 
-#: ../_main/main_frame.py:456
-msgid "Track Tag"
+#: ../_main/main_frame.py:449
+msgid "Tag"
 msgstr ""
 
-#: ../_main/main_frame.py:461
+#: ../_main/main_frame.py:454
 msgid "Audio CD informations and file properties"
 msgstr ""
 
-#: ../_main/main_frame.py:462
+#: ../_main/main_frame.py:455
 msgid "Properties"
 msgstr ""
 
-#: ../_main/main_frame.py:468
+#: ../_main/main_frame.py:461
 msgid "Start extracting audio tracks"
 msgstr ""
 
-#: ../_main/main_frame.py:469
+#: ../_main/main_frame.py:462
 msgid "Start"
 msgstr ""
 
-#: ../_main/main_frame.py:473
+#: ../_main/main_frame.py:466
 msgid "Stop all operations"
 msgstr ""
 
-#: ../_main/main_frame.py:474
+#: ../_main/main_frame.py:467
 msgid "Abort"
 msgstr ""
 
-#: ../_main/main_frame.py:479
+#: ../_main/main_frame.py:472
 msgid "Program setup"
 msgstr ""
 
-#: ../_main/main_frame.py:484
+#: ../_main/main_frame.py:477
 msgid "View logs"
 msgstr ""
 
-#: ../_main/main_frame.py:485
+#: ../_main/main_frame.py:478
 msgid "Logs"
 msgstr ""
 
@@ -561,7 +568,7 @@ msgid "Copy codec (very fast)"
 msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:152
-msgid "Directory:"
+msgid "Output Directory:"
 msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:188
@@ -622,7 +629,7 @@ msgstr ""
 msgid "Get your files at the destination specified"
 msgstr ""
 
-#: ../_utils/utils.py:47
+#: ../_utils/utils.py:46
 msgid ""
 "File already exists:\n"
 "\"{}\"\n"
@@ -630,6 +637,6 @@ msgid ""
 "Do you want to overwrite all files?"
 msgstr ""
 
-#: ../_utils/utils.py:50
+#: ../_utils/utils.py:49
 msgid "Warning"
 msgstr ""

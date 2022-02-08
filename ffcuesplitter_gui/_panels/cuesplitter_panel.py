@@ -149,7 +149,7 @@ class CueGui(wx.Panel):
         fgs1.Add(line1, 0, wx.ALL | wx.EXPAND, 10)
         lbl_outdir = wx.StaticText(panelscroll,
                                    wx.ID_ANY,
-                                   label=_("Directory:")
+                                   label=_("Output Directory:")
                                    )
         fgs1.Add(lbl_outdir, 0, wx.ALL | wx.EXPAND, 5)
         sizer_outdir = wx.BoxSizer(wx.HORIZONTAL)

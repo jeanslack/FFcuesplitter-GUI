@@ -53,7 +53,7 @@ class ConfigManager:
         "toolbarpos": 2,
         "toolbartext": True,
         "showhidenmenu": False,
-        "panel_size": [800, 550]
+        "panel_size": [890, 670]
         }
 
     def __init__(self, file_path):

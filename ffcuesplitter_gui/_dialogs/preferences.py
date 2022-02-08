@@ -237,8 +237,8 @@ class SetUp(wx.Dialog):
         grdhelp.Add(btn_help, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
         grd_btns.Add(grdhelp)
         grdexit = wx.BoxSizer(wx.HORIZONTAL)
-        btn_close = wx.Button(self, wx.ID_CANCEL, "")
-        grdexit.Add(btn_close, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
+        btn_cancel = wx.Button(self, wx.ID_CANCEL, "")
+        grdexit.Add(btn_cancel, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
         btn_ok = wx.Button(self, wx.ID_OK, "")
         grdexit.Add(btn_ok, 0, wx.ALL | wx.ALIGN_CENTER_VERTICAL, 5)
         grd_btns.Add(grdexit, flag=wx.ALL
@@ -289,7 +289,7 @@ class SetUp(wx.Dialog):
         self.Bind(wx.EVT_RADIOBOX, self.logging_ffmpeg, self.rdbx_log_ffmpeg)
 
         self.Bind(wx.EVT_BUTTON, self.on_help, btn_help)
-        self.Bind(wx.EVT_BUTTON, self.on_close, btn_close)
+        self.Bind(wx.EVT_BUTTON, self.on_cancel, btn_cancel)
         self.Bind(wx.EVT_BUTTON, self.on_ok, btn_ok)
         # --------------------------------------------#
         self.current_settings()  # call function for initialize setting layout
@@ -525,7 +525,7 @@ class SetUp(wx.Dialog):
         return self.settings
     # --------------------------------------------------------------------#
 
-    def on_close(self, event):
+    def on_cancel(self, event):
         """
         Close event
         """

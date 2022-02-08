@@ -87,7 +87,7 @@ class MainFrame(wx.Frame):
         self.statusbar_msg(_('Ready'))
         self.Layout()
         # ---------------------- Binding (EVT) ----------------------#
-        self.Bind(wx.EVT_CLOSE, self.on_close)  # controlla la chiusura (x)
+        self.Bind(wx.EVT_CLOSE, self.on_exit)  # controlla la chiusura (x)
 
     # -------------------Status bar settings--------------------#
 
@@ -116,7 +116,7 @@ class MainFrame(wx.Frame):
         self.sbar.Refresh()
     # ---------------------- Event handler (callback) ------------------#
 
-    def on_close(self, event):
+    def on_exit(self, event):
         """
         destroy the cuesplittergui app.;
         `thread_type` is the current thread, None otherwise.
@@ -124,7 +124,7 @@ class MainFrame(wx.Frame):
         """
         def _setsize():
             """
-            Write last panel dimension for next start if changed
+            Write last panel size for next start if changed
             """
             if tuple(self.appdata['panel_size']) != self.GetSize():
                 confmanager = ConfigManager(self.appdata['fileconfpath'])
@@ -135,7 +135,7 @@ class MainFrame(wx.Frame):
         if self.gui_panel.thread_type is not None:
             if wx.MessageBox(_('There are still processes running.. if you '
                                'want to stop them, use the "Abort" button.\n\n'
-                               'Do you want to kill application?'),
+                               'Do you still want to kill the application?'),
                              _('Please confirm'),
                              wx.ICON_QUESTION | wx.YES_NO, self) == wx.NO:
                 return
@@ -144,7 +144,7 @@ class MainFrame(wx.Frame):
             return
 
         if self.appdata['warnexiting'] is True:
-            if wx.MessageBox(_('Are you sure you want to exit?'),
+            if wx.MessageBox(_('Confirm to exit the application.'),
                              _('Exit'),  wx.ICON_QUESTION
                              | wx.YES_NO, self) == wx.YES:
                 _setsize()
@@ -187,7 +187,7 @@ class MainFrame(wx.Frame):
 
         file_button.AppendSeparator()
         dscrp = (_("Work Notes\tCtrl+N"),
-                 _("Read and write useful notes and reminders."))
+                 _("Read or write your reminders."))
         notepad = file_button.Append(wx.ID_ANY, dscrp[0], dscrp[1])
 
         file_button.AppendSeparator()
@@ -198,7 +198,7 @@ class MainFrame(wx.Frame):
         self.Bind(wx.EVT_MENU, self.opencue, fold_cue)
         self.Bind(wx.EVT_MENU, self.open_myfiles, fold_convers)
         self.Bind(wx.EVT_MENU, self.reminder, notepad)
-        self.Bind(wx.EVT_MENU, self.quiet, exititem)
+        self.Bind(wx.EVT_MENU, self.on_exit, exititem)
 
         # ------------------ Go menu
         if self.appdata['showhidenmenu'] is True:
@@ -259,13 +259,6 @@ class MainFrame(wx.Frame):
         Open CUE sheet
         """
         self.gui_panel.on_import_cuefile(self)
-    # -------------------------------------------------------------------#
-
-    def quiet(self, event):
-        """
-        destroy the cuesplittergui.
-        """
-        self.on_close(self)
     # -------------------------------------------------------------------#
 
     def reminder(self, event):
@@ -453,7 +446,7 @@ class MainFrame(wx.Frame):
         # self.toolbar.AddSeparator()
         # self.toolbar.AddStretchableSpace()
         tip = _("View or Edit selected track tag")
-        self.btn_trackinfo = self.toolbar.AddTool(14, _('Track Tag'),
+        self.btn_trackinfo = self.toolbar.AddTool(14, _('Tag'),
                                                   bmptrkinfo,
                                                   tip, wx.ITEM_NORMAL
                                                   )
@@ -531,7 +524,8 @@ class MainFrame(wx.Frame):
         cdinfo = CdInfo(self,
                         self.gui_panel.data.cue.meta.data,
                         self.gui_panel.data.probedata,
-                        self.gui_panel.data.cue_encoding,
+                        self.gui_panel.txt_path_cue.GetValue(),
+                        self.gui_panel.data.cue_encoding
                         )
         cdinfo.Show()
     # ------------------------------------------------------------------#

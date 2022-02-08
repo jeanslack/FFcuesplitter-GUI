@@ -29,7 +29,6 @@ import os
 import wx
 
 
-
 def move_files_to_outputdir(outputdir, tmpdir):
     """
     All files are processed in a /temp folder. After the split

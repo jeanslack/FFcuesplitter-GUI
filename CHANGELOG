@@ -18,14 +18,16 @@ Feb 07, 2022 V.1.0.1
 - Improved data handling in the settings dialog to save preferences
   more consistently.
 - Code refactoring done in the settings dialog.
-
 - Saves the window size when exiting the application and restores it at startup.
 - Rewritten some doc strings (work in progress).
 - Added show hiden menu items checkbox to preferences.
 - Update Italian translation (work in progress)
 - Fixed minor bugs.
-
 - Italian translation completed.
+
+- Improved track_info layout.
+- Improved text items and related Italian translation.
+
 
 
 +------------------------------------+
