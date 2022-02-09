@@ -90,9 +90,9 @@ class CuesplitterGUI(wx.App):
         self.iconset = self.data.icons_set(self.appset['icontheme'])
 
         # locale
-        wx.Locale.AddCatalogLookupPathPrefix(self.appset['localepath'])
-        self.update_language()
-        self.appset['GETLANG'] = self.locale.GetName()
+        #wx.Locale.AddCatalogLookupPathPrefix(self.appset['localepath'])
+        #self.update_language()
+        #self.appset['GETLANG'] = self.locale.GetName()
 
         if not os.path.exists(self.appset['logdir']):
             try:  # make log folder

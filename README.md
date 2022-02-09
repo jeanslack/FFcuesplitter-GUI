@@ -1,17 +1,35 @@
-# **FFcuesplitter-GUI** is an audio splitter GUI for audio CD images supplied with CUE sheet.
 [![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.7%20|%203.8|%203.9&color=blue)](https://www.python.org/downloads/)
 [![image](https://img.shields.io/badge/wxpython-phoenix-green)](https://www.wxpython.org/)
-[![Image](https://img.shields.io/badge/license-GPLv3-orange)](https://github.com/jeanslack/Videomass/blob/master/LICENSE)
-![image](https://img.shields.io/badge/platform-linux%20|%20freebsd%20|%20macos%20|%20windows-brigthgreen)   
+[![Image](https://img.shields.io/badge/license-GPLv3-orange)]https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/LICENSE)
+![image](https://img.shields.io/badge/platform-linux%20|%20freebsd%20|%20macos%20|%20windows-brigthgreen) 
 
-FFcuesplitter-GUI is a cross-platform GUI based on [FFcuesplitter](https://github.com/jeanslack/FFcuesplitter). It features a graphical interface for splitting tracks of CD audio images supplied with CUE sheet.   
+# FFcuesplitter-GUI 
+A cross-platform GUI for the [FFcuesplitter](https://github.com/jeanslack/FFcuesplitter) library written in wxPython Phoenix.
+Splits the audio CD images supplied with the CUE sheet via FFmpeg.  
 
-FFcuesplitter-GUI is written in Python3 with the wxPython-Phoenix toolkit.   
+![preview](./docs/gui_preview.gif)
 
-### Requirements
-- **[Python >= 3.7.0](https://www.python.org/)**
-- **[wxPython-Phoenix >= 4.0.3](https://wxpython.org/)**
-- **[PyPubSub >= 4.0.3](https://pypi.org/project/PyPubSub/)**
-- **[ffcuesplitter >= 1.0.3](https://pypi.org/project/ffcuesplitter/)**
-- **[ffmpeg >=3.2](https://ffmpeg.org/)**
-- **[ffprobe](https://ffmpeg.org/ffprobe.html)** (usually bundled with ffmpeg)
+## Requirements
+- [Python >= 3.7.0](https://www.python.org/)
+- [wxPython-Phoenix >= 4.0.3](https://wxpython.org/)
+- [PyPubSub >= 4.0.3](https://pypi.org/project/PyPubSub/)
+- [ffcuesplitter >= 1.0.7](https://pypi.org/project/ffcuesplitter/)
+- [ffmpeg >=4.3](https://ffmpeg.org/)
+- [ffprobe >=4.3](https://ffmpeg.org/ffprobe.html)
+
+## Running from source code
+
+```
+git clone https://github.com/jeanslack/FFcuesplitter-GUI.git
+cd FFcuesplitter-GUI
+python3 -m venv venv
+source venv/bin/activate
+python3 -m pip install -r requirements.txt
+python3 launcher
+```
+
+## Authors
+See [AUTHORS](AUTHORS) file
+
+## License
+The [GNU GENERAL PUBLIC LICENSE Version 3](LICENSE)

@@ -38,7 +38,7 @@ __description__ = ("A cross-platform GUI for the FFcuesplitter "
                    "library written in wxPython Phoenix")
 __descriptionfull__ = """FFcuesplitter-GUI is a cross-platform GUI based
 on FFcuesplitter (https://github.com/jeanslack/FFcuesplitter) written in
-wxPython-Phoenix. Splits the audio CD images tracks supplied with CUE sheet
+wxPython-Phoenix. Splits the audio CD images supplied with the CUE sheet
 via FFmpeg."""
 __copyleft__ = '2022'
 __licensefull__ = f"""
