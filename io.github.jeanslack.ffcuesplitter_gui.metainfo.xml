@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.jeanslack.ffcuesplitter_gui</id>
+  
+  <name>FFcuesplitter-gui</name>
+  <summary>A cross-platform GUI for the FFcuesplitter library written in wxPython Phoenix</summary>
+  
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>AGPL-3.0-only</project_license>
+  
+  <description>
+    <p>
+      FFcuesplitter-gui splits the audio CD images supplied with the CUE sheet via FFmpeg
+    </p>
+    <p>
+      It features editable tags per track, checkboxes for selecting the tracks 
+      to save, an audio CD properties viewer, support for wav, flac, mp3 and ogg 
+      output formats with their audio compression selectors and the ability to 
+      copy audio codec without re-encoding.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">io.github.jeanslack.ffcuesplitter_gui.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/docs/Screenshot_0.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://github.com/jeanslack/FFcuesplitter-GUI/</url>
+  <url type="bugtracker">https://github.com/jeanslack/FFcuesplitter-GUI/issues</url>
+  <url type="translate">https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/docs/Localization_Guidelines.md</url>
+
+  <provides>
+    <binary>ffcuesplitter-gui</binary>
+  </provides>
+</component>

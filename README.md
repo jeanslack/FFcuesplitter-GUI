@@ -1,13 +1,21 @@
 [![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.7%20|%203.8|%203.9&color=blue)](https://www.python.org/downloads/)
 [![image](https://img.shields.io/badge/wxpython-phoenix-green)](https://www.wxpython.org/)
-[![Image](https://img.shields.io/badge/license-GPLv3-orange)]https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/LICENSE)
+[![Image](https://img.shields.io/badge/license-GPLv3-orange)](https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/LICENSE)
 ![image](https://img.shields.io/badge/platform-linux%20|%20freebsd%20|%20macos%20|%20windows-brigthgreen) 
 
 # FFcuesplitter-GUI 
-A cross-platform GUI for the [FFcuesplitter](https://github.com/jeanslack/FFcuesplitter) library written in wxPython Phoenix.
-Splits the audio CD images supplied with the CUE sheet via FFmpeg.  
+
+FFcuesplitter-gui splits the audio CD images supplied with the CUE sheet via FFmpeg.
 
 ![preview](./docs/gui_preview.gif)
+
+## Description
+
+It is a cross-platform GUI for the [FFcuesplitter](https://github.com/jeanslack/FFcuesplitter) 
+library written in wxPython Phoenix. It features editable tags per track, checkboxes 
+for selecting the tracks to save, an audio CD properties viewer, support for wav, 
+flac, mp3 and ogg output formats with audio compression selectors and the 
+ability to copy audio codec without re-encoding.
 
 ## Requirements
 - [Python >= 3.7.0](https://www.python.org/)

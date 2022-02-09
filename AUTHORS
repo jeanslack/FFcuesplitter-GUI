@@ -1,5 +1,5 @@
 FFcuesplitter-GUI
-GUI audio splitter for audio CD images supplied with CUE sheet.
+Splits the audio CD images supplied with the CUE sheet via FFmpeg. 
 
 Author:
 Gianluca (jeanslack) Pernigotto <jeanlucperni@gmail.com>
