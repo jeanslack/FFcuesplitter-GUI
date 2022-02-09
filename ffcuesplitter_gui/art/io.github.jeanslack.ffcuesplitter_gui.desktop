@@ -1,21 +1,11 @@
 [Desktop Entry]
-Categories=Audio;
-Comment[it_IT]=Splits the audio CD images supplied with the CUE sheet via FFmpeg.
-Comment=Splits the audio CD images supplied with the CUE sheet via FFmpeg.
-Exec=ffcuesplitter-gui
-GenericName[it_IT]=
-GenericName=
-Icon=ffcuesplittergui
-MimeType=
-Name[it_IT]=FFcuesplitter-gui
-Name=FFcuesplitter-gui
-Path=
-StartupNotify=true
-Terminal=false
-TerminalOptions=
-Type=Application
 Version=1.0
-X-DBUS-ServiceName=
-X-DBUS-StartupType=
-X-KDE-SubstituteUID=false
-X-KDE-Username=
+Type=Application
+
+Name=FFcuesplitter-gui
+Comment=Splits the audio CD images supplied with the CUE sheet via FFmpeg.
+Categories=AudioVideo;AudioVideoEditing;
+
+Icon=ffcuesplitter-gui
+Exec=ffcuespliter-gui
+Terminal=false
