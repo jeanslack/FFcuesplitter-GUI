@@ -1,6 +1,4 @@
 include launcher README.md AUTHORS BUGS CHANGELOG INSTALL LICENSE TODO
-include tests/*
-recursive-include debian *
 recursive-include develop *
 recursive-include docs *
 recursive-include ffcuesplitter_gui/art *

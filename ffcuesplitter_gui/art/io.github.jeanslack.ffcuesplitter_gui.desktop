@@ -3,9 +3,9 @@ Version=1.0
 Type=Application
 
 Name=FFcuesplitter-gui
-Comment=Splits the audio CD images supplied with the CUE sheet via FFmpeg.
+Comment=Extracts audio tracks from an audio CD image using FFmpeg.
 Categories=AudioVideo;AudioVideoEditing;
 
-Icon=ffcuesplitter-gui
-Exec=ffcuespliter-gui
+Icon=ffcuesplittergui
+Exec=ffcuesplitter-gui
 Terminal=false

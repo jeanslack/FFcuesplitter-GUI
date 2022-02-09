@@ -397,6 +397,13 @@ class CueGui(wx.Panel):
 
         count = self.tlist.GetItemCount()
         indexes = [x for x in range(count) if not check(x)]
+
+        if count == len(indexes):  # no track to extract
+            wx.MessageBox(_('No track to extract. Check at '
+                          'least one checkbox'), "FFcuesplitter-GUI",
+                          wx.ICON_WARNING, self)
+            return
+
         if indexes:
             for index in sorted(indexes, reverse=True):
                 args['arguments'].pop(index)

@@ -38,7 +38,7 @@ from ffcuesplitter_gui._dialogs import check_new_version
 from ffcuesplitter_gui._dialogs.showlogs import ShowLogs
 from ffcuesplitter_gui._panels import cuesplitter_panel
 from ffcuesplitter_gui._io import io_tools
-from ffcuesplitter_gui._sys import version
+from ffcuesplitter_gui._sys.info import __version__
 from ffcuesplitter_gui._sys.settings_manager import ConfigManager
 
 
@@ -340,7 +340,7 @@ class MainFrame(wx.Frame):
         Compare the FFcuesplitter-GUI version with a given
         new version found on github.
         """
-        this = version.__version__  # this version
+        this = __version__  # this version
         url = ("https://api.github.com/repos/jeanslack/"
                "FFcuesplitter-GUI/releases/latest")
         vers = io_tools.get_github_releases(url, "tag_name")

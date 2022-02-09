@@ -10,12 +10,13 @@
   
   <description>
     <p>
-      FFcuesplitter-gui splits the audio CD images supplied with the CUE sheet via FFmpeg
+      FFcuesplitter-gui extracts audio tracks from an audio CD image supplied 
+      with the CUE sheet, using FFmpeg.
     </p>
     <p>
       It features editable tags per track, checkboxes for selecting the tracks 
       to save, an audio CD properties viewer, support for wav, flac, mp3 and ogg 
-      output formats with their audio compression selectors and the ability to 
+      output formats with audio compression selectors and the ability to 
       copy audio codec without re-encoding.
     </p>
   </description>
