@@ -28,8 +28,10 @@ import os
 import sys
 from shutil import which
 import argparse
-from ffcuesplitter_gui._sys.info import (__appname__, __descriptionfull__)
-from ffcuesplitter_gui._sys.version import __version__
+from ffcuesplitter_gui._sys.info import (__appname__,
+                                         __descriptionfull__,
+                                         __version__
+                                         )
 try:
     import wx
     MSGWX = f"{wx.version()})"

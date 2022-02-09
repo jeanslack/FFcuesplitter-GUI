@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-08 11:19+0100\n"
+"POT-Creation-Date: 2022-02-09 15:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,8 +58,8 @@ msgstr ""
 
 #: ../_dialogs/infoprg.py:49
 msgid ""
-"A cross-platform GUI for the FFcuesplitter\n"
-"library written in wxPython Phoenix"
+"Extracts audio tracks from an audio CD image\n"
+"supplied with the CUE sheet, using FFmpeg."
 msgstr ""
 
 #: ../_dialogs/preferences.py:79
@@ -161,7 +161,7 @@ msgid "Logging levels"
 msgstr ""
 
 #: ../_dialogs/preferences.py:256 ../_dialogs/preferences.py:512
-#: ../_dialogs/preferences.py:522 ../_dialogs/track_info.py:173
+#: ../_dialogs/preferences.py:522 ../_dialogs/track_info.py:178
 #: ../_main/main_frame.py:473
 msgid "Settings"
 msgstr ""
@@ -175,7 +175,7 @@ msgstr ""
 msgid "Choose the {} executable"
 msgstr ""
 
-#: ../_dialogs/preferences.py:512 ../_dialogs/track_info.py:173
+#: ../_dialogs/preferences.py:512 ../_dialogs/track_info.py:178
 msgid "Not yet implemented"
 msgstr ""
 
@@ -215,49 +215,49 @@ msgstr ""
 msgid "Track ({}) Audio Tag"
 msgstr ""
 
-#: ../_dialogs/track_info.py:55 ../_panels/cuesplitter_panel.py:189
+#: ../_dialogs/track_info.py:56 ../_panels/cuesplitter_panel.py:189
 msgid "Artist"
 msgstr ""
 
-#: ../_dialogs/track_info.py:61 ../_panels/cuesplitter_panel.py:192
+#: ../_dialogs/track_info.py:63 ../_panels/cuesplitter_panel.py:192
 msgid "Album"
 msgstr ""
 
-#: ../_dialogs/track_info.py:69
-msgid "Comment"
-msgstr ""
-
-#: ../_dialogs/track_info.py:80
+#: ../_dialogs/track_info.py:73
 msgid "Track Title"
 msgstr ""
 
-#: ../_dialogs/track_info.py:88
+#: ../_dialogs/track_info.py:82
 msgid "Genre"
 msgstr ""
 
-#: ../_dialogs/track_info.py:98
+#: ../_dialogs/track_info.py:92
 msgid "Date"
 msgstr ""
 
-#: ../_dialogs/track_info.py:106
+#: ../_dialogs/track_info.py:101
 msgid "Disc ID"
 msgstr ""
 
-#: ../_dialogs/track_info.py:122
+#: ../_dialogs/track_info.py:109
+msgid "Comment"
+msgstr ""
+
+#: ../_dialogs/track_info.py:127
 msgid "Apply"
 msgstr ""
 
-#: ../_dialogs/track_info.py:163
+#: ../_dialogs/track_info.py:168
 msgid "Track ({}) Audio Tag (EDITED)*"
 msgstr ""
 
-#: ../_dialogs/track_info.py:188
+#: ../_dialogs/track_info.py:201
 msgid ""
 "Do you want to apply the new tag properties to the selected track?\n"
 "\n"
 msgstr ""
 
-#: ../_dialogs/track_info.py:190 ../_main/main_frame.py:139
+#: ../_dialogs/track_info.py:203 ../_main/main_frame.py:139
 msgid "Please confirm"
 msgstr ""
 
@@ -591,41 +591,45 @@ msgstr ""
 msgid "Open a CUE sheet"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:423
+#: ../_panels/cuesplitter_panel.py:402
+msgid "No track to extract. Check at least one checkbox"
+msgstr ""
+
+#: ../_panels/cuesplitter_panel.py:430
 msgid "wait... I'm aborting"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:442
+#: ../_panels/cuesplitter_panel.py:449
 msgid "Processing... Track number: {} | Status Progress: {}%"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:470
+#: ../_panels/cuesplitter_panel.py:477
 msgid "...Interrupted"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:473
+#: ../_panels/cuesplitter_panel.py:480
 msgid "ERROR: Please open the Logs window to get more details."
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:476
+#: ../_panels/cuesplitter_panel.py:483
 msgid "ERROR!"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:476
+#: ../_panels/cuesplitter_panel.py:483
 msgid ""
 "An error has occurred.\n"
 "See Logs for details."
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:482
+#: ../_panels/cuesplitter_panel.py:489
 msgid "...Finished!"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:484
+#: ../_panels/cuesplitter_panel.py:491
 msgid "Success!"
 msgstr ""
 
-#: ../_panels/cuesplitter_panel.py:484
+#: ../_panels/cuesplitter_panel.py:491
 msgid "Get your files at the destination specified"
 msgstr ""
 

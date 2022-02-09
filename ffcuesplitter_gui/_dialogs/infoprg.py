@@ -31,9 +31,9 @@ from ffcuesplitter_gui._sys.info import (__copyleft__,
                                          __author__,
                                          __projecturl__,
                                          __licensefull__,
-                                         __contact__
+                                         __contact__,
+                                         __version__
                                          )
-from ffcuesplitter_gui._sys import version
 
 
 def info_gui(parent, prg_icon):
@@ -45,9 +45,9 @@ def info_gui(parent, prg_icon):
     infoprg = wx.adv.AboutDialogInfo()
     infoprg.SetIcon(wx.Icon(prg_icon, type=wx.BITMAP_TYPE_PNG))
     infoprg.SetName(__appname__)
-    infoprg.SetVersion(f'{version.__version__}')
-    infoprg.SetDescription(_("A cross-platform GUI for the FFcuesplitter\n"
-                             "library written in wxPython Phoenix"))
+    infoprg.SetVersion(f'{__version__}')
+    infoprg.SetDescription(_("Extracts audio tracks from an audio CD image\n"
+                             "supplied with the CUE sheet, using FFmpeg."))
     infoprg.SetCopyright(f'Copyleft {__copyleft__} {__author__}')
     infoprg.SetWebSite(__projecturl__)
     infoprg.SetLicence(__licensefull__)
