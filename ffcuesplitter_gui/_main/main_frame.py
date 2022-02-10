@@ -55,10 +55,6 @@ class MainFrame(wx.Frame):
         self.appdata = get.appset
         self.icons = get.iconset
         # -------------------------------#
-        self.outpath_ffmpeg = None  # path name for FFmpeg file destination
-        self.same_destin = False  # same source FFmpeg output destination
-        self.time_seq = "-ss 00:00:00.000 -t 00:00:00.000"  # FFmpeg time seq.
-
         wx.Frame.__init__(self, None, -1, style=wx.DEFAULT_FRAME_STYLE)
 
         # ---------- others panel instances:

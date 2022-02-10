@@ -42,18 +42,24 @@ from ffcuesplitter_gui._utils.utils import move_files_to_outputdir
 
 if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
     # import wx.lib.mixins.listctrl as listmix
+    print('si')
 
     class TestListCtrl(wx.ListCtrl,
                        listmix.CheckListCtrlMixin,
                        listmix.ListCtrlAutoWidthMixin
                        ):
         """
-        This is listctrl with a checkbox for each row in list.
-        It work on both wxPython==4.1.? and wxPython<=4.1.? (e.g. 4.0.7).
-        Since wxPython <= 4.0.7 has no attributes for fcode.EnableCheckBoxes
-        and the 'wx' module does not have attributes 'EVT_LIST_ITEM_CHECKED',
-        'EVT_LIST_ITEM_UNCHECKED' for binding, this class maintains backward
-        compatibility.
+        This class is responsible for maintaining backward
+        compatibility of wxPython which do not have a `ListCtrl`
+        module with checkboxes feature:
+
+        Examples of errors raised using a ListCtrl with checkboxes
+        not yet implemented:
+
+        AttributeError:
+            - 'ListCtrl' object has no attribute 'EnableCheckBoxes'
+            - module 'wx' has no attribute `EVT_LIST_ITEM_CHECKED`
+            - module 'wx' has no attribute `EVT_LIST_ITEM_UNCHECKED`
         """
         def __init__(self,
                      parent,
@@ -71,7 +77,8 @@ if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
 
 class CueGui(wx.Panel):
     """
-    Represents the main panel for ffcuesplitter-gui
+    Represents the only one main panel for FFcuesplitter-gui
+    implemented on main_frame.
     """
     def __init__(self, parent):
         """
@@ -100,7 +107,6 @@ class CueGui(wx.Panel):
         boxlistctrl = wx.StaticBoxSizer(wx.StaticBox(
             self, wx.ID_ANY, ('')), wx.VERTICAL)
         sizer_div.Add(boxlistctrl, 1, wx.ALL | wx.EXPAND, 5)
-
         boxoptions.Add((5, 5))
         panelscroll = scrolled.ScrolledPanel(self, -1, size=(220, 600),
                                              style=wx.TAB_TRAVERSAL
@@ -137,7 +143,6 @@ class CueGui(wx.Panel):
         self.cmbx_quality.SetSelection(6)
         # grid_v.Add((20, 20), 0,)
         fgs1.Add(self.cmbx_quality, 0, wx.ALL | wx.EXPAND, 5)
-
         self.ckbx_codec_copy = wx.CheckBox(panelscroll, wx.ID_ANY,
                                            (_('Copy codec (very fast)'))
                                            )
@@ -249,7 +254,7 @@ class CueGui(wx.Panel):
 
     def load_cuefile(self, newincoming):
         """
-        Load the imported CUE file via FFCueSplitter package
+        Load the imported CUE file using FFCueSplitter package
         """
         self.txt_path_cue.SetValue(newincoming)
 
@@ -288,7 +293,7 @@ class CueGui(wx.Panel):
 
     def set_data_list_ctrl(self):
         """
-        Set data on listctrl
+        Populates listctrl and enable/disable some btns
         """
         self.tlist.DeleteAllItems()
         if self.oldwx is False:
@@ -319,17 +324,20 @@ class CueGui(wx.Panel):
         self.cmbx_quality.Append((list(items.keys())),)
         if self.cmbx_formats.GetValue() == 'wav':
             self.cmbx_quality.SetSelection(0)
+
         elif self.cmbx_formats.GetValue() == 'flac':
             self.cmbx_quality.SetSelection(6)
+
         elif self.cmbx_formats.GetValue() == 'mp3':
             self.cmbx_quality.SetSelection(3)
+
         elif self.cmbx_formats.GetValue() == 'ogg':
             self.cmbx_quality.SetSelection(5)
     # -----------------------------------------------------------------#
 
     def on_codec_copy(self, event):
         """
-        Set copy the source audio codec
+        Set for copy the source audio codec
         """
         if self.ckbx_codec_copy.IsChecked():
             self.cmbx_formats.Disable()
@@ -382,7 +390,8 @@ class CueGui(wx.Panel):
 
     def on_start(self):
         """
-        Create thread instance.
+        Prepares and updates the required operations
+        for thread instance
         """
         self.tmpdir = tempfile.mkdtemp(suffix=None,
                                        prefix='FFcuesplitterGUI_',
@@ -437,8 +446,9 @@ class CueGui(wx.Panel):
         """
         Update progress bar by receving ffmpeg stdout pipe on
         thread loop. If `status` is not 0 means an error is
-        occurred. This is usually a syntax error in the arguments
-        passed to the FFmpeg command.
+        occurred. This is usually a syntax error or some
+        incompatibility in the arguments passed to the FFmpeg
+        command.
         """
         if not status == 0:
             self.error = True
@@ -446,11 +456,10 @@ class CueGui(wx.Panel):
 
         secs = round(int(output.split('=')[1]) / 1_000_000)
         percent = secs / round(duration) * 100
-        msg = _("Processing... Track number: {} | Status "
+        msg = _("Processing... File number: {} | Status "
                 "Progress: {}%").format(track, round(percent))
         self.barprog.SetValue(percent)
-        # (msg, bgrd='DARK GREY', fgrd='ORANGE RED')
-        self.parent.statusbar_msg(msg, bgrd='BLACK', fgrd='GREEN')
+        self.parent.statusbar_msg(msg, bgrd='BLACK', fgrd='GREEN YELLOW')
     # ----------------------------------------------------------------------
 
     def update_count_items(self, msg, end):
