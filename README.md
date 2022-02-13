@@ -19,7 +19,7 @@ ability to copy audio codec without re-encoding.
 
 ## Requirements
 - [Python >= 3.7.0](https://www.python.org/)
-- [wxPython-Phoenix >= 4.0.3](https://wxpython.org/)
+- [wxPython-Phoenix >= 4.0.7](https://wxpython.org/)
 - [PyPubSub >= 4.0.3](https://pypi.org/project/PyPubSub/)
 - [ffcuesplitter >= 1.0.7](https://pypi.org/project/ffcuesplitter/)
 - [ffmpeg >=4.3](https://ffmpeg.org/)
