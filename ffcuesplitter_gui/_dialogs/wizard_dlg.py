@@ -7,6 +7,7 @@ Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.04.2022
+Code checker: flake8, pylint
 ########################################################
 
 This file is part of FFcuesplitter-GUI.
@@ -329,7 +330,7 @@ class PageThree(wx.Panel):
         """
         with wx.FileDialog(self, _("Choose the {} "
                                    "executable").format(self.ffmpeg), "", "",
-                           f"ffmpeg binarys (*{self.ffmpeg})|*{self.ffmpeg}| "
+                           f"ffmpeg binary (*{self.ffmpeg})|*{self.ffmpeg}| "
                            f"All files (*.*)|*.*",
                            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as dlgfile:
 
@@ -346,7 +347,7 @@ class PageThree(wx.Panel):
         """
         with wx.FileDialog(self, _("Choose the {} "
                                    "executable").format(self.ffprobe), "", "",
-                           f"ffmpeg binarys "
+                           f"ffprobe binary "
                            f"(*{self.ffprobe})|*{self.ffprobe}| "
                            f"All files (*.*)|*.*",
                            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as dlgfile:

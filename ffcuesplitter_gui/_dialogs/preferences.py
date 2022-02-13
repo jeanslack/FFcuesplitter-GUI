@@ -7,7 +7,7 @@ Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: (c) 2022 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Jan.30.2022
-Code checker: pycodestyle
+Code checker: flake8, pylint
 ########################################################
 
 This file is part of FFcuesplitter-GUI.
@@ -383,7 +383,7 @@ class SetUp(wx.Dialog):
 
         with wx.FileDialog(self, _("Choose the {} "
                                    "executable").format(self.ffmpeg), "", "",
-                           f"ffmpeg binarys (*{self.ffmpeg})|*{self.ffmpeg}| "
+                           f"ffmpeg binary (*{self.ffmpeg})|*{self.ffmpeg}| "
                            f"All files (*.*)|*.*",
                            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
 
@@ -427,7 +427,7 @@ class SetUp(wx.Dialog):
 
         with wx.FileDialog(self, _("Choose the {} "
                                    "executable").format(self.ffprobe), "", "",
-                           f"ffmpeg binarys "
+                           f"ffprobe binary "
                            f"(*{self.ffprobe})|*{self.ffprobe}| "
                            f"All files (*.*)|*.*",
                            wx.FD_OPEN | wx.FD_FILE_MUST_EXIST) as fdlg:
