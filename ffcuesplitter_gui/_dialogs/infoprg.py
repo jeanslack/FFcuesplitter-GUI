@@ -54,6 +54,7 @@ def info_gui(parent, prg_icon):
     infoprg.AddDeveloper(f"{__author__} <{__contact__}>")
     infoprg.AddDocWriter(f"{__author__} <{__contact__}>")
     infoprg.AddTranslator(f"{__author__} <{__contact__}> (it_IT)")
+    infoprg.AddTranslator("ChourS <ChourS2008@yandex.ru> (ru_RU)")
     # info.AddTranslator("Nestor Blanco <random@mail.es> (es_ES)")
     infoprg.SetArtists(
         [(f"{__author__} <{__contact__}>")])
