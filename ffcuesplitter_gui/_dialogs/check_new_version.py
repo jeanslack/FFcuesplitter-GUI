@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 """
-Name: videomass_check_version.py
+Name: check_new_version.py
 Porpose: shows informative messages on version in use and new releases
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
@@ -10,20 +10,20 @@ Rev: Sept.28.2021
 Code checker: pycodestyle / flake8 --ignore=F821,W503
 ########################################################
 
-This file is part of Videomass.
+This file is part of FFcuesplitter-GUI.
 
-   Videomass is free software: you can redistribute it and/or modify
+   FFcuesplitter-GUI is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-   Videomass is distributed in the hope that it will be useful,
+   FFcuesplitter-GUI is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with Videomass.  If not, see <http://www.gnu.org/licenses/>.
+   along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
 import webbrowser
 import wx
@@ -114,35 +114,10 @@ class CheckNewVersion(wx.Dialog):
         """
         Go to the specific download page for your platform
         """
-        if CheckNewVersion.OS == 'Linux':
+        if CheckNewVersion.OS in ('Linux', 'Darwin', 'Windows'):
 
-            if CheckNewVersion.APPTYPE == 'appimage':
-                page = ('https://jeanslack.github.io/Videomass'
-                        '/Pages/Packages/Linux.html#appimage')
-            else:
-                page = ('https://github.com/jeanslack/'
-                        'Videomass/releases/latest/')
-
-        elif CheckNewVersion.OS == 'Darwin':
-
-            if CheckNewVersion.APPTYPE == 'pyinstaller':
-                page = ('https://jeanslack.github.io/Videomass'
-                        '/Pages/Packages/MacOS.html')
-            else:
-                page = page = ('https://github.com/jeanslack/'
-                               'Videomass/releases/latest/')
-
-        elif CheckNewVersion.OS == 'Windows':
-
-            if CheckNewVersion.APPTYPE == 'pyinstaller':
-                page = ('https://jeanslack.github.io/Videomass'
-                        '/Pages/Packages/Windows.html')
-            else:
-                page = ('https://github.com/jeanslack/'
-                        'Videomass/releases/latest/')
-        else:
-            page = ('https://jeanslack.github.io/Videomass/'
-                    'download_installation.html')
+           page = ('https://github.com/jeanslack/FFcuesplitter-GUI'
+                   '/releases/latest/')
 
         webbrowser.open(page)
     # ------------------------------------------------------------------#

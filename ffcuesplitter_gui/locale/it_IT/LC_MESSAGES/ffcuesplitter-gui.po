@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FFcuesplitter-GUI 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-09 15:36+0100\n"
-"PO-Revision-Date: 2022-02-14 00:44+0100\n"
+"POT-Creation-Date: 2022-12-14 18:25+0100\n"
+"PO-Revision-Date: 2022-12-14 18:27+0100\n"
 "Last-Translator: Gianluca (jeanslack) Pernigotto <jeanlucperni@gmail.com>\n"
 "Language-Team: Gianluca (jeanslack) Pernigotto <jeanlucperni@gmail.com>\n"
 "Language: it_IT\n"
@@ -108,7 +108,7 @@ msgstr "Dove preferisci salvare i tuoi file?"
 msgid "Browse.."
 msgstr "Sfoglia.."
 
-#: ../_dialogs/preferences.py:117 ../_main/main_frame.py:196
+#: ../_dialogs/preferences.py:117 ../_main/main_frame.py:192
 msgid "File"
 msgstr "File"
 
@@ -184,7 +184,7 @@ msgstr "Livelli logs"
 
 #: ../_dialogs/preferences.py:256 ../_dialogs/preferences.py:512
 #: ../_dialogs/preferences.py:522 ../_dialogs/track_info.py:178
-#: ../_main/main_frame.py:473
+#: ../_main/main_frame.py:469
 msgid "Settings"
 msgstr "Impostazioni"
 
@@ -193,7 +193,7 @@ msgid "Set a persistent location to save exported files"
 msgstr "Imposta una posizione permanente per salvare i file esportati"
 
 #: ../_dialogs/preferences.py:384 ../_dialogs/preferences.py:428
-#: ../_dialogs/wizard_dlg.py:330 ../_dialogs/wizard_dlg.py:347
+#: ../_dialogs/wizard_dlg.py:331 ../_dialogs/wizard_dlg.py:348
 msgid "Choose the {} executable"
 msgstr "Scegli l'eseguibile {}"
 
@@ -237,11 +237,11 @@ msgstr "Sei sicuro di voler cancellare il file di registro selezionato?"
 msgid "Track ({}) Audio Tag"
 msgstr "Etichetta audio della traccia ({})"
 
-#: ../_dialogs/track_info.py:56 ../_panels/cuesplitter_panel.py:189
+#: ../_dialogs/track_info.py:56 ../_panels/cuesplitter_panel.py:193
 msgid "Artist"
 msgstr "Artista"
 
-#: ../_dialogs/track_info.py:63 ../_panels/cuesplitter_panel.py:192
+#: ../_dialogs/track_info.py:63 ../_panels/cuesplitter_panel.py:196
 msgid "Album"
 msgstr "Album"
 
@@ -281,32 +281,32 @@ msgstr ""
 "Vuoi applicare le nuove proprietà all'etichetta della traccia selezionata?\n"
 "\n"
 
-#: ../_dialogs/track_info.py:203 ../_main/main_frame.py:139
+#: ../_dialogs/track_info.py:203 ../_main/main_frame.py:135
 msgid "Please confirm"
 msgstr "Prego confermare"
 
-#: ../_dialogs/wizard_dlg.py:56
+#: ../_dialogs/wizard_dlg.py:57
 msgid "Please take a moment to set up the application"
 msgstr "Si prega di dedicare un momento per configurare l'applicazione"
 
-#: ../_dialogs/wizard_dlg.py:57
+#: ../_dialogs/wizard_dlg.py:58
 msgid "Click the \"Next\" button to get started"
 msgstr "Fare clic sul pulsante \"Successivo\" per iniziare"
 
-#: ../_dialogs/wizard_dlg.py:72
+#: ../_dialogs/wizard_dlg.py:73
 msgid "Welcome to the FFcuesplitter-GUI Wizard!"
 msgstr "Benvenuto nella procedura guidata di FFcuesplitter-GUI!"
 
-#: ../_dialogs/wizard_dlg.py:114
+#: ../_dialogs/wizard_dlg.py:115
 msgid "FFcuesplitter-GUI is an application based on FFmpeg\n"
 msgstr "FFcuesplitter-GUI è un'applicazione basata su FFmpeg\n"
 
-#: ../_dialogs/wizard_dlg.py:116
+#: ../_dialogs/wizard_dlg.py:117
 msgid "If FFmpeg is not on your computer, this application will be unusable"
 msgstr ""
 "Se FFmpeg non è sul tuo computer, questa applicazione sarà inutilizzabile"
 
-#: ../_dialogs/wizard_dlg.py:119
+#: ../_dialogs/wizard_dlg.py:120
 msgid ""
 "If you have already installed FFmpeg on your operating\n"
 "system, click the \"Auto-detection\" button."
@@ -314,7 +314,7 @@ msgstr ""
 "Se hai già installato FFmpeg sul tuo sistema operativo,\n"
 "fai clic sul pulsante \"Auto-Rileva\"."
 
-#: ../_dialogs/wizard_dlg.py:122
+#: ../_dialogs/wizard_dlg.py:123
 msgid ""
 "If you want to use a version of FFmpeg located on your\n"
 "filesystem but not installed on your operating system,\n"
@@ -324,19 +324,19 @@ msgstr ""
 "file-system ma non installata sul tuo sistema operativo, \n"
 "fai clic sul pulsante \"Individua\"."
 
-#: ../_dialogs/wizard_dlg.py:144
+#: ../_dialogs/wizard_dlg.py:145
 msgid "Auto-detection"
 msgstr "Auto-rileva"
 
-#: ../_dialogs/wizard_dlg.py:146
+#: ../_dialogs/wizard_dlg.py:147
 msgid "Locate"
 msgstr "Individua"
 
-#: ../_dialogs/wizard_dlg.py:197
+#: ../_dialogs/wizard_dlg.py:198
 msgid "Click the \"Next\" button"
 msgstr "Fai clic sul pulsante \"Successivo\""
 
-#: ../_dialogs/wizard_dlg.py:218
+#: ../_dialogs/wizard_dlg.py:219
 msgid ""
 "'{}' is not installed on your computer. Install it or indicate another "
 "location by clicking the 'Locate' button."
@@ -344,7 +344,7 @@ msgstr ""
 "'{}' non è installato sul tuo computer. Installalo o indica un'altra "
 "posizione facendo clic sul pulsante 'Individua'."
 
-#: ../_dialogs/wizard_dlg.py:232
+#: ../_dialogs/wizard_dlg.py:233
 msgid ""
 "FFcuesplitter-GUI already seems to include FFmpeg.\n"
 "\n"
@@ -354,15 +354,15 @@ msgstr ""
 "\n"
 "Vuoi usare quello?"
 
-#: ../_dialogs/wizard_dlg.py:234
+#: ../_dialogs/wizard_dlg.py:235
 msgid "Please Confirm"
 msgstr "Prego Confermare"
 
-#: ../_dialogs/wizard_dlg.py:257
+#: ../_dialogs/wizard_dlg.py:258
 msgid "Locating FFmpeg executables\n"
 msgstr "Individuazione degli eseguibili FFmpeg\n"
 
-#: ../_dialogs/wizard_dlg.py:259
+#: ../_dialogs/wizard_dlg.py:260
 msgid ""
 "\"ffmpeg\" and \"ffprobe\" are required. Complete all\n"
 "the text boxes below by clicking on the respective buttons."
@@ -370,11 +370,11 @@ msgstr ""
 "Sono richiesti \"ffmpeg\" e \"ffprobe\". Completare tutti i \n"
 "campi di testo sottostanti cliccando sui rispettivi pulsanti."
 
-#: ../_dialogs/wizard_dlg.py:369
+#: ../_dialogs/wizard_dlg.py:370
 msgid "Wizard completed successfully!\n"
 msgstr "Procedura guidata completata con successo!\n"
 
-#: ../_dialogs/wizard_dlg.py:370
+#: ../_dialogs/wizard_dlg.py:371
 msgid ""
 "Remember that you can always change these settings later, through the Setup "
 "dialog."
@@ -383,48 +383,48 @@ msgstr ""
 "momento, \n"
 "tramite la finestra delle preferenze."
 
-#: ../_dialogs/wizard_dlg.py:372
+#: ../_dialogs/wizard_dlg.py:373
 msgid "Thank You!"
 msgstr "Grazie!"
 
-#: ../_dialogs/wizard_dlg.py:373
+#: ../_dialogs/wizard_dlg.py:374
 msgid "To exit click the \"Finish\" button"
 msgstr "Per uscire fare clic sul pulsante \"Fine\""
 
-#: ../_dialogs/wizard_dlg.py:460
+#: ../_dialogs/wizard_dlg.py:461
 msgid "< Previous"
 msgstr "< Precedente"
 
-#: ../_dialogs/wizard_dlg.py:463 ../_dialogs/wizard_dlg.py:549
+#: ../_dialogs/wizard_dlg.py:464 ../_dialogs/wizard_dlg.py:550
 msgid "Next >"
 msgstr "Successivo >"
 
-#: ../_dialogs/wizard_dlg.py:468
+#: ../_dialogs/wizard_dlg.py:469
 msgid "FFcuesplitter-GUI Wizard"
 msgstr "Procedura guidata di FFcuesplitter-GUI"
 
-#: ../_dialogs/wizard_dlg.py:497 ../_dialogs/wizard_dlg.py:517
-#: ../_dialogs/wizard_dlg.py:524
+#: ../_dialogs/wizard_dlg.py:498 ../_dialogs/wizard_dlg.py:518
+#: ../_dialogs/wizard_dlg.py:525
 msgid "Finish"
 msgstr "Fine"
 
-#: ../_dialogs/wizard_dlg.py:526
+#: ../_dialogs/wizard_dlg.py:527
 msgid "Some text boxes are still incomplete"
 msgstr "Alcune caselle di testo sono ancora incomplete"
 
-#: ../_dialogs/wizard_dlg.py:577
+#: ../_dialogs/wizard_dlg.py:578
 msgid "Re-start is required"
 msgstr "È necessario riavviare"
 
-#: ../_dialogs/wizard_dlg.py:578
+#: ../_dialogs/wizard_dlg.py:579
 msgid "Done!"
 msgstr "Fatto!"
 
-#: ../_main/main_frame.py:87 ../_panels/cuesplitter_panel.py:310
+#: ../_main/main_frame.py:83 ../_panels/cuesplitter_panel.py:314
 msgid "Ready"
 msgstr "Pronto"
 
-#: ../_main/main_frame.py:136
+#: ../_main/main_frame.py:132
 msgid ""
 "There are still processes running.. if you want to stop them, use the \"Abort"
 "\" button.\n"
@@ -436,87 +436,87 @@ msgstr ""
 "\n"
 "Vuoi uccidere l'applicazione comunque?"
 
-#: ../_main/main_frame.py:147
+#: ../_main/main_frame.py:143
 msgid "Confirm to exit the application."
 msgstr "Conferma per uscire dall'applicazione."
 
-#: ../_main/main_frame.py:148
+#: ../_main/main_frame.py:144
 msgid "Exit"
 msgstr "Uscita"
 
-#: ../_main/main_frame.py:180
+#: ../_main/main_frame.py:176
 msgid "Open a CUE sheet...\tCtrl+C"
 msgstr "Apri un foglio CUE...\tCtrl+C"
 
-#: ../_main/main_frame.py:181
+#: ../_main/main_frame.py:177
 msgid "Open a new CUE file"
 msgstr "Aprire un nuovo CUE file"
 
-#: ../_main/main_frame.py:184
+#: ../_main/main_frame.py:180
 msgid "Open output directory\tCtrl+A"
 msgstr "Apri la directory di output\tCtrl+A"
 
-#: ../_main/main_frame.py:185
+#: ../_main/main_frame.py:181
 msgid "Open the current audio dirctory"
 msgstr "Apri la directory audio corrente"
 
-#: ../_main/main_frame.py:189
+#: ../_main/main_frame.py:185
 msgid "Work Notes\tCtrl+N"
 msgstr "Note di Lavoro\tCtrl+N"
 
-#: ../_main/main_frame.py:190
+#: ../_main/main_frame.py:186
 msgid "Read or write your reminders."
 msgstr "Leggi e scrivi i tuoi promemoria."
 
-#: ../_main/main_frame.py:194
+#: ../_main/main_frame.py:190
 msgid "Exit\tCtrl+Q"
 msgstr "Uscita\tCtrl+Q"
 
-#: ../_main/main_frame.py:195
+#: ../_main/main_frame.py:191
 msgid "Quit application"
 msgstr "Esci dall'applicazione"
 
-#: ../_main/main_frame.py:206
+#: ../_main/main_frame.py:202
 msgid "Configuration Directory"
 msgstr "Directory di Configurazione"
 
-#: ../_main/main_frame.py:207
+#: ../_main/main_frame.py:203
 msgid "Opens the FFcuesplitter-GUI configuration directory"
 msgstr "Apre la directory di configurazione FFcuesplitter-GUI"
 
-#: ../_main/main_frame.py:209
+#: ../_main/main_frame.py:205
 msgid "Logs Directory"
 msgstr "Directory dei registri (logs)"
 
-#: ../_main/main_frame.py:210
+#: ../_main/main_frame.py:206
 msgid "Opens the logs directory, if exists"
 msgstr "Apre la directory dei registri, se esiste"
 
-#: ../_main/main_frame.py:212
+#: ../_main/main_frame.py:208
 msgid "Goto"
 msgstr "Vai"
 
-#: ../_main/main_frame.py:219
+#: ../_main/main_frame.py:215
 msgid "User Guide"
 msgstr "Guida Utente"
 
-#: ../_main/main_frame.py:220
+#: ../_main/main_frame.py:216
 msgid "Wiki"
 msgstr "Wiki"
 
-#: ../_main/main_frame.py:222
+#: ../_main/main_frame.py:218
 msgid "Issue tracker"
 msgstr "Segnala un problema"
 
-#: ../_main/main_frame.py:225
+#: ../_main/main_frame.py:221
 msgid "FFmpeg documentation"
 msgstr "Documentazione di FFmpeg"
 
-#: ../_main/main_frame.py:227
+#: ../_main/main_frame.py:223
 msgid "Check for newer version"
 msgstr "Controlla la versione più recente"
 
-#: ../_main/main_frame.py:228
+#: ../_main/main_frame.py:224
 msgid ""
 "Checks for the latest FFcuesplitter-GUI version at <https://github.com/"
 "jeanslack/FFcuesplitter-GUI>"
@@ -524,15 +524,15 @@ msgstr ""
 "Verifica l'ultima versione di FFcuesplitter-GUI su <https://github.com/"
 "jeanslack/FFcuesplitter-GUI>"
 
-#: ../_main/main_frame.py:233
+#: ../_main/main_frame.py:229
 msgid "About FFcuesplitter-GUI"
 msgstr "Informazioni su FFcuesplitter-GUI"
 
-#: ../_main/main_frame.py:234
+#: ../_main/main_frame.py:230
 msgid "Help"
 msgstr "Aiuto"
 
-#: ../_main/main_frame.py:280
+#: ../_main/main_frame.py:276
 #, python-brace-format
 msgid ""
 "Unexpected error while creating file:\n"
@@ -543,131 +543,131 @@ msgstr ""
 "\n"
 "{0}"
 
-#: ../_main/main_frame.py:294 ../_main/main_frame.py:569
+#: ../_main/main_frame.py:290 ../_main/main_frame.py:563
 msgid "There are no logs to show."
 msgstr "Nessun registro da mostrare."
 
-#: ../_main/main_frame.py:360
+#: ../_main/main_frame.py:356
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
 msgstr "È disponibile una nuova versione - v.{0}\n"
 
-#: ../_main/main_frame.py:363
+#: ../_main/main_frame.py:359
 msgid "You are using a development version that has not yet been released!\n"
 msgstr ""
 "Stai utilizzando una versione di sviluppo che non è stata ancora "
 "rilasciata!\n"
 
-#: ../_main/main_frame.py:366
+#: ../_main/main_frame.py:362
 msgid "Congratulation! You are already using the latest version.\n"
 msgstr "Congratulazioni! Stai già utilizzando l'ultima versione. \n"
 
-#: ../_main/main_frame.py:448
+#: ../_main/main_frame.py:444
 msgid "View or Edit selected track tag"
 msgstr "Visualizza o modifica l'etichetta della traccia selezionata"
 
-#: ../_main/main_frame.py:449
+#: ../_main/main_frame.py:445
 msgid "Tag"
 msgstr "Tag"
 
-#: ../_main/main_frame.py:454
+#: ../_main/main_frame.py:450
 msgid "Audio CD informations and file properties"
 msgstr "Informazioni sul CD audio e proprietà dei file"
 
-#: ../_main/main_frame.py:455
+#: ../_main/main_frame.py:451
 msgid "Properties"
 msgstr "Proprietà"
 
-#: ../_main/main_frame.py:461
+#: ../_main/main_frame.py:457
 msgid "Start extracting audio tracks"
 msgstr "Inizia a estrarre le tracce audio"
 
-#: ../_main/main_frame.py:462
+#: ../_main/main_frame.py:458
 msgid "Start"
 msgstr "Inizia"
 
-#: ../_main/main_frame.py:466
+#: ../_main/main_frame.py:462
 msgid "Stop all operations"
 msgstr "Interrompi tutte le operazioni"
 
-#: ../_main/main_frame.py:467
+#: ../_main/main_frame.py:463
 msgid "Abort"
 msgstr "Interrompi"
 
-#: ../_main/main_frame.py:472
+#: ../_main/main_frame.py:468
 msgid "Program setup"
 msgstr "Configurazione del programma"
 
-#: ../_main/main_frame.py:477
+#: ../_main/main_frame.py:473
 msgid "View logs"
 msgstr "Visualizza i registri"
 
-#: ../_main/main_frame.py:478
+#: ../_main/main_frame.py:474
 msgid "Logs"
 msgstr "Logs"
 
-#: ../_panels/cuesplitter_panel.py:114
+#: ../_panels/cuesplitter_panel.py:119
 msgid "Format:"
 msgstr "Formato:"
 
-#: ../_panels/cuesplitter_panel.py:127
+#: ../_panels/cuesplitter_panel.py:132
 msgid "Compression:"
 msgstr "Compressione:"
 
-#: ../_panels/cuesplitter_panel.py:142
+#: ../_panels/cuesplitter_panel.py:146
 msgid "Copy codec (very fast)"
 msgstr "Copia codec (molto veloce)"
 
-#: ../_panels/cuesplitter_panel.py:152
+#: ../_panels/cuesplitter_panel.py:156
 msgid "Output Directory:"
 msgstr "Directory di Uscita:"
 
-#: ../_panels/cuesplitter_panel.py:188
+#: ../_panels/cuesplitter_panel.py:192
 msgid "Track"
 msgstr "Traccia"
 
-#: ../_panels/cuesplitter_panel.py:190
+#: ../_panels/cuesplitter_panel.py:194
 msgid "Title"
 msgstr "Titolo"
 
-#: ../_panels/cuesplitter_panel.py:191
+#: ../_panels/cuesplitter_panel.py:195
 msgid "Length"
 msgstr "Lunghezza"
 
-#: ../_panels/cuesplitter_panel.py:238
+#: ../_panels/cuesplitter_panel.py:242
 msgid "Set a destination folder"
 msgstr "Imposta una cartella di destinazione"
 
-#: ../_panels/cuesplitter_panel.py:278
+#: ../_panels/cuesplitter_panel.py:282
 msgid "Open a CUE sheet"
 msgstr "Apri un foglio CUE"
 
-#: ../_panels/cuesplitter_panel.py:402
+#: ../_panels/cuesplitter_panel.py:410
 msgid "No track to extract. Check at least one checkbox"
 msgstr "Nessuna traccia da estrarre. Seleziona almeno una casella di controllo"
 
-#: ../_panels/cuesplitter_panel.py:430
+#: ../_panels/cuesplitter_panel.py:438
 msgid "wait... I'm aborting"
 msgstr "attendi... Sto interrompendo"
 
-#: ../_panels/cuesplitter_panel.py:449
-msgid "Processing... Track number: {} | Status Progress: {}%"
+#: ../_panels/cuesplitter_panel.py:458
+msgid "Processing... File number: {} | Status Progress: {}%"
 msgstr ""
 "Elaborazione in corso... Numero di traccia: {} | Stato di avanzamento: {}%"
 
-#: ../_panels/cuesplitter_panel.py:477
+#: ../_panels/cuesplitter_panel.py:485
 msgid "...Interrupted"
 msgstr "... Interrotto"
 
-#: ../_panels/cuesplitter_panel.py:480
+#: ../_panels/cuesplitter_panel.py:488
 msgid "ERROR: Please open the Logs window to get more details."
 msgstr "ERRORE: Apri la finestra dei Logs per ottenere maggiori dettagli."
 
-#: ../_panels/cuesplitter_panel.py:483
+#: ../_panels/cuesplitter_panel.py:491
 msgid "ERROR!"
 msgstr "ERRORE!"
 
-#: ../_panels/cuesplitter_panel.py:483
+#: ../_panels/cuesplitter_panel.py:491
 msgid ""
 "An error has occurred.\n"
 "See Logs for details."
@@ -675,15 +675,15 @@ msgstr ""
 "C'è stato un errore.\n"
 "Vedere i Logs per i dettagli."
 
-#: ../_panels/cuesplitter_panel.py:489
+#: ../_panels/cuesplitter_panel.py:497
 msgid "...Finished!"
 msgstr "... Finito!"
 
-#: ../_panels/cuesplitter_panel.py:491
+#: ../_panels/cuesplitter_panel.py:499
 msgid "Success!"
 msgstr "Successo!"
 
-#: ../_panels/cuesplitter_panel.py:491
+#: ../_panels/cuesplitter_panel.py:499
 msgid "Get your files at the destination specified"
 msgstr "Ottieni i tuoi file nella destinazione specificata"
 

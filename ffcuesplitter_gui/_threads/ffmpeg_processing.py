@@ -109,6 +109,7 @@ class Processing(Thread):
                                stdout=subprocess.PIPE,
                                stderr=log,
                                bufsize=1,
+                               encoding='utf8',
                                universal_newlines=True) as proc:
                         for line in proc.stdout:
                             if "out_time_ms" in line.strip():

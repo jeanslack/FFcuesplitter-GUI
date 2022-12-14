@@ -346,7 +346,7 @@ class MainFrame(wx.Frame):
                           wx.ICON_ERROR, self)
             return
 
-        vers = vers[0].split('v.')[1]
+        vers = vers[0].split('v')[1]
         newmajor, newminor, newmicro = vers.split('.')
         new_vers = int(f'{newmajor}{newminor}{newmicro}')
         major, minor, micro = this.split('.')
@@ -545,9 +545,7 @@ class MainFrame(wx.Frame):
 
     def on_setup(self, event):
         """
-        Calls user settings dialog. Note, this dialog is
-        handle like filters dialogs on Videomass, being need
-        to get the return code from getvalue interface.
+        Calls user settings dialog.
         """
         with preferences.SetUp(self, self.appdata) as set_up:
             if set_up.ShowModal() == wx.ID_OK:

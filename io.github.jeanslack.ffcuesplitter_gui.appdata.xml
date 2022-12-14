@@ -14,10 +14,10 @@
       with the CUE sheet, using FFmpeg.
     </p>
     <p>
-      It features editable tags per track, checkboxes for selecting the tracks 
-      to save, an audio CD properties viewer, support for wav, flac, mp3 and ogg 
-      output formats with audio compression selectors and the ability to 
-      copy audio codec without re-encoding.
+      It features editable tags per track, checkboxes to select track 
+      extractions, an audio CD properties viewer, support for WAV, FLAC, MP3 and 
+      OGG output formats, audio compression selectors and the ability to copy 
+      audio codec without re-encoding.
     </p>
   </description>
   
