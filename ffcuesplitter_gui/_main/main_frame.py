@@ -89,7 +89,8 @@ class MainFrame(wx.Frame):
 
     def statusbar_msg(self, msg, bgrd=None, fgrd=None):
         """
-        Set the status-bar message and color
+        Set the status-bar message and color.
+        Note that These methods don't always work on every platform.
         Usage:
             - self.statusbar_msg(_('...Finished'))  # no color
             - self.statusbar_msg(_('...Finished'),
@@ -97,16 +98,18 @@ class MainFrame(wx.Frame):
                                  fgrd=color)  # with colors
         bgrd: background color
         fgrd: foreground color
-        """
-        if bgrd is None:
-            self.sbar.SetBackgroundColour(wx.NullColour)
-        else:
-            self.sbar.SetBackgroundColour(bgrd)
 
-        if fgrd is None:
-            self.sbar.SetForegroundColour(wx.NullColour)
-        else:
-            self.sbar.SetForegroundColour(fgrd)
+        """
+        if self.appdata['ostype'] == 'Linux':
+            if bgrd is None:
+                self.sbar.SetBackgroundColour(wx.NullColour)
+            else:
+                self.sbar.SetBackgroundColour(bgrd)
+
+            if fgrd is None:
+                self.sbar.SetForegroundColour(wx.NullColour)
+            else:
+                self.sbar.SetForegroundColour(fgrd)
 
         self.sbar.SetStatusText(msg)
         self.sbar.Refresh()
