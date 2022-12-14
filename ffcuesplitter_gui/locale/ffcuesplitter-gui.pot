@@ -1,23 +1,21 @@
-# Russian translation for FFcuesplitter-GUI.
-# Copyright (c) 2022 Gianluca Pernigotto
-# This file is distributed under the same license as the FFcuesplitter-GUI package
-# FIRST AUTHOR Gianluca Pernigotto <jeanlucperni@gmail.com>, 2022
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: FFcuesplitter-GUI 1.0.0\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-12-14 18:25+0100\n"
-"PO-Revision-Date: 2022-12-14 18:28+0100\n"
-"Last-Translator: ChourS <ChourS2008@yandex.ru>\n"
-"Language-Team: \n"
-"Language: ru\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
-"X-Generator: Poedit 2.4.2\n"
 
 #: ../gui_app.py:140
 msgid ""
@@ -25,9 +23,6 @@ msgid ""
 "\n"
 "Check execution permissions."
 msgstr ""
-"В разрешении отказано: {}\n"
-"\n"
-"Проверьте разрешения на выполнение."
 
 #: ../gui_app.py:209
 #, python-brace-format
@@ -36,17 +31,14 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
-"Непредвиденная ошибка при удалении содержимого файла:\n"
-"\n"
-"{0}"
 
 #: ../_dialogs/check_new_version.py:63
 msgid "Get Latest Version"
-msgstr "Получить последнюю версию"
+msgstr ""
 
 #: ../_dialogs/check_new_version.py:67
 msgid "Checking for newer version"
-msgstr "Проверка на наличие более новой версии"
+msgstr ""
 
 #: ../_dialogs/check_new_version.py:95
 msgid ""
@@ -54,9 +46,6 @@ msgid ""
 "\n"
 "New releases fix bugs and offer new features."
 msgstr ""
-"\n"
-"\n"
-"Новые выпуски исправляют ошибки и предлагают новые функции."
 
 #: ../_dialogs/check_new_version.py:96
 #, python-brace-format
@@ -66,107 +55,99 @@ msgid ""
 "This is FFcuesplitter-GUI v.{0}\n"
 "\n"
 msgstr ""
-"\n"
-"\n"
-"Это FFcuesplitter-GUI v.{0}\n"
-"\n"
 
 #: ../_dialogs/infoprg.py:49
 msgid ""
 "Extracts audio tracks from an audio CD image\n"
 "supplied with the CUE sheet, using FFmpeg."
 msgstr ""
-"Извлекает звуковые дорожки из образа аудио компакт-диска, \n"
-"поставляемого вместе с листом CUE, с помощью FFmpeg."
 
 #: ../_dialogs/preferences.py:79
 msgid ""
 "Delete the contents of the log files\n"
 "when exiting the application"
 msgstr ""
-"Удалите содержимое log-журналов\n"
-" при выходе из приложения"
 
 #: ../_dialogs/preferences.py:84
 msgid "Warn on exit"
-msgstr "Предупреждать при выходе"
+msgstr ""
 
 #: ../_dialogs/preferences.py:89
 msgid "Show hidden menu items"
-msgstr "Показывать скрытые пункты меню"
+msgstr ""
 
 #: ../_dialogs/preferences.py:93
 msgid "Miscellanea"
-msgstr "Сборник"
+msgstr ""
 
 #: ../_dialogs/preferences.py:99
 msgid "Where do you prefer to save your files?"
-msgstr "Где вы предпочитаете сохранять свои файлы?"
+msgstr ""
 
 #: ../_dialogs/preferences.py:110 ../_dialogs/preferences.py:129
 #: ../_dialogs/preferences.py:141
 msgid "Browse.."
-msgstr "Обзор.."
+msgstr ""
 
 #: ../_dialogs/preferences.py:117 ../_main/main_frame.py:192
 msgid "File"
-msgstr "Файл"
+msgstr ""
 
 #: ../_dialogs/preferences.py:124
 msgid "Path to the executables"
-msgstr "Путь к исполняемым файлам"
+msgstr ""
 
 #: ../_dialogs/preferences.py:128
 msgid "Enable another location to run FFmpeg"
-msgstr "Включите другое местоположение для запуска FFmpeg"
+msgstr ""
 
 #: ../_dialogs/preferences.py:140
 msgid "Enable another location to run FFprobe"
-msgstr "Включить другое место для запуска FFprobe"
+msgstr ""
 
 #: ../_dialogs/preferences.py:152
 msgid "FFmpeg"
-msgstr "FFmpeg"
+msgstr ""
 
 #: ../_dialogs/preferences.py:158
 msgid "Icon themes"
-msgstr "Темы значков"
+msgstr ""
 
 #: ../_dialogs/preferences.py:175
 msgid "Toolbar customization"
-msgstr "Настройка панели инструментов"
+msgstr ""
 
 #: ../_dialogs/preferences.py:178
 msgid "At the top of window (default)"
-msgstr "В верхней части окна"
+msgstr ""
 
 #: ../_dialogs/preferences.py:179
 msgid "At the bottom of window"
-msgstr "В нижней части окна"
+msgstr ""
 
 #: ../_dialogs/preferences.py:180
 msgid "At the right of window"
-msgstr "В правой части окна"
+msgstr ""
 
 #: ../_dialogs/preferences.py:181
 msgid "At the left of window"
-msgstr "В левой части окна"
+msgstr ""
 
 #: ../_dialogs/preferences.py:183
 msgid "Place the toolbar"
-msgstr "Поместите панель инструментов"
+msgstr ""
 
 #: ../_dialogs/preferences.py:193
 msgid "Icon size:"
-msgstr "Размер значка:"
+msgstr ""
 
 #: ../_dialogs/preferences.py:208
 msgid "Show text on toolbar buttons"
-msgstr "Показывать текст на кнопках панели инструментов"
+msgstr ""
 
 #: ../_dialogs/preferences.py:212
 msgid "Appearance"
-msgstr "Вид"
+msgstr ""
 
 #: ../_dialogs/preferences.py:219
 msgid ""
@@ -174,147 +155,137 @@ msgid ""
 "the log messages during transcoding processes.\n"
 "Change only if you know what you are doing.\n"
 msgstr ""
-"Следующие настройки влияют на выходные сообщения и\n"
-"сообщения журнала во время процессов перекодирования.\n"
-"Изменяйте, только если знаете, что делаете.\n"
 
 #: ../_dialogs/preferences.py:232
 msgid "Logging levels"
-msgstr "Уровни регистрации"
+msgstr ""
 
 #: ../_dialogs/preferences.py:256 ../_dialogs/preferences.py:512
 #: ../_dialogs/preferences.py:522 ../_dialogs/track_info.py:178
 #: ../_main/main_frame.py:469
 msgid "Settings"
-msgstr "Настройки"
+msgstr ""
 
 #: ../_dialogs/preferences.py:338
 msgid "Set a persistent location to save exported files"
 msgstr ""
-"Выбрать постоянное местоположение для сохранения экспортированных файлов"
 
 #: ../_dialogs/preferences.py:384 ../_dialogs/preferences.py:428
 #: ../_dialogs/wizard_dlg.py:331 ../_dialogs/wizard_dlg.py:348
 msgid "Choose the {} executable"
-msgstr "Выберите исполняемый файл {}"
+msgstr ""
 
 #: ../_dialogs/preferences.py:512 ../_dialogs/track_info.py:178
 msgid "Not yet implemented"
-msgstr "Еще не реализовано"
+msgstr ""
 
 #: ../_dialogs/preferences.py:521
 msgid "Some changes will take effect once the program is restarted."
-msgstr "Некоторые изменения вступят в силу после перезапуска программы."
+msgstr ""
 
 #: ../_dialogs/showlogs.py:65
 msgid "Log file list"
-msgstr "Список log-файлов"
+msgstr ""
 
 #: ../_dialogs/showlogs.py:67
 msgid "Log messages"
-msgstr "Log сообщения"
+msgstr ""
 
 #: ../_dialogs/showlogs.py:88
 msgid "Refresh all log files"
-msgstr "Обновить все файлы log-журналов"
+msgstr ""
 
 #: ../_dialogs/showlogs.py:93
 msgid "Clear selected log"
-msgstr "Очистить выбранный log-журнал"
+msgstr ""
 
 #: ../_dialogs/showlogs.py:106
 msgid "Showing log messages"
-msgstr "Отображение сообщений журнала"
+msgstr ""
 
 #: ../_dialogs/showlogs.py:133
 msgid "Select a log file"
-msgstr "Выбрать файл log-журнала"
+msgstr ""
 
 #: ../_dialogs/showlogs.py:140
 msgid "Are you sure you want to clear the selected log file?"
-msgstr "Вы уверены, что хотите очистить выбранный файл log-журнала?"
+msgstr ""
 
 #: ../_dialogs/track_info.py:46
 msgid "Track ({}) Audio Tag"
-msgstr "Трек ({}) Аудио тег"
+msgstr ""
 
 #: ../_dialogs/track_info.py:56 ../_panels/cuesplitter_panel.py:193
 msgid "Artist"
-msgstr "Исполнитель"
+msgstr ""
 
 #: ../_dialogs/track_info.py:63 ../_panels/cuesplitter_panel.py:196
 msgid "Album"
-msgstr "Альбом"
+msgstr ""
 
 #: ../_dialogs/track_info.py:73
 msgid "Track Title"
-msgstr "Название трека"
+msgstr ""
 
 #: ../_dialogs/track_info.py:82
 msgid "Genre"
-msgstr "Жанр"
+msgstr ""
 
 #: ../_dialogs/track_info.py:92
 msgid "Date"
-msgstr "Данные"
+msgstr ""
 
 #: ../_dialogs/track_info.py:101
 msgid "Disc ID"
-msgstr "ID диска"
+msgstr ""
 
 #: ../_dialogs/track_info.py:109
 msgid "Comment"
-msgstr "Комментарий"
+msgstr ""
 
 #: ../_dialogs/track_info.py:127
 msgid "Apply"
-msgstr "Применить"
+msgstr ""
 
 #: ../_dialogs/track_info.py:168
 msgid "Track ({}) Audio Tag (EDITED)*"
-msgstr "Трек ({}) Аудио тег (ИЗМЕНЕННЫЙ)*"
+msgstr ""
 
 #: ../_dialogs/track_info.py:201
 msgid ""
 "Do you want to apply the new tag properties to the selected track?\n"
 "\n"
 msgstr ""
-"Вы хотите применить новые свойства тега к выбранному треку?\n"
-"\n"
 
 #: ../_dialogs/track_info.py:203 ../_main/main_frame.py:135
 msgid "Please confirm"
-msgstr "Пожалуйста, подтвердите"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:57
 msgid "Please take a moment to set up the application"
-msgstr "Пожалуйста, найдите минутку, чтобы настроить приложение"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:58
 msgid "Click the \"Next\" button to get started"
-msgstr "Нажмите кнопку \"Далее\", чтобы начать"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:73
 msgid "Welcome to the FFcuesplitter-GUI Wizard!"
-msgstr "Добро пожаловать в мастер FFcuesplitter-GUI!"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:115
 msgid "FFcuesplitter-GUI is an application based on FFmpeg\n"
-msgstr "FFcuesplitter-GUI является приложением, основанным на FFmpeg\n"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:117
 msgid "If FFmpeg is not on your computer, this application will be unusable"
 msgstr ""
-"Если FFmpeg отсутствует на вашем компьютере, это приложение будет непригодно "
-"для использования"
 
 #: ../_dialogs/wizard_dlg.py:120
 msgid ""
 "If you have already installed FFmpeg on your operating\n"
 "system, click the \"Auto-detection\" button."
 msgstr ""
-"Если вы уже установили FFmpeg в своей операционной системе, \n"
-"нажмите кнопку \"Автоматическое определение\"."
 
 #: ../_dialogs/wizard_dlg.py:123
 msgid ""
@@ -322,29 +293,24 @@ msgid ""
 "filesystem but not installed on your operating system,\n"
 "click the \"Locate\" button."
 msgstr ""
-"Если вы хотите использовать версию FFmpeg, расположенную в вашей \n"
-"файловой системе, но не установленную в вашей операционной системе, \n"
-"нажмите кнопку \"Найти\"."
 
 #: ../_dialogs/wizard_dlg.py:145
 msgid "Auto-detection"
-msgstr "Автоматическое определение"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:147
 msgid "Locate"
-msgstr "Найти"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:198
 msgid "Click the \"Next\" button"
-msgstr "Нажмите кнопку \"Далее\""
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:219
 msgid ""
 "'{}' is not installed on your computer. Install it or indicate another "
 "location by clicking the 'Locate' button."
 msgstr ""
-"'{}' не установлен на вашем компьютере. Установите его или укажите другое "
-"местоположение, нажав кнопку \"Найти\"."
 
 #: ../_dialogs/wizard_dlg.py:233
 msgid ""
@@ -352,78 +318,71 @@ msgid ""
 "\n"
 "Do you want to use that?"
 msgstr ""
-"FFcuesplitter-GUI, похоже, уже включает FFmpeg.\n"
-"\n"
-"Вы хотите этим воспользоваться?"
 
 #: ../_dialogs/wizard_dlg.py:235
 msgid "Please Confirm"
-msgstr "Пожалуйста, подтвердите"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:258
 msgid "Locating FFmpeg executables\n"
-msgstr "Поиск исполняемых файлов FFmpeg\n"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:260
 msgid ""
 "\"ffmpeg\" and \"ffprobe\" are required. Complete all\n"
 "the text boxes below by clicking on the respective buttons."
 msgstr ""
-"\"ffmpeg\" и \"ffprobe\" обязательны. Заполните все \n"
-"текстовые поля ниже, нажав на соответствующие кнопки."
 
 #: ../_dialogs/wizard_dlg.py:370
 msgid "Wizard completed successfully!\n"
-msgstr "Мастер успешно завершен!\n"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:371
 msgid ""
 "Remember that you can always change these settings later, through the Setup "
 "dialog."
 msgstr ""
-"Помните, что вы всегда можете изменить эти настройки позже в диалоговом окне "
-"'Настройка'."
 
 #: ../_dialogs/wizard_dlg.py:373
 msgid "Thank You!"
-msgstr "Благодарю вас!"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:374
 msgid "To exit click the \"Finish\" button"
-msgstr "Для выхода нажмите кнопку \"Готово\""
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:461
 msgid "< Previous"
-msgstr "< Предыдущий"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:464 ../_dialogs/wizard_dlg.py:550
 msgid "Next >"
-msgstr "Далее >"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:469
 msgid "FFcuesplitter-GUI Wizard"
-msgstr "Мастер FFcuesplitter-GUI"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:498 ../_dialogs/wizard_dlg.py:518
 #: ../_dialogs/wizard_dlg.py:525
 msgid "Finish"
-msgstr "Завершено"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:527
 msgid "Some text boxes are still incomplete"
-msgstr "Некоторые текстовые поля все еще не заполнены"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:578
 msgid "Re-start is required"
-msgstr "Требуется повторный запуск"
+msgstr ""
 
 #: ../_dialogs/wizard_dlg.py:579
 msgid "Done!"
-msgstr "Готово!"
+msgstr ""
 
 #: ../_main/main_frame.py:83 ../_panels/cuesplitter_panel.py:314
 msgid "Ready"
-msgstr "Готово"
+msgstr ""
 
 #: ../_main/main_frame.py:132
 msgid ""
@@ -432,106 +391,100 @@ msgid ""
 "\n"
 "Do you still want to kill the application?"
 msgstr ""
-"Все еще запущены процессы .. если вы хотите остановить их, используйте "
-"кнопку \"Прервать\".\n"
-"\n"
-"Вы все еще хотите закрыть приложение?"
 
 #: ../_main/main_frame.py:143
 msgid "Confirm to exit the application."
-msgstr "Подтвердите выход из приложения."
+msgstr ""
 
 #: ../_main/main_frame.py:144
 msgid "Exit"
-msgstr "Выход"
+msgstr ""
 
 #: ../_main/main_frame.py:176
 msgid "Open a CUE sheet...\tCtrl+C"
-msgstr "Открыть CUE-лист...\tCtrl+C"
+msgstr ""
 
 #: ../_main/main_frame.py:177
 msgid "Open a new CUE file"
-msgstr "Открыть новый файл CUE"
+msgstr ""
 
 #: ../_main/main_frame.py:180
 msgid "Open output directory\tCtrl+A"
-msgstr "Открыть выходной каталог\tCtrl+A"
+msgstr ""
 
 #: ../_main/main_frame.py:181
 msgid "Open the current audio dirctory"
-msgstr "Открыть текущую аудио директорию"
+msgstr ""
 
 #: ../_main/main_frame.py:185
 msgid "Work Notes\tCtrl+N"
-msgstr "Рабочие заметки\tCtrl+N"
+msgstr ""
 
 #: ../_main/main_frame.py:186
 msgid "Read or write your reminders."
-msgstr "Читайте или записывайте свои напоминания."
+msgstr ""
 
 #: ../_main/main_frame.py:190
 msgid "Exit\tCtrl+Q"
-msgstr "Выход\tCtrl+Q"
+msgstr ""
 
 #: ../_main/main_frame.py:191
 msgid "Quit application"
-msgstr "Выйти из приложения"
+msgstr ""
 
 #: ../_main/main_frame.py:202
 msgid "Configuration Directory"
-msgstr "Каталог конфигурации"
+msgstr ""
 
 #: ../_main/main_frame.py:203
 msgid "Opens the FFcuesplitter-GUI configuration directory"
-msgstr "Открывает каталог конфигурации FFcuesplitter-GUI"
+msgstr ""
 
 #: ../_main/main_frame.py:205
 msgid "Logs Directory"
-msgstr "Каталог log-журналов"
+msgstr ""
 
 #: ../_main/main_frame.py:206
 msgid "Opens the logs directory, if exists"
-msgstr "Открывает каталог журналов, если он существует"
+msgstr ""
 
 #: ../_main/main_frame.py:208
 msgid "Goto"
-msgstr "Перейти к"
+msgstr ""
 
 #: ../_main/main_frame.py:215
 msgid "User Guide"
-msgstr "Руководство пользователя"
+msgstr ""
 
 #: ../_main/main_frame.py:216
 msgid "Wiki"
-msgstr "Wiki"
+msgstr ""
 
 #: ../_main/main_frame.py:218
 msgid "Issue tracker"
-msgstr "Отслеживание проблем"
+msgstr ""
 
 #: ../_main/main_frame.py:221
 msgid "FFmpeg documentation"
-msgstr "Документация FFmpeg"
+msgstr ""
 
 #: ../_main/main_frame.py:223
 msgid "Check for newer version"
-msgstr "Проверьте наличие более новой версии"
+msgstr ""
 
 #: ../_main/main_frame.py:224
 msgid ""
 "Checks for the latest FFcuesplitter-GUI version at <https://github.com/"
 "jeanslack/FFcuesplitter-GUI>"
 msgstr ""
-"Проверять наличие последней версии FFcuesplitter-GUI на<https://github.com/"
-"jeanslack/FFcuesplitter-GUI>"
 
 #: ../_main/main_frame.py:229
 msgid "About FFcuesplitter-GUI"
-msgstr "О программе FFcuesplitter-GUI"
+msgstr ""
 
 #: ../_main/main_frame.py:230
 msgid "Help"
-msgstr "Помощь"
+msgstr ""
 
 #: ../_main/main_frame.py:276
 #, python-brace-format
@@ -540,157 +493,145 @@ msgid ""
 "\n"
 "{0}"
 msgstr ""
-"Непредвиденная ошибка при создании файла:\n"
-"\n"
-"{0}"
 
 #: ../_main/main_frame.py:290 ../_main/main_frame.py:563
 msgid "There are no logs to show."
-msgstr "Нет журналов, которые можно было бы показать."
+msgstr ""
 
 #: ../_main/main_frame.py:356
 #, python-brace-format
 msgid "A new release is available - v.{0}\n"
-msgstr "Доступен новый выпуск - v.{0}\n"
+msgstr ""
 
 #: ../_main/main_frame.py:359
 msgid "You are using a development version that has not yet been released!\n"
 msgstr ""
-"Вы используете версию для разработки, которая еще не является релизом!\n"
 
 #: ../_main/main_frame.py:362
 msgid "Congratulation! You are already using the latest version.\n"
-msgstr "Поздравляю! Вы уже используете последнюю версию.\n"
+msgstr ""
 
 #: ../_main/main_frame.py:444
 msgid "View or Edit selected track tag"
-msgstr "Просмотр или редактирование выбранного тега трека"
+msgstr ""
 
 #: ../_main/main_frame.py:445
 msgid "Tag"
-msgstr "Тег"
+msgstr ""
 
 #: ../_main/main_frame.py:450
 msgid "Audio CD informations and file properties"
-msgstr "Информация об аудиодисках и свойствах файлов"
+msgstr ""
 
 #: ../_main/main_frame.py:451
 msgid "Properties"
-msgstr "Свойства"
+msgstr ""
 
 #: ../_main/main_frame.py:457
 msgid "Start extracting audio tracks"
-msgstr "Начните извлекать звуковые дорожки"
+msgstr ""
 
 #: ../_main/main_frame.py:458
 msgid "Start"
-msgstr "Начало"
+msgstr ""
 
 #: ../_main/main_frame.py:462
 msgid "Stop all operations"
-msgstr "Остановить все операции"
+msgstr ""
 
 #: ../_main/main_frame.py:463
 msgid "Abort"
-msgstr "Отменить"
+msgstr ""
 
 #: ../_main/main_frame.py:468
 msgid "Program setup"
-msgstr "Настройка программы"
+msgstr ""
 
 #: ../_main/main_frame.py:473
 msgid "View logs"
-msgstr "Просмотр log-журналов"
+msgstr ""
 
 #: ../_main/main_frame.py:474
 msgid "Logs"
-msgstr "Logs"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:119
 msgid "Format:"
-msgstr "Формат:"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:132
 msgid "Compression:"
-msgstr "Сжатие:"
+msgstr ""
 
-# I took the liberty of adding a newline ("\n") to the Russian translation, for a more correct display of the text .
-# Gianluca Pernigotto
 #: ../_panels/cuesplitter_panel.py:146
 msgid "Copy codec (very fast)"
 msgstr ""
-"Копирование кодека \n"
-"(очень быстро)"
 
 #: ../_panels/cuesplitter_panel.py:156
 msgid "Output Directory:"
-msgstr "Каталог завершённых файлов:"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:192
 msgid "Track"
-msgstr "Трек"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:194
 msgid "Title"
-msgstr "Заголовок"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:195
 msgid "Length"
-msgstr "Длина"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:242
 msgid "Set a destination folder"
-msgstr "Выбрать папку назначения"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:282
 msgid "Open a CUE sheet"
-msgstr "Открыть CUE-лист"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:410
 msgid "No track to extract. Check at least one checkbox"
-msgstr "Нет дорожки для извлечения. Установите хотя бы один флажок"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:438
 msgid "wait... I'm aborting"
-msgstr "подождите ... я прерываю"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:458
 msgid "Processing... File number: {} | Status Progress: {}%"
-msgstr "Обработка... Номер дорожки: {} | Статус прогресса: {}%"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:485
 msgid "...Interrupted"
-msgstr "...Прервано"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:488
 msgid "ERROR: Please open the Logs window to get more details."
 msgstr ""
-"ОШИБКА: Пожалуйста, откройте окно Журналов, чтобы получить более подробную "
-"информацию."
 
 #: ../_panels/cuesplitter_panel.py:491
 msgid "ERROR!"
-msgstr "ОШИБКА!"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:491
 msgid ""
 "An error has occurred.\n"
 "See Logs for details."
 msgstr ""
-"Произошла ошибка.\n"
-"Подробности см. в журналах."
 
 #: ../_panels/cuesplitter_panel.py:497
 msgid "...Finished!"
-msgstr "...Завершено!"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:499
 msgid "Success!"
-msgstr "Успех!"
+msgstr ""
 
 #: ../_panels/cuesplitter_panel.py:499
 msgid "Get your files at the destination specified"
-msgstr "Получите ваши файлы в указанном месте назначения"
+msgstr ""
 
 #: ../_utils/utils.py:46
 msgid ""
@@ -699,11 +640,7 @@ msgid ""
 "\n"
 "Do you want to overwrite all files?"
 msgstr ""
-"Файл уже существует:\n"
-"\"{}\"\n"
-"\n"
-"Вы хотите перезаписать все файлы?"
 
 #: ../_utils/utils.py:49
 msgid "Warning"
-msgstr "Предупреждение"
+msgstr ""

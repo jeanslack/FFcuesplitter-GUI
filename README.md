@@ -1,11 +1,10 @@
 [![Image](https://img.shields.io/static/v1?label=python&logo=python&message=3.7%20|%203.8|%203.9&color=blue)](https://www.python.org/downloads/)
-[![image](https://img.shields.io/badge/wxpython-phoenix-green)](https://www.wxpython.org/)
 [![Image](https://img.shields.io/badge/license-GPLv3-orange)](https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/LICENSE)
-![image](https://img.shields.io/badge/platform-linux%20|%20freebsd%20|%20macos%20|%20windows-brigthgreen) 
 
 # FFcuesplitter-GUI 
 
-Extracts audio tracks from an audio CD image supplied with the CUE sheet, using FFmpeg.
+Graphical interface for [FFcuesplitter](https://github.com/jeanslack/FFcuesplitter), 
+written in wxPython phoenix.
 
 ![preview](./docs/gui_preview.gif)
 
@@ -13,9 +12,9 @@ Extracts audio tracks from an audio CD image supplied with the CUE sheet, using 
 
 It is a cross-platform GUI for the [FFcuesplitter](https://github.com/jeanslack/FFcuesplitter) 
 library written in wxPython Phoenix. It features editable tags per track, checkboxes 
-for selecting the tracks to save, an audio CD properties viewer, support for wav, 
-flac, mp3 and ogg output formats with audio compression selectors and the 
-ability to copy audio codec without re-encoding.
+to select track extractions, an audio CD properties viewer, support for WAV, 
+FLAC, MP3 and OGG output formats, audio compression selectors and the ability 
+to copy audio codec without re-encoding.
 
 ## Requirements
 - [Python >= 3.7.0](https://www.python.org/)
@@ -30,8 +29,8 @@ ability to copy audio codec without re-encoding.
 ```
 git clone https://github.com/jeanslack/FFcuesplitter-GUI.git
 cd FFcuesplitter-GUI
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv My_env
+source My_env/bin/activate
 python3 -m pip install -r requirements.txt
 python3 launcher
 ```

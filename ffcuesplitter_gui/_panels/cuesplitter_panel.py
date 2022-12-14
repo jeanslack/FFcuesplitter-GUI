@@ -42,7 +42,6 @@ from ffcuesplitter_gui._utils.utils import move_files_to_outputdir
 
 if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
     # import wx.lib.mixins.listctrl as listmix
-    print('si')
 
     class TestListCtrl(wx.ListCtrl,
                        listmix.CheckListCtrlMixin,

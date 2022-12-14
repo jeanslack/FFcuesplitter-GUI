@@ -89,7 +89,8 @@ class MainFrame(wx.Frame):
 
     def statusbar_msg(self, msg, bgrd=None, fgrd=None):
         """
-        Set the status-bar message and color
+        Set the status-bar message and color.
+        Note that These methods don't always work on every platform.
         Usage:
             - self.statusbar_msg(_('...Finished'))  # no color
             - self.statusbar_msg(_('...Finished'),
@@ -97,16 +98,18 @@ class MainFrame(wx.Frame):
                                  fgrd=color)  # with colors
         bgrd: background color
         fgrd: foreground color
-        """
-        if bgrd is None:
-            self.sbar.SetBackgroundColour(wx.NullColour)
-        else:
-            self.sbar.SetBackgroundColour(bgrd)
 
-        if fgrd is None:
-            self.sbar.SetForegroundColour(wx.NullColour)
-        else:
-            self.sbar.SetForegroundColour(fgrd)
+        """
+        if self.appdata['ostype'] == 'Linux':
+            if bgrd is None:
+                self.sbar.SetBackgroundColour(wx.NullColour)
+            else:
+                self.sbar.SetBackgroundColour(bgrd)
+
+            if fgrd is None:
+                self.sbar.SetForegroundColour(wx.NullColour)
+            else:
+                self.sbar.SetForegroundColour(fgrd)
 
         self.sbar.SetStatusText(msg)
         self.sbar.Refresh()
@@ -346,7 +349,7 @@ class MainFrame(wx.Frame):
                           wx.ICON_ERROR, self)
             return
 
-        vers = vers[0].split('v.')[1]
+        vers = vers[0].split('v')[1]
         newmajor, newminor, newmicro = vers.split('.')
         new_vers = int(f'{newmajor}{newminor}{newmicro}')
         major, minor, micro = this.split('.')
@@ -545,9 +548,7 @@ class MainFrame(wx.Frame):
 
     def on_setup(self, event):
         """
-        Calls user settings dialog. Note, this dialog is
-        handle like filters dialogs on Videomass, being need
-        to get the return code from getvalue interface.
+        Calls user settings dialog.
         """
         with preferences.SetUp(self, self.appdata) as set_up:
             if set_up.ShowModal() == wx.ID_OK:

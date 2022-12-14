@@ -58,6 +58,7 @@ def browse(opsyst, pathname):
                               stdout=subprocess.PIPE,
                               stderr=subprocess.STDOUT,
                               universal_newlines=True,  # mod text
+                              encoding='utf8',
                               ) as proc:
 
             out = proc.communicate()

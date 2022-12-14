@@ -25,7 +25,7 @@ This file is part of FFcuesplitter-GUI.
    You should have received a copy of the GNU General Public License
    along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __author__ = "Gianluca Pernigotto"
 __contact__ = "jeanlucperni@gmail.com"
 __maintainer__ = "Gianluca Pernigotto (jeanslack)"
@@ -39,9 +39,9 @@ __description__ = ("FFcuesplitter-gui extracts audio tracks from an audio CD "
                    "image supplied with the CUE sheet, using FFmpeg.")
 __descriptionfull__ = """It is a cross-platform GUI for the FFcuesplitter
 library written in wxPython Phoenix. It features editable tags per track,
-checkboxes for selecting the tracks to save, an audio CD properties viewer,
-support for wav, flac, mp3 and ogg output formats with audio compression
-selectors and the ability to copy audio codec without re-encoding.
+checkboxes to select track extractions, an audio CD properties viewer, support
+for WAV, FLAC, MP3 and OGG output formats, audio compression selectors and the
+ability to copy audio codec without re-encoding.
 """
 __copyleft__ = '2022'
 __licensefull__ = f"""
