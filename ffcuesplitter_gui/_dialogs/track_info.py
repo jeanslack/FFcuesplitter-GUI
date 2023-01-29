@@ -4,7 +4,7 @@ Name: track_info.py
 Porpose: view and edit selected track metadata
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.08.2022
 Code checher: flake8, pylint

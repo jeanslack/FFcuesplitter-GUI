@@ -4,7 +4,7 @@ Name: io_tools.py
 Porpose: input/output redirection to some processes
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.03.2022
 Code checker: flake8, pylint

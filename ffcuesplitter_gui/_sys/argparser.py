@@ -4,7 +4,7 @@ Name: argparser.py
 Porpose: FFcuesplitter-GUI Command line arguments
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2021/2022 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.04.2022
 Code checker: flake8, pylint .

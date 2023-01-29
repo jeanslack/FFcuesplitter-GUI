@@ -1,6 +1,6 @@
 
 
-
+- check code with a linter (flake8/pylint)
 - Make io.github.jeanslack.ffcuesplitter-gui.desktop.
 - Make ffcuesplitter-gui.icns.
 - make ffcuesplitter-gui.ico

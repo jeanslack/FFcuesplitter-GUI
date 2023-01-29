@@ -4,7 +4,7 @@ Name: ffmpeg_processing.py
 Porpose: FFmpeg long processing task
 Compatibility: Python3, wxPython4 Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.03.2022
 Code checker: flake8, pylint
@@ -60,21 +60,16 @@ class Processing(Thread):
     NOT_EXIST_MSG = _("Is 'ffmpeg' installed on your system?")
     # ---------------------------------------------------------------
 
-    def __init__(self, args, duration, logname):
+    def __init__(self, args, logname):
         """
-        args: a list of [command/args]
-        duration: a list of (durations)
+        args: dict
         logname: absolute path name of the file log.
-
-        Note that `args` and` duration` lists must be the
-        same length.
         """
         self.stop_work_thread = False  # if True the process terminates
         self.args = args  # list of commands/aguments
-        self.duration = duration  # duration list
         self.logname = logname  # path name of file log
         self.count = 0  # count for loop
-        self.countmax = len(args)  # length commands/aguments list
+        self.countmax = len(args['recipes'])  # length list
 
         Thread.__init__(self)
 
@@ -85,11 +80,7 @@ class Processing(Thread):
         """
         Subprocess initialize thread.
         """
-        for (cmd,
-             duration) in itertools.zip_longest(self.args,
-                                                self.duration,
-                                                fillvalue='',
-                                                ):
+        for recipes in self.args['recipes']:
             self.count += 1
             track = f'{self.count}/{self.countmax}'
 
@@ -99,13 +90,13 @@ class Processing(Thread):
                          end='',
                          )
             if not platform.system() == 'Windows':
-                cmd = shlex.split(cmd)
+                cmdargs = shlex.split(recipes[0])
 
             with open(self.logname, "w", encoding='utf-8') as log:
-                log.write(f'\nCOMMAND: {cmd}')
+                log.write(f'\nCOMMAND: {cmdargs}')
 
                 try:
-                    with Popen(cmd,
+                    with Popen(cmdargs,
                                stdout=subprocess.PIPE,
                                stderr=log,
                                bufsize=1,
@@ -116,7 +107,7 @@ class Processing(Thread):
                                 wx.CallAfter(pub.sendMessage,
                                              "UPDATE_EVT",
                                              output=line,
-                                             duration=duration,
+                                             duration=recipes[1]['duration'],
                                              track=track,
                                              status=0,
                                              )
@@ -128,7 +119,7 @@ class Processing(Thread):
                             wx.CallAfter(pub.sendMessage,
                                          "UPDATE_EVT",
                                          output='',
-                                         duration=duration,
+                                         duration=recipes[1]['duration'],
                                          track='',
                                          status=proc.wait(),
                                          )

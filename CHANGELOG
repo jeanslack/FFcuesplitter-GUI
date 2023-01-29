@@ -7,6 +7,13 @@ License: GPL3
 Change Log:
 
 +------------------------------------+
+Jan 29, 2023 V.1.0.5 (unreleased)
+
+- Removed `wx.lib.mixins.listctrl` (with checkbox functionality)
+- Fixed code to new FFcuesplitter API.
+- Added opus format/codec
+
++------------------------------------+
 Dec 14, 2022 V.1.0.2 (unreleased)
 
 - Fixed `FileNotFoundError` exception if the log directory does not yet exist.

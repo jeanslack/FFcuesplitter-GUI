@@ -4,7 +4,7 @@ Name: cuesplitter_panel.py
 Porpose: main ffcuesplitter panel interface
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.04.2022
 Code checker: flake8, pylint
@@ -31,47 +31,12 @@ import tempfile
 import datetime
 import wx
 import wx.lib.scrolledpanel as scrolled
-import wx.lib.mixins.listctrl as listmix
 from pubsub import pub
 from ffcuesplitter.cuesplitter import FFCueSplitter
 from ffcuesplitter_gui._utils.utils import get_codec_quality_items
 from ffcuesplitter_gui._threads.ffmpeg_processing import Processing
 from ffcuesplitter_gui._dialogs.widget_utils import notification_area
 from ffcuesplitter_gui._utils.utils import move_files_to_outputdir
-
-
-if not hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
-    # import wx.lib.mixins.listctrl as listmix
-
-    class TestListCtrl(wx.ListCtrl,
-                       listmix.CheckListCtrlMixin,
-                       listmix.ListCtrlAutoWidthMixin
-                       ):
-        """
-        This class is responsible for maintaining backward
-        compatibility of wxPython which do not have a `ListCtrl`
-        module with checkboxes feature:
-
-        Examples of errors raised using a ListCtrl with checkboxes
-        not yet implemented:
-
-        AttributeError:
-            - 'ListCtrl' object has no attribute 'EnableCheckBoxes'
-            - module 'wx' has no attribute `EVT_LIST_ITEM_CHECKED`
-            - module 'wx' has no attribute `EVT_LIST_ITEM_UNCHECKED`
-        """
-        def __init__(self,
-                     parent,
-                     _id,
-                     pos=wx.DefaultPosition,
-                     size=wx.DefaultSize,
-                     style=0
-                     ):
-            self.parent = parent
-            wx.ListCtrl.__init__(self, parent, _id, pos, size, style)
-            listmix.CheckListCtrlMixin.__init__(self)
-            listmix.ListCtrlAutoWidthMixin.__init__(self)
-            # self.setResizeColumn(3)
 
 
 class CueGui(wx.Panel):
@@ -92,7 +57,6 @@ class CueGui(wx.Panel):
         self.abort = False  # if True set to abort current process
         self.error = False  # if True set to error current process
         self.data = None  # it is the ffcuesplitter instance
-        self.oldwx = None  # test result of hasattr EVT_LIST_ITEM_CHECKED
         self.tmpdir = None  # path to tempdir folder
 
         wx.Panel.__init__(self, parent, -1, style=wx.TAB_TRAVERSAL)
@@ -120,7 +84,7 @@ class CueGui(wx.Panel):
                                          )
         fgs1.Add(self.lbl_formats, 0, wx.ALL | wx.EXPAND, 5)
         self.cmbx_formats = wx.ComboBox(panelscroll, wx.ID_ANY,
-                                        choices=(('wav', 'flac',
+                                        choices=(('wav', 'flac', 'opus',
                                                   'mp3', 'ogg')),
                                         size=(-1, -1), style=wx.CB_DROPDOWN
                                         | wx.CB_READONLY
@@ -177,23 +141,15 @@ class CueGui(wx.Panel):
         panelscroll.SetupScrolling()
 
         # -------------listctrl
-        if hasattr(wx, 'EVT_LIST_ITEM_CHECKED'):
-            self.oldwx = False
-            self.tlist = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT
-                                     | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
+        self.tracklist = wx.ListCtrl(self, wx.ID_ANY, style=wx.LC_REPORT |
+                                     wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
                                      )
-        else:
-            self.oldwx = True
-            t_id = wx.NewIdRef()
-            self.tlist = TestListCtrl(self, t_id, style=wx.LC_REPORT
-                                      | wx.SUNKEN_BORDER | wx.LC_SINGLE_SEL
-                                      )
-        boxlistctrl.Add(self.tlist, 1, wx.ALL | wx.EXPAND, 5)
-        self.tlist.InsertColumn(0, (_('Track')), width=60)
-        self.tlist.InsertColumn(1, (_('Artist')), width=130)
-        self.tlist.InsertColumn(2, (_('Title')), width=130)
-        self.tlist.InsertColumn(3, (_('Length')), width=80)
-        self.tlist.InsertColumn(4, (_('Album')), width=180)
+        boxlistctrl.Add(self.tracklist, 1, wx.ALL | wx.EXPAND, 5)
+        self.tracklist.InsertColumn(0, (_('Track')), width=60)
+        self.tracklist.InsertColumn(1, (_('Artist')), width=130)
+        self.tracklist.InsertColumn(2, (_('Title')), width=130)
+        self.tracklist.InsertColumn(3, (_('Length')), width=80)
+        self.tracklist.InsertColumn(4, (_('Album')), width=180)
 
         sizer_cuefile = wx.BoxSizer(wx.HORIZONTAL)
         sizer_base.Add(sizer_cuefile, 0, wx.EXPAND | wx.ALL, 5)
@@ -220,8 +176,8 @@ class CueGui(wx.Panel):
 
         self.Bind(wx.EVT_COMBOBOX, self.on_formats, self.cmbx_formats)
         self.Bind(wx.EVT_CHECKBOX, self.on_codec_copy, self.ckbx_codec_copy)
-        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.tlist)
-        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.tlist)
+        self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.tracklist)
+        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.tracklist)
     # -----------------------------------------------------------------#
         pub.subscribe(self.update_progress_bar, "UPDATE_EVT")
         pub.subscribe(self.update_count_items, "COUNT_EVT")
@@ -261,12 +217,12 @@ class CueGui(wx.Panel):
                                   ffprobe_cmd=self.appdata['ffprobe_cmd'],
                                   ffmpeg_cmd=self.appdata['ffmpeg_cmd'],
                                   ffmpeg_loglevel=self.appdata['ffmpegloglev'],
-                                  progress_meter='tqdm'
+                                  progress_meter='tqdm',
                                   )  # instance
         try:
             self.data.open_cuefile()
         except Exception as err:
-            wx.MessageBox(f'{err}', "FFcuesplitter-GUI", wx.ICON_ERROR, self)
+            wx.MessageBox(f'{err}', "ERROR", wx.ICON_ERROR, self)
             return
 
         self.set_data_list_ctrl()
@@ -294,19 +250,22 @@ class CueGui(wx.Panel):
         """
         Populates listctrl and enable/disable some btns
         """
-        self.tlist.DeleteAllItems()
-        if self.oldwx is False:
-            self.tlist.EnableCheckBoxes(enable=True)
+        #self.tracklist.DeleteAllItems()
 
         for num, item in enumerate(self.data.audiotracks):
-            self.tlist.InsertItem(num, item.get('TRACK_NUM', 'N/A'))
-            self.tlist.SetItem(num, 1, item.get('PERFORMER', 'N/A'))
-            self.tlist.SetItem(num, 2, item.get('TITLE', 'N/A'))
+
+
+            self.tracklist.InsertItem(num, item.get('TRACK_NUM', 'N/A'))
+            #self.tracklist.SetItem(num, item.get('PERFORMER', 'N/A'))
+            self.tracklist.SetItem(num, 1, item.get('PERFORMER', 'N/A'))
+            self.tracklist.SetItem(num, 2, item.get('TITLE', 'N/A'))
             dur = item.get('DURATION', '')
             sec = str(datetime.timedelta(seconds=dur))[2:7]
-            self.tlist.SetItem(num, 3, sec)
-            self.tlist.SetItem(num, 4, item.get('ALBUM', 'N/A'))
-            self.tlist.CheckItem(num, check=True)
+            self.tracklist.SetItem(num, 3, sec)
+            self.tracklist.SetItem(num, 4, item.get('ALBUM', 'N/A'))
+
+        self.tracklist.InsertItem(0, '----')
+        self.tracklist.SetItemBackgroundColour(0, "CORAL")
 
         self.parent.toolbar.EnableTool(12, True)  # start
         self.parent.toolbar.EnableTool(8, True)  # audio CD
@@ -325,6 +284,9 @@ class CueGui(wx.Panel):
             self.cmbx_quality.SetSelection(0)
 
         elif self.cmbx_formats.GetValue() == 'flac':
+            self.cmbx_quality.SetSelection(6)
+
+        elif self.cmbx_formats.GetValue() == 'opus':
             self.cmbx_quality.SetSelection(6)
 
         elif self.cmbx_formats.GetValue() == 'mp3':
@@ -352,7 +314,7 @@ class CueGui(wx.Panel):
 
     def on_select(self, event):
         """
-        self.tlist selection event. Enables Track Tag
+        self.tracklist selection event. Enables Track Tag
         button on toolbar.
         """
         self.parent.toolbar.EnableTool(14, True)
@@ -360,7 +322,7 @@ class CueGui(wx.Panel):
 
     def on_deselect(self, event):
         """
-        self.tlist de-selection event. Disables Track Tag
+        self.tracklist de-selection event. Disables Track Tag
         button on toolbar.
         """
         self.parent.toolbar.EnableTool(14, False)
@@ -396,36 +358,14 @@ class CueGui(wx.Panel):
                                        prefix='FFcuesplitterGUI_',
                                        dir=None)
         self.update_attributes_of_ffcuesplitter_api(self.tmpdir)  # set all
-        args = self.data.ffmpeg_arguments()  # get command/arguments list
-
-        if self.oldwx is False:
-            check = self.tlist.IsItemChecked
-        else:
-            check = self.tlist.IsChecked
-
-        count = self.tlist.GetItemCount()
-        indexes = [x for x in range(count) if not check(x)]
-
-        if count == len(indexes):  # no track to extract
-            wx.MessageBox(_('No track to extract. Check at '
-                          'least one checkbox'), "FFcuesplitter-GUI",
-                          wx.ICON_WARNING, self)
-            return
-
-        if indexes:
-            for index in sorted(indexes, reverse=True):
-                args['arguments'].pop(index)
-                args['seconds'].pop(index)
+        args = self.data.commandargs()  # get command/arguments list
 
         self.parent.toolbar.EnableTool(13, True)  # stop
         self.parent.toolbar.EnableTool(12, False)  # start
         self.parent.toolbar.EnableTool(5, False)  # setup
 
         logfile = os.path.join(self.appdata['logdir'], 'ffmpeg.log')
-        self.thread_type = Processing(args['arguments'],
-                                      args['seconds'],
-                                      logfile
-                                      )
+        self.thread_type = Processing(args, logfile)
     # ----------------------------------------------------------------------
 
     def on_stop(self, event):

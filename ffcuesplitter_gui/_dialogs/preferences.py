@@ -4,7 +4,7 @@ Name: preferences.py
 Porpose: FFcuesplitter-GUI setup dialog
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Jan.30.2022
 Code checker: flake8, pylint

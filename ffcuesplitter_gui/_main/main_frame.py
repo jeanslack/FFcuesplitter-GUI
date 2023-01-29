@@ -4,7 +4,7 @@ Name: main_frame.py
 Porpose: top window main frame
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.04.2022
 Code checker: flake8, pylint
@@ -533,7 +533,7 @@ class MainFrame(wx.Frame):
         """
         Call track info dialog
         """
-        index = self.gui_panel.tlist.GetFocusedItem()
+        index = self.gui_panel.tracklist.GetFocusedItem()
         with TrackInfo(self,
                        self.gui_panel.data.audiotracks,
                        index
