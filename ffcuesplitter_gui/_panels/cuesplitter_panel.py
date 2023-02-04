@@ -32,7 +32,7 @@ import datetime
 import wx
 import wx.lib.scrolledpanel as scrolled
 from pubsub import pub
-from ffcuesplitter.cuesplitter import FFCueSplitter
+from ffcuesplitter.cuesplitter import FFCueSplitter, DataArgs
 from ffcuesplitter_gui._utils.utils import get_codec_quality_items
 from ffcuesplitter_gui._threads.ffmpeg_processing import Processing
 from ffcuesplitter_gui._dialogs.widget_utils import notification_area
@@ -213,14 +213,14 @@ class CueGui(wx.Panel):
         """
         self.txt_path_cue.SetValue(newincoming)
 
-        self.data = FFCueSplitter(newincoming,
-                                  ffprobe_cmd=self.appdata['ffprobe_cmd'],
-                                  ffmpeg_cmd=self.appdata['ffmpeg_cmd'],
-                                  ffmpeg_loglevel=self.appdata['ffmpegloglev'],
-                                  progress_meter='tqdm',
-                                  )  # instance
+        argsdata = DataArgs(newincoming,
+                            ffprobe_cmd=self.appdata['ffprobe_cmd'],
+                            ffmpeg_cmd=self.appdata['ffmpeg_cmd'],
+                            ffmpeg_loglevel=self.appdata['ffmpegloglev'],
+                            progress_meter='tqdm',
+                            )  # instance
         try:
-            self.data.open_cuefile()
+            self.data = FFCueSplitter(**argsdata.asdict())
         except Exception as err:
             wx.MessageBox(f'{err}', "ERROR", wx.ICON_ERROR, self)
             return
@@ -358,7 +358,7 @@ class CueGui(wx.Panel):
                                        prefix='FFcuesplitterGUI_',
                                        dir=None)
         self.update_attributes_of_ffcuesplitter_api(self.tmpdir)  # set all
-        args = self.data.commandargs()  # get command/arguments list
+        args = self.data.commandargs(self.data.audiotracks)
 
         self.parent.toolbar.EnableTool(13, True)  # stop
         self.parent.toolbar.EnableTool(12, False)  # start
