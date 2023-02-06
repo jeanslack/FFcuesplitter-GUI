@@ -32,7 +32,7 @@ import datetime
 import wx
 import wx.lib.scrolledpanel as scrolled
 from pubsub import pub
-from ffcuesplitter.cuesplitter import FFCueSplitter, DataArgs
+from ffcuesplitter.cuesplitter import FFCueSplitter
 from ffcuesplitter_gui._utils.utils import get_codec_quality_items
 from ffcuesplitter_gui._threads.ffmpeg_processing import Processing
 from ffcuesplitter_gui._dialogs.widget_utils import notification_area
@@ -213,14 +213,14 @@ class CueGui(wx.Panel):
         """
         self.txt_path_cue.SetValue(newincoming)
 
-        argsdata = DataArgs(newincoming,
-                            ffprobe_cmd=self.appdata['ffprobe_cmd'],
-                            ffmpeg_cmd=self.appdata['ffmpeg_cmd'],
-                            ffmpeg_loglevel=self.appdata['ffmpegloglev'],
-                            progress_meter='tqdm',
-                            )  # instance
+        kwargs = dict(filename=newincoming,
+                      ffprobe_cmd=self.appdata['ffprobe_cmd'],
+                      ffmpeg_cmd=self.appdata['ffmpeg_cmd'],
+                      ffmpeg_loglevel=self.appdata['ffmpegloglev'],
+                      progress_meter='tqdm',
+                      )  # instance
         try:
-            self.data = FFCueSplitter(**argsdata.asdict())
+            self.data = FFCueSplitter(**kwargs)
         except Exception as err:
             wx.MessageBox(f'{err}', "ERROR", wx.ICON_ERROR, self)
             return
@@ -250,22 +250,16 @@ class CueGui(wx.Panel):
         """
         Populates listctrl and enable/disable some btns
         """
-        #self.tracklist.DeleteAllItems()
+        self.tracklist.DeleteAllItems()
 
         for num, item in enumerate(self.data.audiotracks):
-
-
             self.tracklist.InsertItem(num, item.get('TRACK_NUM', 'N/A'))
-            #self.tracklist.SetItem(num, item.get('PERFORMER', 'N/A'))
             self.tracklist.SetItem(num, 1, item.get('PERFORMER', 'N/A'))
             self.tracklist.SetItem(num, 2, item.get('TITLE', 'N/A'))
             dur = item.get('DURATION', '')
             sec = str(datetime.timedelta(seconds=dur))[2:7]
             self.tracklist.SetItem(num, 3, sec)
             self.tracklist.SetItem(num, 4, item.get('ALBUM', 'N/A'))
-
-        self.tracklist.InsertItem(0, '----')
-        self.tracklist.SetItemBackgroundColour(0, "CORAL")
 
         self.parent.toolbar.EnableTool(12, True)  # start
         self.parent.toolbar.EnableTool(8, True)  # audio CD
@@ -358,7 +352,13 @@ class CueGui(wx.Panel):
                                        prefix='FFcuesplitterGUI_',
                                        dir=None)
         self.update_attributes_of_ffcuesplitter_api(self.tmpdir)  # set all
-        args = self.data.commandargs(self.data.audiotracks)
+
+        try:
+            args = self.data.commandargs(self.data.audiotracks)
+        except Exception as err:
+            wx.MessageBox(f'{err}', "ERROR", wx.ICON_ERROR, self)
+            return
+
 
         self.parent.toolbar.EnableTool(13, True)  # stop
         self.parent.toolbar.EnableTool(12, False)  # start
