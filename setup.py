@@ -8,7 +8,7 @@ Platform: all
 Writer: Gianluca Pernigotto <jeanlucperni@gmail.com>
 Copyright: 2023-2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
-Rev: Feb.09.2022
+Rev: Aug.1.2023
 Code checker: flake8, pylint
 ########################################################
 
@@ -57,7 +57,7 @@ def source_build():
         inst_req = ["wxpython>=4.0.7; platform_system=='Windows' or "
                     "platform_system=='Darwin'",
                     "PyPubSub>=4.0.3",
-                    "ffcuesplitter>=1.0.7",
+                    "ffcuesplitter>=1.0.22",
                     ]
         setup_req = ["setuptools>=47.1.1",
                      "wheel>=0.34.2",
@@ -71,7 +71,7 @@ def source_build():
     else:  # e.g. to make a Debian source package, include wxpython.
         inst_req = ["wxpython>=4.0.7",
                     "PyPubSub>=4.0.3",
-                    "ffcuesplitter>=1.0.7",
+                    "ffcuesplitter>=1.0.22",
                     ]
         setup_req = []
         long_descript = __descriptionfull__
@@ -148,8 +148,10 @@ def source_build():
               'Natural Language :: Russian',
               'Programming Language :: Python :: 3 :: Only',
               'Programming Language :: Python :: 3.7',
-              "Programming Language :: Python :: 3.8",
-              "Programming Language :: Python :: 3.9",
+              'Programming Language :: Python :: 3.8',
+              'Programming Language :: Python :: 3.9',
+              'Programming Language :: Python :: 3.10',
+              'Programming Language :: Python :: 3.11',
               'Topic :: Multimedia :: Sound/Audio',
               'Topic :: Multimedia :: Sound/Audio :: Conversion',
               'Topic :: Multimedia :: Sound/Audio :: CD Audio :: CD Ripping',

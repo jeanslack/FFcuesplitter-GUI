@@ -1,9 +1,9 @@
 
 
-- check code with a linter (flake8/pylint)
+- [DONE] check code with a linter (flake8/pylint)
 - Make io.github.jeanslack.ffcuesplitter-gui.desktop.
-- Make ffcuesplitter-gui.icns.
-- make ffcuesplitter-gui.ico
+- Make ffcuesplitter-gui.icns (MacOs)
+- Make ffcuesplitter-gui.ico (Windows)
 
 - Complete the Italian translation.
 - Make localization guidelines
@@ -14,7 +14,7 @@
 - Make debian dir.
 - Write INSTALL basic for installations.
 
-BUG verifieds
-- Auto-make output folder if it doesn't exist.
-- The codec/output format is always flac even if you choose another format
+- [DONE] Auto-make output folder if it doesn't exist.
+- [DONE] The codec/output format is always flac even if you choose another format
   among those available (wav, opus, mp3, ogg)
+- Make GitHub workflow to test multiple Python version.

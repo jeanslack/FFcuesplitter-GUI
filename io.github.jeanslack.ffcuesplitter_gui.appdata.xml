@@ -3,21 +3,24 @@
   <id>io.github.jeanslack.ffcuesplitter_gui</id>
   
   <name>FFcuesplitter-gui</name>
-  <summary>A cross-platform GUI for the FFcuesplitter library written in wxPython Phoenix</summary>
+  <summary>
+  A simple graphical user interface to extracts audio tracks from audio CD 
+  images supplied with a CUE sheet.
+  </summary>
   
   <metadata_license>FSFAP</metadata_license>
   <project_license>AGPL-3.0-only</project_license>
   
   <description>
     <p>
-      FFcuesplitter-gui extracts audio tracks from an audio CD image supplied 
-      with the CUE sheet, using FFmpeg.
+      FFcuesplitter-GUI is a cross-platform GUI written in wxPython Phoenix. 
+      It is based on the FFcuesplitter library, which is based on FFmpeg for 
+      audio track extraction and encoding processes.
     </p>
     <p>
-      It features editable tags per track, checkboxes to select track 
-      extractions, an audio CD properties viewer, support for WAV, FLAC, MP3 and 
-      OGG output formats, audio compression selectors and the ability to copy 
-      audio codec without re-encoding.
+      It features editable tags per track, an audio CD properties viewer, 
+      support for WAV, FLAC, MP3, OGG, OPUS output formats, audio compression 
+      selectors and the ability to copy audio codec without re-encoding.
     </p>
   </description>
   

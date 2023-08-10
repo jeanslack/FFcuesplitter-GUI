@@ -1,5 +1,5 @@
 PyPubSub>=4.0.3
-ffcuesplitter>=1.0.7
+ffcuesplitter>=1.0.22
 
 [:platform_system == "Windows" or platform_system == "Darwin"]
 wxpython>=4.0.7 
