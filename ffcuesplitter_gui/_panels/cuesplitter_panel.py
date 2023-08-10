@@ -397,7 +397,7 @@ class CueGui(wx.Panel):
         percent = secs / round(duration) * 100
         msg = _("Processing... File number: {} | Status "
                 "Progress: {}%").format(track, round(percent))
-        self.barprog.SetValue(percent)
+        self.barprog.SetValue(round(percent))
         self.parent.statusbar_msg(msg, bgrd='BLACK', fgrd='GREEN YELLOW')
     # ----------------------------------------------------------------------
 
