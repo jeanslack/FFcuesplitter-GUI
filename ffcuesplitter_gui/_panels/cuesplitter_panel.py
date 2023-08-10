@@ -33,6 +33,7 @@ import wx
 import wx.lib.scrolledpanel as scrolled
 from pubsub import pub
 from ffcuesplitter.cuesplitter import FFCueSplitter
+from ffcuesplitter.utils import makeoutputdirs
 from ffcuesplitter_gui._utils.utils import get_codec_quality_items
 from ffcuesplitter_gui._threads.ffmpeg_processing import Processing
 from ffcuesplitter_gui._dialogs.widget_utils import notification_area
@@ -177,8 +178,9 @@ class CueGui(wx.Panel):
         self.Bind(wx.EVT_COMBOBOX, self.on_formats, self.cmbx_formats)
         self.Bind(wx.EVT_CHECKBOX, self.on_codec_copy, self.ckbx_codec_copy)
         self.Bind(wx.EVT_LIST_ITEM_SELECTED, self.on_select, self.tracklist)
-        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect, self.tracklist)
-    # -----------------------------------------------------------------#
+        self.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.on_deselect,
+                  self.tracklist)
+        # -----------------------------------------------------------------#
         pub.subscribe(self.update_progress_bar, "UPDATE_EVT")
         pub.subscribe(self.update_count_items, "COUNT_EVT")
         pub.subscribe(self.end_processing, "END_EVT")
@@ -213,12 +215,12 @@ class CueGui(wx.Panel):
         """
         self.txt_path_cue.SetValue(newincoming)
 
-        kwargs = dict(filename=newincoming,
-                      ffprobe_cmd=self.appdata['ffprobe_cmd'],
-                      ffmpeg_cmd=self.appdata['ffmpeg_cmd'],
-                      ffmpeg_loglevel=self.appdata['ffmpegloglev'],
-                      progress_meter='tqdm',
-                      )  # instance
+        kwargs = {'filename': newincoming,
+                  'ffprobe_cmd': self.appdata['ffprobe_cmd'],
+                  'ffmpeg_cmd': self.appdata['ffmpeg_cmd'],
+                  'ffmpeg_loglevel': self.appdata['ffmpegloglev'],
+                  'progress_meter': 'tqdm',
+                  }  # instance
         try:
             self.data = FFCueSplitter(**kwargs)
         except Exception as err:
@@ -333,14 +335,12 @@ class CueGui(wx.Panel):
 
         if self.ckbx_codec_copy.IsChecked() is True:
             self.data.kwargs['ffmpeg_add_params'] = ""
-            self.data.kwargs['format'] = 'copy'
+            self.data.kwargs['outputformat'] = 'copy'
         else:
-            self.data.kwargs['format'] = self.cmbx_formats.GetValue()
+            self.data.kwargs['outputformat'] = self.cmbx_formats.GetValue()
             items = get_codec_quality_items(self.cmbx_formats.GetValue())
             compression = items[self.cmbx_quality.GetValue()]
             self.data.kwargs['ffmpeg_add_params'] = compression
-
-        self.data.kwargs['suffix'] = self.cmbx_formats.GetValue()
     # ----------------------------------------------------------------------
 
     def on_start(self):
@@ -358,7 +358,6 @@ class CueGui(wx.Panel):
         except Exception as err:
             wx.MessageBox(f'{err}', "ERROR", wx.ICON_ERROR, self)
             return
-
 
         self.parent.toolbar.EnableTool(13, True)  # stop
         self.parent.toolbar.EnableTool(12, False)  # start
@@ -432,6 +431,7 @@ class CueGui(wx.Panel):
                                              "See Logs for details."),
                               wx.ICON_ERROR)
         else:
+            makeoutputdirs(self.data.kwargs['outputdir'])  # if doesn't exists
             move_files_to_outputdir(self.data.kwargs['outputdir'],
                                     self.data.kwargs['tempdir'])
             self.parent.statusbar_msg(_("...Finished!"),

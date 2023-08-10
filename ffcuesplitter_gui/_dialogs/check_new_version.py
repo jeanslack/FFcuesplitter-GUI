@@ -115,9 +115,8 @@ class CheckNewVersion(wx.Dialog):
         Go to the specific download page for your platform
         """
         if CheckNewVersion.OS in ('Linux', 'Darwin', 'Windows'):
-
-           page = ('https://github.com/jeanslack/FFcuesplitter-GUI'
-                   '/releases/latest/')
+            page = ('https://github.com/jeanslack/FFcuesplitter-GUI'
+                    '/releases/latest/')
 
         webbrowser.open(page)
     # ------------------------------------------------------------------#

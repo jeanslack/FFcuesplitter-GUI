@@ -32,6 +32,21 @@ def browse(opsyst, pathname):
     """
     open file browser in a specific location (OS independent)
 
+    NOTE The following code work, but on MS-Windows it show a short of
+    Dos-window
+    -----------------
+
+    try:
+        p = subprocess.run(cmd)
+        if p.stderr:
+            return(p.stderr.decode())
+            '''
+            if not *capture_output=True* on subprocess instance
+            use .decode() here.
+            '''
+    except FileNotFoundError as err:
+        return('%s' % (err))
+
     """
     status = 'Unrecognized error'
 
@@ -72,20 +87,3 @@ def browse(opsyst, pathname):
         status = f'{oserr}'
 
     return status
-
-    """
-    NOTE The following code work, but on MS-Windows it show a short of
-         Dos-window
-    -----------------
-
-    try:
-        p = subprocess.run(cmd)
-        if p.stderr:
-            return(p.stderr.decode())
-            '''
-            if not *capture_output=True* on subprocess instance
-            use .decode() here.
-            '''
-    except FileNotFoundError as err:
-        return('%s' % (err))
-    """

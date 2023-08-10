@@ -10,13 +10,16 @@ Change Log:
 Thu, 10 Aug 2023 V.1.0.5 (unreleased)
 
 - Removed `wx.lib.mixins.listctrl` (with checkbox functionality)
-- Fixed code to new FFcuesplitter API v1.0.21.
+- Fixed code to new FFcuesplitter API v1.0.22.
 - Added opus format/codec
 - Fixed: `FFcuesplitter-GUI/ffcuesplitter_gui/_panels/cuesplitter_panel.py:400:
           DeprecationWarning: an integer is required (got type float).  Implicit
           conversion to integers using __int__ is deprecated, and may be removed
           in a future version of Python.
   self.barprog.SetValue(percent)`
+- Make output directory if doesn't exists (or if it was deleted)
+- Fixed output format issue.
+- Code factorized.
 
 +------------------------------------+
 Dec 14, 2022 V.1.0.2 (unreleased)

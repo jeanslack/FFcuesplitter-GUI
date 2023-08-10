@@ -26,7 +26,6 @@ This file is part of FFcuesplitter-GUI.
 """
 from threading import Thread
 import time
-import itertools
 import subprocess
 import platform
 from ffcuesplitter.utils import Popen
