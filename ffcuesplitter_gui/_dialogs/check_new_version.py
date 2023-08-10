@@ -4,7 +4,7 @@ Name: check_new_version.py
 Porpose: shows informative messages on version in use and new releases
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2018/2021 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Sept.28.2021
 Code checker: pycodestyle / flake8 --ignore=F821,W503
@@ -115,9 +115,8 @@ class CheckNewVersion(wx.Dialog):
         Go to the specific download page for your platform
         """
         if CheckNewVersion.OS in ('Linux', 'Darwin', 'Windows'):
-
-           page = ('https://github.com/jeanslack/FFcuesplitter-GUI'
-                   '/releases/latest/')
+            page = ('https://github.com/jeanslack/FFcuesplitter-GUI'
+                    '/releases/latest/')
 
         webbrowser.open(page)
     # ------------------------------------------------------------------#

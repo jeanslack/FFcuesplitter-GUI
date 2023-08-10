@@ -6,7 +6,7 @@ Porpose: script to setup FFcuesplitter-gui.
 Compatibility: Python3
 Platform: all
 Writer: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022-2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023-2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.09.2022
 Code checker: flake8, pylint

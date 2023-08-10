@@ -4,7 +4,7 @@ Name: info.py
 Porpose: holds package information
 Compatibility: Python3
 author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-copyr: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 lic: GPL3
 Rev: Jan.31.2022
 Code checker: flake8, pylint
@@ -25,7 +25,7 @@ This file is part of FFcuesplitter-GUI.
    You should have received a copy of the GNU General Public License
    along with FFcuesplitter-GUI.  If not, see <http://www.gnu.org/licenses/>.
 """
-__version__ = "1.0.2"
+__version__ = "1.0.5"
 __author__ = "Gianluca Pernigotto"
 __contact__ = "jeanlucperni@gmail.com"
 __maintainer__ = "Gianluca Pernigotto (jeanslack)"
@@ -43,7 +43,7 @@ checkboxes to select track extractions, an audio CD properties viewer, support
 for WAV, FLAC, MP3 and OGG output formats, audio compression selectors and the
 ability to copy audio codec without re-encoding.
 """
-__copyleft__ = '2022'
+__copyleft__ = '2023'
 __licensefull__ = f"""
 copyleft - {__copyleft__} {__author__}
 Author and Developer: {__author__}

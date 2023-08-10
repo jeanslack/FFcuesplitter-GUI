@@ -4,7 +4,7 @@ Name: utils.py
 Porpose: It groups useful functions that are called several times
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.03.2022
 Code checker: flake8, pylint .
@@ -73,41 +73,52 @@ def get_codec_quality_items(_format_):
     Given an audio format, it returns the corresponding
     audio compression references,if available.
     """
-    qualities = {'wav':
-                     {"Auto": ""},
-                 'flac':
-                     {"Auto": "",
-                      "very high quality": "-compression_level 0",
-                      "quality 1": "-compression_level 1" ,
-                      "quality 2": "-compression_level 2",
-                      "quality 3": "-compression_level 3",
-                      "quality 4": "-compression_level 4",
-                      "Standard quality": "-compression_level 5",
-                      "quality 6": "-compression_level 6",
-                      "quality 7": "-compression_level 7",
-                      "low quality": "-compression_level 8"
+    qualities = {'wav': {"Auto": ""},
+                 'flac': {"Auto": "",
+                          "very high quality": "-compression_level 0",
+                          "quality 1": "-compression_level 1",
+                          "quality 2": "-compression_level 2",
+                          "quality 3": "-compression_level 3",
+                          "quality 4": "-compression_level 4",
+                          "Standard quality": "-compression_level 5",
+                          "quality 6": "-compression_level 6",
+                          "quality 7": "-compression_level 7",
+                          "low quality": "-compression_level 8"
                           },
-                 'ogg':
-                     {"Auto": "",
-                     "very poor quality": "-aq 1",
-                     "VBR 92 kbit/s": "-aq 2",
-                     "VBR 128 kbit/s": "-aq 3",
-                     "VBR 160 kbit/s": "-aq 4",
-                     "VBR 175 kbit/s": "-aq 5",
-                     "VBR 192 kbit/s": "-aq 6",
-                     "VBR 220 kbit/s": "-aq 7",
-                     "VBR 260 kbit/s": "-aq 8",
-                     "VBR 320 kbit/s": "-aq 9",
-                     "very good quality": "-aq 10"
+                 'ogg': {"Auto": "",
+                         "very poor quality": "-aq 1",
+                         "VBR 92 kbit/s": "-aq 2",
+                         "VBR 128 kbit/s": "-aq 3",
+                         "VBR 160 kbit/s": "-aq 4",
+                         "VBR 175 kbit/s": "-aq 5",
+                         "VBR 192 kbit/s": "-aq 6",
+                         "VBR 220 kbit/s": "-aq 7",
+                         "VBR 260 kbit/s": "-aq 8",
+                         "VBR 320 kbit/s": "-aq 9",
+                         "very good quality": "-aq 10"
                          },
-                 'mp3':
-                     {"Auto": "",
-                     "VBR 128 kbit/s (low quality)": "-b:a 128k",
-                     "VBR 160 kbit/s": "-b:a 160k",
-                     "VBR 192 kbit/s": "-b:a 192k",
-                     "VBR 260 kbit/s": "-b:a 260k",
-                     "CBR 320 kbit/s (very good quality)": "-b:a 320k"
-                         }}
+                 'opus': {"Auto": "",
+                          "low quality 0": "-compression_level 0",
+                          "low quality 1": "-compression_level 1",
+                          "quality 2": "-compression_level 2",
+                          "quality 3": "-compression_level 3",
+                          "quality 4": "-compression_level 4",
+                          "medium quality 5": "-compression_level 5",
+                          "quality 6": "-compression_level 6",
+                          "quality 7": "-compression_level 7",
+                          "quality 8": "-compression_level 8",
+                          "high quality 9": "-compression_level 9",
+                          "highest quality 10 (default)":
+                          "-compression_level 10",
+                          },
+                 'mp3': {"Auto": "",
+                         "VBR 128 kbit/s (low quality)": "-b:a 128k",
+                         "VBR 160 kbit/s": "-b:a 160k",
+                         "VBR 192 kbit/s": "-b:a 192k",
+                         "VBR 260 kbit/s": "-b:a 260k",
+                         "CBR 320 kbit/s (very good quality)": "-b:a 320k"
+                         }
+                 }
     return qualities[_format_]
 # ------------------------------------------------------------------------
 

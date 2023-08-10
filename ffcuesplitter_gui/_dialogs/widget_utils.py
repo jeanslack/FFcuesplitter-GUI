@@ -4,7 +4,7 @@ Name: widget_utils.py
 Porpose: Features a set of useful wx widgets to use dynamically
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.04.2022
 Code checker: flake8, pylint

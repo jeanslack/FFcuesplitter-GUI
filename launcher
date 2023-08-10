@@ -5,7 +5,7 @@ Name: launcher.py
 Porpose: main launch script of ffcuesplitter_gui
 Compatibility: Python3
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Jan.26.2022
 Code checker: flake8, pylint

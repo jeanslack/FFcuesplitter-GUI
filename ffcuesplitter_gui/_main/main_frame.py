@@ -4,7 +4,7 @@ Name: main_frame.py
 Porpose: top window main frame
 Compatibility: Python3, wxPython Phoenix
 Author: Gianluca Pernigotto <jeanlucperni@gmail.com>
-Copyright: (c) 2022/2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
+Copyright: 2023 Gianluca Pernigotto <jeanlucperni@gmail.com>
 license: GPL3
 Rev: Feb.04.2022
 Code checker: flake8, pylint
@@ -388,27 +388,27 @@ class MainFrame(wx.Frame):
         """
         if self.appdata['toolbarpos'] == 0:  # on top
             if self.appdata['toolbartext'] is True:  # show text
-                style = (wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_HORIZONTAL)
+                style = wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_HORIZONTAL
             else:
-                style = (wx.TB_DEFAULT_STYLE)
+                style = wx.TB_DEFAULT_STYLE
 
         elif self.appdata['toolbarpos'] == 1:  # on bottom
             if self.appdata['toolbartext'] is True:  # show text
-                style = (wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_BOTTOM)
+                style = wx.TB_TEXT | wx.TB_HORZ_LAYOUT | wx.TB_BOTTOM
             else:
-                style = (wx.TB_DEFAULT_STYLE | wx.TB_BOTTOM)
+                style = wx.TB_DEFAULT_STYLE | wx.TB_BOTTOM
 
         elif self.appdata['toolbarpos'] == 2:  # on right
             if self.appdata['toolbartext'] is True:  # show text
-                style = (wx.TB_TEXT | wx.TB_RIGHT)
+                style = wx.TB_TEXT | wx.TB_RIGHT
             else:
-                style = (wx.TB_DEFAULT_STYLE | wx.TB_RIGHT)
+                style = wx.TB_DEFAULT_STYLE | wx.TB_RIGHT
 
         elif self.appdata['toolbarpos'] == 3:
             if self.appdata['toolbartext'] is True:  # show text
-                style = (wx.TB_TEXT | wx.TB_LEFT)
+                style = wx.TB_TEXT | wx.TB_LEFT
             else:
-                style = (wx.TB_DEFAULT_STYLE | wx.TB_LEFT)
+                style = wx.TB_DEFAULT_STYLE | wx.TB_LEFT
 
         self.toolbar = self.CreateToolBar(style=style)
 
@@ -533,7 +533,7 @@ class MainFrame(wx.Frame):
         """
         Call track info dialog
         """
-        index = self.gui_panel.tlist.GetFocusedItem()
+        index = self.gui_panel.tracklist.GetFocusedItem()
         with TrackInfo(self,
                        self.gui_panel.data.audiotracks,
                        index
