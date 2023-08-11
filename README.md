@@ -25,7 +25,7 @@ ability to copy audio codec without re-encoding.
 - **[ffmpeg >=4.3](https://ffmpeg.org/)**
 - **[ffprobe >=4.3](https://ffmpeg.org/ffprobe.html)**
 
-## Running from source code
+## Running from source code (Unix/macOS)
 
 ```
 git clone https://github.com/jeanslack/FFcuesplitter-GUI.git
@@ -35,6 +35,22 @@ source My_env/bin/activate
 python3 -m pip install -r requirements.txt
 python3 launcher
 ```
+
+## Running from source code (Windows)
+
+```
+git clone https://github.com/jeanslack/FFcuesplitter-GUI.git
+cd FFcuesplitter-GUI
+python -m venv My_env
+.\My_env\Scripts\activate
+python -m pip install -r requirements.txt
+python launcher
+```
+
+## Installation
+
+Please, read the instructions provided with the [INSTALL](https://github.com/jeanslack/FFcuesplitter-GUI/blob/main/INSTALL) file
+
 
 ## Authors
 See [AUTHORS](AUTHORS) file

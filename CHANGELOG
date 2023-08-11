@@ -17,10 +17,11 @@ Thu, 11 Aug 2023 V.1.0.5 (unreleased)
           conversion to integers using __int__ is deprecated, and may be removed
           in a future version of Python.
   self.barprog.SetValue(percent)`
-- Make output directory if doesn't exists (or if it was deleted)
+- Make output directory if doesn't exists (or if it was deleted).
 - Fixed output format issue.
 - Code factorized.
-- Update man page
+- Updated README.md file and man page.
+- Updated INSTALL file for installation instructions.
 
 +------------------------------------+
 Dec 14, 2022 V.1.0.2 (unreleased)

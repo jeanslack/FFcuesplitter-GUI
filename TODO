@@ -18,3 +18,4 @@
 - [DONE] The codec/output format is always flac even if you choose another format
   among those available (wav, opus, mp3, ogg)
 - Make GitHub workflow to test multiple Python version.
+- Fix button spaces as like confirmation buttons.
